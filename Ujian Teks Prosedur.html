@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CBT Ujian Bahasa Indonesia Kelas 7 - Bab II</title>
+  <title>CBT Ujian Bahasa Indonesia Kelas 7 - Teks Prosedur</title>
   <style>
     :root {
       --primary: #1e3a8a;
@@ -196,8 +196,8 @@
       border-left: 4px solid var(--primary);
       padding: 1rem 1.2rem;
       margin-bottom: 1.2rem;
-      font-family: Georgia, serif;
-      font-size: 0.98rem;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 0.95rem;
       line-height: 1.7;
       color: #334155;
       white-space: pre-line;
@@ -429,7 +429,7 @@
   <div id="screen-login" class="screen active">
     <div class="login-card">
       <h2>UJIAN CBT BAHASA INDONESIA</h2>
-      <p>Penilaian Sumatif Bab II: Puisi Rakyat & Cerita Fantasi</p>
+      <p>Penilaian Sumatif Bab III: Teks Prosedur</p>
 
       <form id="form-login" onsubmit="event.preventDefault(); startExam();">
         <div class="form-group">
@@ -535,610 +535,609 @@
 
   <script>
     // ==========================================
-    // BASIS DATA 60 SOAL (HOTS & TEKS KRITIS)
+    // BASIS DATA 60 SOAL TEKS PROSEDUR KELAS 7
     // ==========================================
     const masterQuestionBank = [
-      // 1-33: Teks Kritis (>= 7 Kalimat)
+      // 1-33: Soal Teks Prosedur Analisis Kritis & Berbasis Kasus
       {
-        passage: "Di lorong Arsip Bintang, Aldo menemukan kompas obsidian yang jarumnya berputar liar saat didekatkan ke kristal pulsar. Ayahnya pernah berpesan bahwa kompas itu hanya bereaksi pada retakan gravitasi antargalaksi. Di luar stasiun antariksa, armada drone pemindai milik Korporasi Vexen terus menyisir puing-puing asteroid untuk mencari artefak tersebut. Aldo menahan napasnya di balik dinding peredam getaran ketika sensor inframerah musuh menyapu kaca observatorium. Ia menyadari bahwa setiap detik penundaan akan membahayakan seluruh koloni pengungsi di Sektor Sembilan. Dengan tangan gemetar, ia memasukkan kode koordinat kuno ke konsol kemudi darurat kapsul peluncur. Seketika itu juga, getaran sonik berfrekuensi tinggi memecah keheningan hampa udara di sekitarnya.",
-        question: "Berdasarkan kutipan di atas, manakah bukti tekstual yang menunjukkan bahwa cerita tersebut berjenis fantasi futuristik?",
+        passage: "Cara Membuat Pupuk Kompos Organik dari Sampah Dapur:\n(1) Kumpulkan sisa sayuran, kulit buah, dan dedaunan kering dalam wadah terpisah, lalu cacah menjadi potongan-potongan kecil berukuran 2–3 cm.\n(2) Siapkan ember komposter berlubang sirkulasi dan masukkan selapis tanah subur setebal 5 cm pada bagian dasarnya.\n(3) Masukkan cacahan sampah organik basah secara merata di atas lapisan tanah tersebut.\n(4) Taburkan kembali tanah atau serbuk gergaji kering untuk menutupi sampah organik basah guna mencegah bau busuk dan lalat.\n(5) Larutkan 10 ml cairan bioaktivator EM4 ke dalam satu liter air bersih, kemudian siramkan secara merata hingga media terasa lembap tetapi tidak tergenang.\n(6) Tutup rapat wadah komposter dan letakkan di tempat yang teduh serta terhindar dari paparan sinar matahari langsung.\n(7) Aduk tumpukan kompos seminggu sekali untuk menjaga pasokan oksigen mikroorganisme pengurai, dan kompos siap dipanen setelah 4–6 minggu.",
+        question: "Berdasarkan kutipan teks di atas, konsekuensi logis yang terjadi jika langkah nomor (4) diabaikan oleh pengguna adalah...",
         options: [
-          { text: "Penggunaan kompas obsidian, kristal pulsar, stasiun antariksa, dan armada drone pemindai antargalaksi.", correct: true },
-          { text: "Kecemasan tokoh Aldo saat bersembunyi dari pencarian aparat penegak hukum setempat.", correct: false },
-          { text: "Pesan ayah kepada anak tentang bahaya menjelajahi hutan asteroid di malam hari.", correct: false },
-          { text: "Tangan tokoh yang gemetar saat menyalakan mesin kendaraan bermotor konvensional.", correct: false }
+          { text: "Tumpukan sampah organik akan membusuk terbuka sehingga memicu bau menyengat dan mengundang lalat pembawa kuman.", correct: true },
+          { text: "Bakteri pengurai dalam bioaktivator EM4 akan mati total karena kekurangan pasokan air.", correct: false },
+          { text: "Pupuk kompos akan matang lebih cepat dalam kurun waktu kurang dari satu minggu.", correct: false },
+          { text: "Suhu wadah komposter menjadi sangat dingin sehingga tanah dasar mengeras.", correct: false }
         ]
       },
       {
-        passage: "Kaelan menatap telapak tangannya yang kini memancarkan pendar keperakan setelah menyentuh air Danau Eterna. Menurut legenda suku Elvian, siapa pun yang diberkahi pendar tersebut mampu mendengar bisikan akar pohon purba. Namun, berkah itu menuntut pantangan berat: pemiliknya dilarang mengucapkan kebohongan sekecil apa pun. Jika pantangan itu dilanggar, energi perak akan membakar jalan darah pemakainya menjadi debu hitam. Di hadapannya, Panglima Goran menodongkan tombak halilintar seraya menuntut informasi lokasi persembunyian ratu. Kaelan merasakan tenggorokannya tercekat antara menjaga sumpah setia atau menyelamatkan nyawanya sendiri. Udara di lembah itu mendadak mendingin saat angin barat membawa aroma badai salju abadi.",
-        question: "Hukum keajaiban (konsekuensi magis) yang mengikat tokoh Kaelan dalam kutipan semesta tersebut adalah...",
+        passage: "Petunjuk Pengoperasian Mikroskop Binokuler Laboratorium:\n(1) Letakkan mikroskop di atas meja datar yang kokoh dengan memegang lengan mikroskop menggunakan tangan kanan dan menopang alasnya dengan tangan kiri.\n(2) Hubungkan kabel daya ke sumber listrik, lalu nyalakan sakelar utama dan atur intensitas cahaya menggunakan kenop pengatur redup-terang.\n(3) Pasang preparat kaca objek di atas meja spesimen dan jepit menggunakan penjepit mekanik agar tidak bergeser.\n(4) Putar revolver untuk memilih lensa objektif dengan perbesaran paling lemah (4x) tepat sejajar dengan sumbu optik.\n(5) Naikkan meja spesimen mendekati lensa menggunakan makrometer (pemutar kasar) secara hati-hati sambil mengamati posisi preparat dari samping.\n(6) Tempelkan kedua mata pada lensa okuler, lalu putar mikrometer (pemutar halus) perlahan hingga bayangan objek terlihat fokus dan tajam.\n(7) Jika pengamatan telah selesai, turunkan meja spesimen ke posisi terbawah, ganti revolver ke perbesaran lemah, matikan lampu, dan cabut kabel daya.",
+        question: "Mengapa pada langkah nomor (5) pengamat diwajibkan melihat pergerakan meja spesimen dari arah samping, bukan langsung dari lensa okuler?",
         options: [
-          { text: "Energi perak akan menghanguskan jalan darahnya menjadi debu jika ia mengucapkan kebohongan.", correct: true },
-          { text: "Pendar keperakan akan lenyap seketika jika ia terkena sambaran tombak halilintar milik Panglima Goran.", correct: false },
-          { text: "Ia akan kehilangan kemampuan mendengar bisikan pohon jika menyelamatkan sang ratu.", correct: false },
-          { text: "Air Danau Eterna akan berubah menjadi badai salju jika rahasia kerajaan terbongkar.", correct: false }
+          { text: "Mencegah lensa objektif menabrak kaca preparat secara tidak sengaja hingga retak atau merusak lensa.", correct: true },
+          { text: "Memastikan intensitas cahaya lampu mikroskop tidak menyilaukan mata pengamat.", correct: false },
+          { text: "Mempercepat pembesaran objek agar bayangan sel langsung tampak sangat besar.", correct: false },
+          { text: "Memastikan penjepit mekanik tidak bergeser ke tepi meja spesimen.", correct: false }
         ]
       },
       {
-        passage: "Kereta api uap itu tidak melaju di atas bantalan rel baja, melainkan melayang membelah kabut di atas Lembah Morvath. Di gerbong nomor tujuh, Rania memegang erat liontin zamrud peninggalan kakeknya yang bergetar seirama dengan detak jantungnya. Penumpang di sekitarnya adalah makhluk-makhluk berkerudung sutra dengan mata menyala bagai kunang-kunang rawa. Kondektur bertubuh separuh elang melangkah lambat memeriksa karcis bercahaya milik para pelancong lintas dimensi. Tiba-tiba, lokomotif mengerem mendadak hingga memercikkan bunga api keemasan ke udara bebas. Rania tersentak saat jendela gerbong di sampingnya retak akibat hantaman cakar monster kabut raksasa. Waktu seolah membeku ketika sang kondektur meniup peluit perak untuk menghentikan laju sang monster.",
-        question: "Teknik 'Show, Don't Tell' untuk melukiskan ketegangan suasana dalam teks di atas tampak jelas pada kalimat...",
+        passage: "Panduan Membuat Teh Jahe Lemon Penguat Imunitas Tubuh:\n(1) Cuci bersih dua rimpang jahe merah segar menggunakan air mengalir, lalu bakar sebentar di atas bara api kecil agar aroma minyak atsirinya keluar.\n(2) Memarkan jahe tersebut dengan ulekan hingga gepeng, lalu iris tipis-tipis menjadi beberapa bagian.\n(3) Rebus 500 ml air bersih di dalam panci berbahan baja tahan karat (stainless steel) hingga mendidih sempurna.\n(4) Masukkan irisan jahe dan sebatang serai yang telah digeprek ke dalam air mendidih, lalu kecilkan api kompor.\n(5) Rebus ramuan selama 10–15 menit hingga air menyusut separuhnya dan warna cairan berubah menjadi kuning kecokelatan pekat.\n(6) Matikan kompor dan tuang cairan teh ke dalam cangkir melalui saringan halus agar ampasnya terpisah.\n(7) Tunggu hingga suhu minuman menjadi hangat-hangat kuku, barulah tambahkan dua sendok makan madu murni dan perasan jeruk lemon segar.",
+        question: "Alasan mengapa perasan lemon dan madu murni baru boleh dicampurkan saat suhu air sudah hangat kuku pada langkah (7) adalah...",
         options: [
-          { text: "Rania tersentak saat jendela gerbong di sampingnya retak akibat hantaman cakar monster kabut raksasa.", correct: true },
-          { text: "Penumpang di sekitarnya adalah makhluk-makhluk berkerudung sutra.", correct: false },
-          { text: "Kereta api uap itu melaju membelah kabut di atas Lembah Morvath.", correct: false },
-          { text: "Kondektur bertubuh separuh elang melangkah lambat memeriksa karcis para pelancong.", correct: false }
+          { text: "Suhu air yang mendidih dapat merusak kandungan nutrisi vitamin C pada lemon serta enzim alami pada madu.", correct: true },
+          { text: "Air panas akan membuat aroma jahe merah menjadi hilang sama sekali dari seduhan teh.", correct: false },
+          { text: "Madu murni tidak dapat larut sempurna jika dituangkan ke dalam air bersuhu panas.", correct: false },
+          { text: "Panci stainless steel akan mengeluarkan zat beracun jika terkena rasa asam lemon.", correct: false }
         ]
       },
       {
-        passage: "Tepat pukul dua belas malam, jam pasir kuno di Museum Sriwijaya memancarkan pendar hijau toska yang menyilaukan mata Bima. Lantai marmer museum bergetar pelan, lalu retak membentuk pusaran lubang cacing bercahaya. Bima tersedot ke dalam lorong waktu dan terhempas di tepian Sungai Musi pada tahun 683 Masehi. Di sekelilingnya, ratusan prajurit Kedatuan Sriwijaya bersiap menaiki kapal perang bertiang megah di bawah komando Dapunta Hyang. Bima terperangah melihat prasasti batu yang sedang dipahat oleh seorang pendeta tinggi di bawah pohon bodhi. Namun, sebuah gelang perunggu bercorak naga yang melingkar di pergelangan tangannya mulai berdengung panas. Ia harus segera mencatat mantra kedamaian sebelum pusaran waktu membawanya kembali ke abad ke-21.",
-        question: "Ditinjau dari kesesuaian realitas dan alur pergerakan waktunya, teks tersebut termasuk kategori...",
+        passage: "Bacalah kutipan teks rumpang berikut:\n'Prosedur Mengeringkan Sepatu Kanvas Basah Tanpa Merusak Serat Kain:\n(1) Lepaskan tali sepatu dan keluarkan sol bagian dalam (insole) agar sirkulasi udara di dalam rongga sepatu lancar.\n(2) Bersihkan lumpur atau kotoran basah yang menempel pada permukaan luar menggunakan sikat berbulu lembut.\n(3) Masukkan gumpalan kertas koran atau kertas tisu polos ke dalam sepatu hingga padat untuk menyerap kelembapan dan mempertahankan bentuk aslinya.\n(4) [ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ]\n(5) Letakkan sepatu di area ruangan yang berventilasi baik atau di depan hembusan kipas angin angin hingga kering sempurna.\n(6) Hindari menjemur sepatu langsung di bawah terik matahari terik karena panas ekstrem dapat memudarkan warna kain dan membuat lem sol mengelupas.'",
+        question: "Langkah yang paling logis dan padu untuk mengisi bagian rumpang nomor (4) adalah...",
         options: [
-          { text: "Fantasi Irisan dan Latar Lintas Waktu", correct: true },
-          { text: "Fantasi Total dan Latar Sezaman", correct: false },
-          { text: "Fantasi Irisan dan Latar Sezaman", correct: false },
-          { text: "Fantasi Total dan Latar Lintas Waktu", correct: false }
+          { text: "Ganti gumpalan kertas koran di dalam sepatu setiap dua jam sekali saat kertas sudah mulai basah terserap.", correct: true },
+          { text: "Semprotkan air sabun cair ke dalam bagian dalam sepatu agar aromanya wangi semerbak.", correct: false },
+          { text: "Panaskan sepatu di dalam oven pemanggang kue dengan suhu 100 derajat Celsius selama sepuluh menit.", correct: false },
+          { text: "Pasang kembali tali sepatu dengan kencang sebelum sepatu dijemur di tempat lembap.", correct: false }
         ]
       },
       {
-        passage: "Di Kerajaan Caelum yang bertengger di atas gumpalan awan stratus, setiap anak diwajibkan memilih satu sayap elemen pada usia tiga belas tahun. Sola berdiri ragu di depan Altar Angin seraya memandangi kristal pemilih yang berputar tanpa henti. Berbeda dengan saudara-saudaranya yang dianugerahi sayap api dan sayap badai yang perkasa, kristal Sola justru memancarkan cahaya hitam pekat—sayap gravitasi purba. Para tetua kerajaan seketika terkesiap dan mundur beberapa langkah dengan wajah pucat pasi. Sayap gravitasi dianggap sebagai kutukan yang dapat meruntuhkan fondasi pulau terbang Caelum ke bumi dasar. Sola mengepalkan tinjunya, menolak tunduk pada tatapan menghakimi yang dilayangkan seluruh penghuni istana. Ia bertekad membuktikan bahwa kekuatan gravitasi adalah penjaga keseimbangan langit, bukan perusak semesta.",
-        question: "Konflik utama (pemicu eskalasi cerita) yang dihadapi oleh tokoh Sola pada teks di atas adalah...",
+        passage: "Perhatikan teks prosedur berikut:\n'Langkah Mencangkok Pohon Mangga Harum Manis:\n(1) Pilih cabang pohon yang sehat, berkayu kokoh, dan berdiameter sekitar 2–3 cm.\n(2) Sayat kulit batang secara melingkar sepanjang 5–7 cm menggunakan pisau tajam yang steril.\n(3) Kerik lapisan kambium yang berlendir pada batang tersebut hingga kering dan kesat agar kulit batang tidak tumbuh menyatu kembali.\n(4) Diamkan batang yang telah dikerik selama satu hari agar luka sayatan benar-benar mengering.\n(5) Bungkus bagian batang yang telah dikerik dengan media campuran tanah gembur dan pupuk kompos lembap.\n(6) Balut media tanah tersebut menggunakan plastik bening atau sabut kelapa, lalu ikat kedua ujungnya secara rapat dengan tali rafia.\n(7) Buat beberapa lubang kecil pada plastik pembungkus untuk ventilasi dan siram secara rutin setiap pagi hingga akar baru bermunculan.'",
+        question: "Tujuan tindakan 'mengerik lapisan kambium hingga bersih dan kesat' pada langkah nomor (3) adalah...",
         options: [
-          { text: "Penolakan dan stigma para tetua kerajaan terhadap sayap gravitasi langka yang ia peroleh.", correct: true },
-          { text: "Keraguan Sola dalam memilih antara sayap api atau sayap badai di depan Altar Angin.", correct: false },
-          { text: "Kehancuran pulau terbang Caelum yang jatuh menabrak daratan bumi dasar.", correct: false },
-          { text: "Pertarungan fisik antara Sola dan saudara-saudaranya yang memiliki kekuatan lebih perkasa.", correct: false }
+          { text: "Mencegah pembentukan kulit kayu baru yang dapat menggagalkan pertumbuhan akar cangkokan.", correct: true },
+          { text: "Menghilangkan hama serangga pemakan daun yang bersembunyi di dalam batang pohon.", correct: false },
+          { text: "Mempercepat ranting pohon berbunga lebat sebelum akar tanaman muncul.", correct: false },
+          { text: "Menjaga batang pohon agar tetap basah dan tidak menyerap pupuk kompos.", correct: false }
         ]
       },
       {
-        passage: "Laboratorium bawah tanah Profesor Danu terkunci otomatis saat sistem kecerdasan buatan 'AURA' mendeteksi anomali partikel kuantum. Tirta, asisten belia sang profesor, mendapati sebuah pintu portal bercahaya neon biru terbuka di tengah ruangan pendingin. Dari dalam pintu tersebut, melangkah keluar sesosok makhluk bertubuh kristal cair yang memantulkan bayangan masa depan Kota Bandung. Makhluk itu menyerahkan sebuah tabung berisi benih vegetasi bioluminesens yang mampu menyerap polusi karbon seketika. Tirta ragu untuk menerima tabung tersebut karena alarm peringatan kebocoran radiasi berbunyi semakin memekakkan telinga. Namun, jika pintu portal tertutup sebelum tabung diamankan, masa depan kotanya akan tetap tenggelam dalam kabut racun abadi. Tanpa memedulikan sengatan listrik plasma di sekitarnya, Tirta melompat maju meraih tabung pusaka tersebut.",
-        question: "Amanat implisit (makna tersirat) yang dapat dipetik dari tindakan tokoh Tirta adalah...",
+        passage: "Kutipan Teks 1:\n'Tari Tor-Tor merupakan tarian perayaan asal Batak yang memiliki filosofi mendalam. Untuk menarikannya, pastikan tubuh berdiri tegak rileks, tekuk kedua lutut sedikit ke depan, dan tangkupkan kedua telapak tangan sejajar di depan dada tanpa bersentuhan. Gerakkan kedua tangan perlahan ke atas dan ke bawah mengikuti ketukan irama gondang sambilan dengan khidmat.'\n\nKutipan Teks 2:\n'Kue putu ayu adalah jajanan tradisional berbahan kelapa parut dan tepung pandan. Pertama, kukus parutan kelapa gurih di dasar cetakan selama 5 menit. Kedua, tuang adonan busa bolu pandan di atasnya hingga penuh rata. Ketiga, kukus kembali seluruh adonan di atas dandang panas selama 15 menit hingga matang merekah.'",
+        question: "Berdasarkan tujuan dan karakteristik isinya, klasifikasi jenis teks prosedur yang tepat pada kedua kutipan di atas adalah...",
         options: [
-          { text: "Keberanian mengambil risiko dan berkorban demi keselamatan kelestarian lingkungan masyarakat banyak.", correct: true },
-          { text: "Kepatuhan mutlak terhadap bunyi alarm sistem keamanan laboratorium modern.", correct: false },
-          { text: "Pentingnya mengabaikan instruksi profesor demi mengejar popularitas penemuan sains.", correct: false },
-          { text: "Kecurigaan terhadap seluruh teknologi asing yang berasal dari masa depan.", correct: false }
+          { text: "Teks 1 adalah teks prosedur cara melakukan suatu kegiatan, sedangkan Teks 2 adalah cara membuat sesuatu.", correct: true },
+          { text: "Teks 1 adalah teks prosedur cara membuat sesuatu, sedangkan Teks 2 adalah cara memainkan alat musik.", correct: false },
+          { text: "Kedua teks tergolong teks prosedur manual cara menggunakan/mengoperasikan alat elektronik.", correct: false },
+          { text: "Teks 1 adalah teks prosedur cara memandu wisatawan, sedangkan Teks 2 adalah teks protokol aturan sekolah.", correct: false }
         ]
       },
       {
-        passage: "Di Hutan Lumut Hitam, malam tidak pernah benar-benar gelap karena jamur raksasa memancarkan cahaya fosfor ungu keemasan. Elina melangkah hati-hati di atas akar-akar pohon gergasi yang berdenyut layaknya pembuluh darah raksasa. Di bahunya, seekor rubah bersayap kelelawar bernama Pip mencicit cemas seraya mengendus udara yang berbau belerang. Di kejauhan, reruntuhan Menara Gading tampak berdiri condong dengan pusaran kabut pekat yang melingkari puncaknya. Menurut peta kulit kayu yang ia bawa, di sanalah tersimpan Kitab Bayangan yang mampu memulihkan kutukan tidur rajanya. Tiba-tiba, sulur-sulur tanaman berduri melesat cepat dari balik semak belukar dan melilit pergelangan kaki Elina. Gadis itu menghunus belati kristalnya sebelum racun tanaman melumpuhkan kesadarannya.",
-        question: "Unsur kebahasaan berupa 'pencitraan cerapan pancaindra penglihatan' paling dominan tampak pada kalimat...",
+        passage: "Bacalah teks prosedur berikut:\n'Panduan Pertolongan Pertama Saat Terkena Luka Bakar Ringan (Derajat Satu):\n(1) Jauhkan korban dari sumber panas api atau cairan panas dengan tenang dan aman.\n(2) Alirkan air bersih bersuhu sejuk (bukan air es) pada area kulit yang terkena luka bakar selama minimal 10–15 menit.\n(3) Lepaskan secara hati-hati cincin, gelang, atau pakaian ketat di sekitar luka sebelum area tersebut mengalami pembengkakan.\n(4) Jangan sekali-kali mengoleskan mentega, kecap, pasta gigi, atau minyak ke atas luka karena dapat memerangkap panas dan memicu infeksi bakteri fatal.\n(5) Oleskan gel lidah buaya murni atau salep luka bakar medis tipis-tipis untuk menjaga kelembapan jaringan kulit.\n(6) Tutup luka secara longgar menggunakan kain kasa steril yang bersih agar terhindar dari gesekan pakaian dan debu kotor.'",
+        question: "Kalimat nomor (4) dalam teks prosedur di atas tergolong jenis kalimat...",
         options: [
-          { text: "Jamur raksasa memancarkan cahaya fosfor ungu keemasan di tengah hutan.", correct: true },
-          { text: "Pip mengendus udara yang berbau belerang menyengat.", correct: false },
-          { text: "Sulur berduri melilit erat pergelangan kaki Elina.", correct: false },
-          { text: "Pip mencicit cemas di atas pundak Elina.", correct: false }
+          { text: "Kalimat larangan (imperatif negatif)", correct: true },
+          { text: "Kalimat deklaratif informatif", correct: false },
+          { text: "Kalimat interogatif retoris", correct: false },
+          { text: "Kalimat saran opsional", correct: false }
         ]
       },
       {
-        passage: "Ghazali mengusap keringat di dahinya seraya memperhatikan susunan roda gigi perunggu di dada robot pelindungnya. Mesin kuno peninggalan bangsa Lemuria itu hanya dapat dihidupkan dengan tetesan embun yang jatuh dari daun Pohon Kalpataru. Di luar benteng pertahanan, pasukan golem tanah liat milik Pangeran Kegelapan terus menghantam gerbang besi dengan gada batu. Suara debuman keras membuat dinding benteng bergetar hebat dan meruntuhkan serpihan kapur ke lantai. Ghazali tahu bahwa jika gerbang itu jebol, seluruh dokumen peradaban masa lalu akan dibakar musuh. Dengan sisa waktu yang kian menipis, ia memanjat kubah kaca untuk menangkap tetesan embun terakhir. Tepat saat engsel gerbang terlepas, mesin perunggu berdengung kencang dan matanya menyala merah terang.",
-        question: "Bagian struktur teks cerita fantasi yang tergambar pada kutipan di atas merupakan bagian...",
+        passage: "Perhatikan teks prosedur rumpang berikut:\n'Cara Membuat Barcode QR Code Tautan Dokumen Pembelajaran:\n(1) Buka peramban internet di komputer atau gawai Anda, lalu kunjungi situs penyedia pembuat QR Code gratis.\n(2) Salin alamat URL dokumen Google Drive materi pembelajaran yang hendak dibagikan kepada siswa.\n(3) Tempelkan tautan URL tersebut ke dalam kolom input 'URL/Website' yang tersedia di laman situs.\n(4) [ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ]\n(5) Klik tombol 'Generate QR Code' dan tunggu beberapa detik hingga gambar kode matriks muncul sempurna di layar.\n(6) Simpan gambar barcode tersebut dalam format PNG dengan mengklik tombol 'Download' beresolusi tinggi agar mudah dicetak di lembar tugas siswa.'",
+        question: "Langkah nomor (4) yang paling runtut dan relevan dengan petunjuk digital di atas adalah...",
         options: [
-          { text: "Komplikasi (menuju puncak ketegangan/klimaks)", correct: true },
-          { text: "Orientasi (pengenalan awal tokoh dan latar)", correct: false },
-          { text: "Resolusi (penyelesaian akhir masalah)", correct: false },
-          { text: "Koda (penjelasan amanat langsung oleh pengarang)", correct: false }
+          { text: "Pilih opsi kustomisasi warna dan bentuk bingkai barcode sesuai dengan tema desain yang diinginkan.", correct: true },
+          { text: "Matikan sambungan data seluler agar komputer tidak dapat mengakses jaringan internet.", correct: false },
+          { text: "Kirimkan kode QR yang belum selesai diproses melalui pos kilat ke alamat dinas pendidikan.", correct: false },
+          { text: "Hapus seluruh fail asli di dalam Google Drive agar kapasitas memori kembali kosong.", correct: false }
         ]
       },
       {
-        passage: "Perhatikan kutipan teks fantasi berikut:\n'Napas Galih memburu cepat saat dinding jurang di belakangnya mulai runtuh tergerus aliran lava pijar. Jemarinya yang berlumuran lumpur mencengkeram erat tepi batu apung yang panas menyengat. Di seberang jurang, seekor burung garuda bulu perak melebarkan sayapnya, menanti aba-aba untuk menyambar tubuhnya. Bau belerang yang pekat membakar rongga dadanya setiap kali ia berusaha menarik napas dalam-dalam. Gemuruh letusan kawah di bawah kakinya menenggelamkan segala suara jeritan minta tolong. Galih memejamkan mata, memusatkan sisa konsentrasinya untuk mengaktifkan medan pelindung magnetik di sabuknya. Tepat sebelum batu pijakannya pecah berantakan, ia melompat bebas ke arah kehampaan kawah.'",
-        question: "Alasan mengapa teks di atas sangat kuat dalam teknik deskripsi 'Showing' adalah...",
+        passage: "Bacalah teks berikut:\n'Prosedur Membuat Kerajinan Tempat Pensil dari Botol Plastik Bekas:\n(1) Siapkan botol plastik air mineral bekas ukuran 600 ml, gunting tajam, lem tembak, kain flanel warna-warni, dan penggaris.\n(2) Bersihkan botol dari sisa minuman dan lepaskan label kemasan plastik yang menempel hingga permukaan botol bersih.\n(3) Ukur tinggi botol sekitar 12 cm dari bagian dasar menggunakan penggaris, lalu beri tanda spidol melingkar.\n(4) Potong botol plastik tepat pada garis tanda spidol menggunakan gunting secara rata dan rapi.\n(5) Lapisi pinggiran bibir potongan botol dengan pita perekat kain atau setrika hangat sebentar agar ujung plastik tidak tajam melukai tangan.\n(6) Balut seluruh permukaan luar botol dengan kain flanel berperekat lem tembak, lalu tambahkan hiasan mata boneka dan pita agar tampilannya menarik.'",
+        question: "Fungsi keselamatan kerja yang ditekankan pada langkah nomor (5) adalah...",
         options: [
-          { text: "Pengarang menghadirkan sensasi fisik konkret (panas, bau belerang, gemuruh kawah) daripada sekadar menyatakan tokoh merasa takut.", correct: true },
-          { text: "Pengarang langsung menyebutkan bahwa Galih adalah seorang penjelajah yang sangat berani di gunung berapi.", correct: false },
-          { text: "Pengarang menjelaskan sejarah terbentuknya kawah lava purba secara ilmiah dan mendalam.", correct: false },
-          { text: "Pengarang menggunakan kalimat dialog langsung yang sangat panjang antarpara tokoh.", correct: false }
+          { text: "Mencegah risiko tangan tergores atau terluka akibat tepian plastik bekas guntingan yang tajam.", correct: true },
+          { text: "Membuat ukuran botol plastik menjadi dua kali lebih besar dan kokoh.", correct: false },
+          { text: "Menghemat penggunaan lem tembak saat menempelkan kain flanel hiasan.", correct: false },
+          { text: "Membantu botol plastik agar dapat menyerap cairan pewarna sintetis.", correct: false }
         ]
       },
       {
-        passage: "Di sebuah pulau terapung bernama Zephyria, angin tidak bertiup secara acak melainkan diatur oleh sebuah Harpa Cakrawala. Ketika tali harpa bergetar lembut, angin sepoi-sepoi akan menggerakkan kincir gandum dan mengeringkan jemuran warga. Namun, sudah sebulan lamanya Harpa Cakrawala membeku dalam balutan kristal es hitam akibat ulah penyihir es. Kincir-kincir angin berhenti berputar, menyebabkan tanaman layu dan cadangan pangan menipis drastis. Maya, seorang gadis pemintal wol yang tuli namun mampu melihat gelombang suara warna-warni, memutuskan mendaki Puncak Badai. Ia membawa gulungan benang tembaga yang dapat menghantarkan kehangatan sinar mentari. Dengan meraba getaran tali harpa melalui benangnya, Maya perlahan mencairkan es hitam tersebut helai demi helai.",
-        question: "Ciri khas penokohan unik (daya luar biasa) yang dimiliki oleh tokoh Maya dalam kutipan di atas adalah...",
+        passage: "Perhatikan kutipan acak langkah membuat akun email sekolah berikut:\n(1) Masukkan kode verifikasi enam digit yang dikirimkan melalui SMS ke nomor ponsel Anda.\n(2) Buka peramban dan ketik alamat penyedia layanan surel resmi di bilah pencarian.\n(3) Klik tombol 'Buat Akun Baru' dan pilih kategori 'Untuk Keperluan Pribadi/Sekolah'.\n(4) Buat kata sandi yang kuat dengan kombinasi huruf besar, huruf kecil, angka, dan simbol unik.\n(5) Isi formulir identitas diri meliputi nama lengkap, tanggal lahir, dan usulan nama pengguna surel.\n(6) Setujui syarat dan ketentuan privasi layanan, lalu akun surel Anda siap digunakan untuk belajar.",
+        question: "Urutan langkah-langkah yang paling padu dan sistematis dalam membuat akun email adalah...",
         options: [
-          { text: "Meskipun memiliki keterbatasan pendengaran, ia mampu melihat gelombang suara dalam bentuk warna-warni.", correct: true },
-          { text: "Ia memiliki sayap es hitam yang memungkinkannya terbang menembus Puncak Badai.", correct: false },
-          { text: "Ia mampu mengubah batu kristal es menjadi butiran gandum pangan untuk warga pulau.", correct: false },
-          { text: "Ia adalah satu-satunya penyihir es yang kebal terhadap hawa dingin Puncak Badai.", correct: false }
+          { text: "(2) - (3) - (5) - (4) - (1) - (6)", correct: true },
+          { text: "(2) - (5) - (3) - (1) - (4) - (6)", correct: false },
+          { text: "(3) - (2) - (4) - (5) - (6) - (1)", correct: false },
+          { text: "(5) - (4) - (2) - (3) - (1) - (6)", correct: false }
         ]
       },
       {
-        passage: "Kutipan 1:\n'Tiba-tiba, langit malam di atas Candi Prambanan terbelah mengeluarkan cahaya keemasan. Seorang kesatria berzirah tembaga melangkah turun dari kereta kencana yang melayang di udara.'\n\nKutipan 2:\n'Di Planet Xylar, pohon-pohon bernyanyi menggunakan frekuensi gelombang ultrasonik setiap kali tiga matahari terbenam bersamaan di cakrawala ungu.'",
-        question: "Perbandingan yang paling tepat mengenai jenis fantasi pada kedua kutipan di atas adalah...",
+        passage: "Kutipan Struktur Teks Prosedur:\n'Pernapasan diafragma merupakan teknik pernapasan dalam yang sangat efektif untuk meredakan ketegangan otot, menurunkan kadar hormon stres kortisol, dan meningkatkan suplai oksigen ke otak. Latihan ini sangat dianjurkan bagi siswa sebelum menghadapi ujian agar pikiran tetap fokus, tenang, dan prima. Dengan menerapkan teknik pernapasan yang tepat selama lima menit setiap pagi, Anda akan merasakan tubuh lebih berenergi dan konsentrasi belajar meningkat secara signifikan.'",
+        question: "Dalam sistematika struktur teks prosedur, kutipan di atas menempati bagian...",
         options: [
-          { text: "Kutipan 1 adalah Fantasi Irisan, sedangkan Kutipan 2 adalah Fantasi Total.", correct: true },
-          { text: "Kutipan 1 adalah Fantasi Total, sedangkan Kutipan 2 adalah Fantasi Irisan.", correct: false },
-          { text: "Kedua kutipan merupakan Fantasi Total karena sama-sama memuat keajaiban luar biasa.", correct: false },
-          { text: "Kedua kutipan merupakan Fantasi Irisan karena terjadi di alam semesta nyata.", correct: false }
+          { text: "Tujuan (Pengantar / Orientasi)", correct: true },
+          { text: "Alat dan Bahan", correct: false },
+          { text: "Langkah-langkah Kerja", correct: false },
+          { text: "Penutup / Simpulan Penegasan", correct: false }
         ]
       },
       {
-        passage: "Bacalah teks berikut:\n'Setelah meminum seteguk ramuan daun mint perak, tubuh Dafi mendadak seringan kapas. Ia melayang melewati pagar benteng tanpa menimbulkan suara gemerisik sedikit pun. Penjaga gerbang yang bertubuh raksasa tetap tertidur lelap di pos jaganya seraya mendengkur keras. Dafi menyelinap masuk ke ruang penyimpanan harta karun untuk mengambil kembali pusaka desanya. Ketika tangannya menyentuh kotak kayu cendana, mantra tembus pandang pada tubuhnya mulai memudar perlahan. Ia menyadari efek ramuan tersebut hanya bertahan selama seratus hitungan jantung. Dafi bergegas melompat keluar jendela tepat saat fajar merekah di ufuk timur.'",
-        question: "Konjungsi penanda urutan waktu dan kronologi peristiwa yang terdapat dalam paragraf di atas adalah...",
+        passage: "Perhatikan teks berikut:\n'Prosedur Menyeduh Kopi Tubruk Nusantara yang Nikmat:\n(1) Giling biji kopi sangrai pada tingkat kehalusan medium-fine (sedang cenderung halus) sebanyak 15 gram.\n(2) Panaskan air mineral segar di dalam teko leher angsa hingga mencapai suhu ideal 90–93 derajat Celsius.\n(3) Masukkan bubuk kopi ke dalam cangkir keramik yang telah dihangatkan sebelumnya.\n(4) Tuangkan 50 ml air panas secara melingkar perlahan untuk proses blooming selama 30 detik agar gas karbon dioksida keluar.\n(5) Lanjutkan menuang sisa air panas hingga total mencapai 200 ml secara perlahan dan konstan.\n(6) Aduk permukaan kopi sebanyak tiga kali putaran menggunakan sendok kayu, lalu diamkan selama 4 menit hingga ampas kopi mengendap sempurna di dasar cangkir sebelum disesap.'",
+        question: "Kata keterangan ukuran derajat dan waktu yang sangat spesifik pada teks di atas tampak pada frasa...",
         options: [
-          { text: "Setelah, ketika, tepat saat", correct: true },
-          { text: "Tanpa, dengan, untuk", correct: false },
-          { text: "Seringan, seperti, laksana", correct: false },
-          { text: "Meskipun, kendati, walaupun", correct: false }
+          { text: "15 gram, 90–93 derajat Celsius, 50 ml, 30 detik, 200 ml, dan 4 menit", correct: true },
+          { text: "Biji kopi sangrai, cangkir keramik, dan teko leher angsa", correct: false },
+          { text: "Secara melingkar, perlahan-lahan, dan konstan", correct: false },
+          { text: "Kopi tubruk nusantara, gas karbon dioksida, dan ampas kopi", correct: false }
         ]
       },
       {
-        passage: "Bacalah teks berikut:\n'Perisai plasma di pundak Kapten Reno berkedip merah tanda daya energi nuklirnya tersisa lima persen. Di depannya, ratusan robot laba-laba logam terus merayap naik menembus dinding pertahanan pangkalan Mars. Reno menoleh ke arah ruang transmisi data tempat rekannya sedang mengunggah berkas penyelamat bumi. 'Kita tidak punya waktu lagi, Reno!' teriak Sarah melalui radio komunikasi helmnya. Reno tersenyum tipis seraya mencabut pedang ion cadangan yang terpasang di pinggangnya. Ia melompat menghadang gerombolan laba-laba tersebut demi mengulur waktu tiga menit terakhir. Ledakan sinar biru melenyapkan gelombang pertama musuh tepat sebelum pintu ruang transmisi tertutup rapat.'",
-        question: "Nilai kepahlawanan yang ditunjukkan oleh tokoh Kapten Reno pada teks di atas adalah...",
+        passage: "Petunjuk Penggunaan Tabung Alat Pemadam Api Ringan (APAR):\n(1) Tarik pin pengaman (pull pin) yang berada di bagian tuas atas tabung dengan mantap hingga segel terlepas.\n(2) Arahkan corong pipa semprot (aim nozzle) tepat ke titik pusat pangkal api, bukan ke lidah api yang berkobar di udara.\n(3) Tekan tuas katup (squeeze handle) secara kuat untuk mengeluarkan serbuk kimia pemadam dari dalam tabung.\n(4) Sapukan corong pipa dari sisi kiri ke kanan secara merata (sweep side to side) hingga seluruh kobaran api padam sempurna.",
+        question: "Panduan praktis pengoperasian APAR di atas lazim disingkat dengan teknik akronim internasional, yaitu...",
         options: [
-          { text: "Rela mempertaruhkan nyawa di garda terdepan demi keberhasilan misi penyelamatan umat manusia.", correct: true },
-          { text: "Memanfaatkan teknologi canggih untuk memamerkan kehebatan pedang ionnya kepada musuh.", correct: false },
-          { text: "Menolak perintah rekannya karena merasa dirinya lebih berpengalaman di medan tempur Mars.", correct: false },
-          { text: "Melarikan diri ke ruang transmisi data saat perisai pelindungnya kehabisan energi.", correct: false }
+          { text: "PASS (Pull, Aim, Squeeze, Sweep)", correct: true },
+          { text: "STOP (Stop, Take, Observe, Proceed)", correct: false },
+          { text: "FAST (Face, Arm, Speech, Time)", correct: false },
+          { text: "RACE (Rescue, Alarm, Confine, Extinguish)", correct: false }
         ]
       },
       {
-        passage: "Perhatikan teks dialog berikut:\n'Matahari terbenam di balik bukit pasir hitam saat Nathan menemukan prasasti perunggu kuno itu. Tangannya yang berdebu meraba relief burung phoenix yang matanya bertahtakan permata delima merah. Tiba-tiba, suara dengung halus terdengar dari dalam rongga prasasti, disusul kepulan asap wangi dupa. Sosok bayangan berwujud jin berselendang api muncul melayang di atas permukaan tanah pasir. 'Katakan satu permintaanmu, wahai manusia yang berani mengusik tidur panjangku!' seru sosok itu dengan suara menggelegar. Nathan menatap permata delima itu dengan tatapan tenang tanpa ada rasa gentar sedikit pun. 'Aku hanya ingin mata air di lembah desaku memancar kembali agar rakyatku terbebas dari dahaga,' jawab Nathan lugas.'",
-        question: "Penulisan kalimat langsung dan kata pengiring dialog pada teks di atas yang tepat menurut kaidah ejaan adalah...",
+        passage: "Bacalah teks prosedur berikut:\n'Cara Membuat Larutan Oralit Alami untuk Mengatasi Dehidrasi:\n(1) Siapkan satu gelas (200 ml) air matang yang telah bersuhu hangat atau dingin normal.\n(2) Masukkan setengah sendok teh peres garam dapur halus ke dalam air tersebut.\n(3) Tambahkan dua sendok teh munjung gula pasir putih bersih ke dalam gelas yang sama.\n(4) Aduk campuran cairan tersebut secara terus-menerus menggunakan sendok bersih hingga seluruh butiran garam dan gula larut sempurna tanpa menyisakan endapan.\n(5) Minumkan larutan oralit ini kepada penderita sedikit demi sedikit menggunakan sendok setiap kali selesai buang air besar.'",
+        question: "Analisis takaran bahan yang paling akurat untuk membuat 400 ml larutan oralit berdasarkan teks panduan di atas adalah...",
         options: [
-          { text: "'Katakan satu permintaanmu, wahai manusia yang berani mengusik tidur panjangku!' seru sosok itu dengan suara menggelegar.", correct: true },
-          { text: "'Katakan satu permintaanmu'! Seru sosok itu dengan suara menggelegar.", correct: false },
-          { text: "'Katakan satu permintaanmu, wahai manusia' Ujar sosok itu dengan suara menggelegar.", correct: false },
-          { text: "'Katakan satu permintaanmu, wahai manusia!,' seru sosok itu dengan suara menggelegar.", correct: false }
+          { text: "1 sendok teh peres garam dapur halus dan 4 sendok teh munjung gula pasir", correct: true },
+          { text: "Setengah sendok teh garam dapur dan dua sendok teh gula pasir", correct: false },
+          { text: "2 sendok makan garam kasar dan 1 sendok makan gula pasir", correct: false },
+          { text: "4 sendok teh garam dapur halus dan 1 sendok teh gula pasir", correct: false }
         ]
       },
       {
-        passage: "Di Kota Neopolis tahun 2145, manusia tidak lagi bermimpi saat tidur karena gelombang otak mereka diselaraskan oleh Menara Pusat Siber. Hanya Arka, seorang mekanik kabel bawah tanah, yang masih memiliki kemampuan bermimpi secara alami akibat mutasi genetik langka. Dalam mimpinya semalam, ia melihat sebuah pohon raksasa tumbuh di dasar laut Jawa dan memancarkan oksigen murni ke atmosfer. Mimpinya bukan sekadar bunga tidur, melainkan petunjuk koordinat stasiun botani peninggalan abad ke-21 yang terkubur. Arka tahu bahwa jika aparat pemerintah mendeteksi gelombang otaknya yang menyimpang, ia akan ditangkap dan dihapus memorinya. Sambil menyembunyikan modul pemancar portabel di balik jaket tebalnya, ia menyelinap menuju dermaga kapal selam tua. Langkah kakinya berpacu dengan suara sirine patroli udara yang mulai meraung-raung di atas kepalanya.",
-        question: "Latar sosial-teknologi yang melandasi pergerakan alur cerita fantasi futuristik di atas adalah...",
+        passage: "Perhatikan teks berikut:\n'Langkah Mencuci Tangan 6 Langkah Standar Medis WHO:\n(1) Basahi kedua telapak tangan dengan air mengalir dan tuang sabun antiseptik secukupnya.\n(2) Gosok kedua telapak tangan secara lembut dengan gerakan memutar searah jarum jam.\n(3) Usap dan gosok kedua punggung tangan secara bergantian hingga ke sela-sela jari luar.\n(4) Gosok sela-sela jari bagian dalam dengan mempertemukan kedua telapak tangan saling mengunci.\n(5) Bersihkan ujung-ujung jari dan kuku dengan posisi mengunci kedua tangan secara bergantian.\n(6) Gosok dan putar kedua ibu jari secara bergantian dalam genggaman tangan.\n(7) Bilas tangan di bawah air bersih mengalir hingga bebas busa, lalu keringkan menggunakan tisu sekali pakai.'",
+        question: "Kaidah kebahasaan berupa 'kalimat imperatif berpola kata kerja aksi' yang terdapat dalam teks di atas adalah...",
         options: [
-          { text: "Masyarakat masa depan yang kebebasan pikiran dan mimpinya dikontrol ketat oleh menara teknologi penguasa.", correct: true },
-          { text: "Kehidupan tradisional masyarakat pesisir Jawa yang menggantungkan hidup pada hasil pertanian laut.", correct: false },
-          { text: "Era purbakala di mana manusia berkomunikasi melalui gelombang telepati bawah air.", correct: false },
-          { text: "Kehancuran peradaban akibat letusan gunung berapi purba yang menenggelamkan pulau-pulau besar.", correct: false }
+          { text: "Basahi, tuang, gosok, usap, bersihkan, bilas, dan keringkan", correct: true },
+          { text: "Air mengalir, sabun antiseptik, punggung tangan, dan sela-sela jari", correct: false },
+          { text: "Secara lembut, searah jarum jam, dan bergantian", correct: false },
+          { text: "Standar medis, posisi mengunci, dan tisu sekali pakai", correct: false }
         ]
       },
       {
-        passage: "Perhatikan pantun berikut:\n'Beras ditumbuk menjadi tepung,\nDisimpan rapat di dalam peti.\nMeski merantau jauh sekampung,\nAdat dan budi lekat di hati.'\n\nBait di atas diucapkan oleh seorang tetua desa saat melepas para pemuda yang hendak menuntut ilmu ke negeri seberang. Nasihat tersebut bertujuan membekali generasi muda agar tidak terombang-ambing oleh pengaruh buruk budaya luar. Struktur sampirannya menggunakan analogi penyimpanan beras sebagai simbol menjaga kemurnian nilai-nilai luhur leluhur.",
-        question: "Pesan moral filosofis yang terkandung pada bagian isi pantun di atas adalah...",
+        passage: "Bacalah kutipan kalimat dari teks prosedur:\n'Setelah adonan kalis dan elastis, bulatkan adonan hingga permukaannya mulus, lalu istirahatkan di dalam wadah tertutup kain basah selama 45 menit agar adonan mengembang dua kali lipat.'",
+        question: "Konjungsi yang berfungsi menyatakan urutan kronologis peristiwa dan konjungsi penanda hubungan tujuan pada kalimat majemuk di atas berturut-turut adalah...",
         options: [
-          { text: "Di mana pun kita merantau, kepribadian santun dan nilai budi luhur asal daerah harus selalu dijaga.", correct: true },
-          { text: "Orang yang merantau ke luar negeri wajib membawa bekal beras tepung dari kampung asalnya.", correct: false },
-          { text: "Jangan pernah kembali ke kampung halaman jika belum berhasil menjadi orang kaya raya.", correct: false },
-          { text: "Menyimpan adat istiadat sama susahnya dengan menyimpan tepung di dalam peti kayu.", correct: false }
+          { text: "'Setelah' dan 'lalu' (urutan kronologis), serta 'agar' (tujuan)", correct: true },
+          { text: "'Dan' (penjumlahan), serta 'selama' (keterangan waktu)", correct: false },
+          { text: "'Hingga' (pembatasan), serta 'di dalam' (keterangan tempat)", correct: false },
+          { text: "'Kalis' (keadaan), serta 'kain basah' (keterangan alat)", correct: false }
         ]
       },
       {
-        passage: "Perhatikan gurindam berikut:\n'Barang siapa berbuat culas,\nKelak hidupnya dibalas tumpas.'\n\nGurindam karya pujangga klasik Melayu ini mengajarkan pentingnya menjaga integritas dan kejujuran dalam segala sendi kehidupan bermasyarakat. Hubungan antarketentuan baris pertama dan baris kedua membentuk rantai sebab-akibat yang tidak dapat dipisahkan secara hukum moral semesta. Siapa pun yang menabur kecurangan pada akhirnya akan menuai kehancuran bagi dirinya sendiri.",
-        question: "Analisis relasi gramatikal dan semantis antara baris 1 dan baris 2 pada gurindam di atas adalah...",
+        passage: "Perhatikan teks panduan keselamatan berikut:\n'Prosedur Evakuasi Diri Saat Terjadi Gempa Bumi di Gedung Bertingkat:\n(1) Tetap tenang dan jangan panik agar dapat berpikir jernih saat getaran pertama terjadi.\n(2) Segera lakukan tindakan 'Drop, Cover, and Hold On': merunduk berlutut, lindungi kepala dan leher di bawah meja kokoh, lalu pegang erat kaki meja.\n(3) Jauhi dinding kaca, jendela, lemari tinggi, dan lampu gantung yang berisiko roboh menimpa badan.\n(4) Setelah getaran utama gempa berhenti, segera berjalan keluar ruangan secara tertib menuju tangga darurat.\n(5) Jangan sekali-kali menggunakan lift atau eskalator karena pasokan listrik dapat terputus seketika dan membuat Anda terjebak di dalam sangkar lift.\n(6) Ikuti petunjuk petugas evakuasi menuju titik kumpul (assembly point) di lapangan terbuka yang jauh dari tiang listrik dan pohon besar.'",
+        question: "Mengapa teks prosedur tersebut melarang penggunaan lift saat evakuasi gempa bumi pada langkah nomor (5)?",
         options: [
-          { text: "Baris 1 menyatakan syarat atau perbuatan tercela, sedangkan baris 2 menyatakan akibat mutlak yang akan diterima pelaku.", correct: true },
-          { text: "Baris 1 merupakan sampiran kiasan alam, sedangkan baris 2 merupakan inti pesan nasihat pengarang.", correct: false },
-          { text: "Baris 1 dan baris 2 merupakan dua klausa berlawanan yang tidak memiliki keterikatan makna kausalitas.", correct: false },
-          { text: "Baris 2 adalah pengulangan sinonim dari kata-kata yang telah disebutkan pada baris 1.", correct: false }
+          { text: "Risiko terjadinya pemadaman listrik secara tiba-tiba atau kerusakan kabel rel lift yang dapat menjebak korban di lorong gelap.", correct: true },
+          { text: "Pintu lift akan tertutup secara otomatis oleh alarm pemadam kebakaran gedung.", correct: false },
+          { text: "Tangga darurat dirancang untuk dinaiki dengan kendaraan roda dua oleh regu penyelamat.", correct: false },
+          { text: "Muatan lift tidak cukup untuk menampung barang-barang bawaan milik para korban.", correct: false }
         ]
       },
       {
-        passage: "Bacalah teks syair berikut:\n'Wahai muda kenali dirimu,\nIalah perahu tamsil tubuhmu,\nTiadalah berapa lama hidupmu,\nKe akhirat jua kekal diammu.'\n\nBait syair di atas karya Hamzah Fansuri menggunakan metafora perahu untuk menggambarkan rapuhnya raga manusia yang sedang mengarungi samudra fana. Seluruh baris saling bertaut membentuk satu kesatuan nasihat sufistik tanpa adanya pemisahan sampiran sebagaimana dalam pantun biasa.",
-        question: "Pola rima akhir dan karakteristik bentuk puisi rakyat pada bait di atas adalah...",
+        passage: "Perhatikan kalimat panduan berikut:\n'Aduklah larutan gula tersebut . . . . . menggunakan spatula silikon . . . . . butiran kristalnya larut sempurna dan tidak berkerak di dinding wajan.'",
+        question: "Kata keterangan (adverbia) cara dan adverbia pembatas yang paling tepat untuk melengkapi kalimat panduan di atas secara berurutan adalah...",
         options: [
-          { text: "Pola rima a-a-a-a, seluruh barisnya merupakan untaian isi nasihat tanpa ada sampiran.", correct: true },
-          { text: "Pola rima a-b-a-b, baris pertama dan kedua merupakan sampiran alamiah.", correct: false },
-          { text: "Pola rima a-a, terdiri atas dua baris yang saling berhubungan sebab-akibat.", correct: false },
-          { text: "Pola rima bebas, mementingkan aliterasi bunyi konsonan di tengah baris.", correct: false }
+          { text: "secara perlahan-lahan ; hingga", correct: true },
+          { text: "dengan sangat cepat ; meskipun", correct: false },
+          { text: "sangat kasar ; walau", correct: false },
+          { text: "secara serampangan ; agar", correct: false }
         ]
       },
       {
-        passage: "Perhatikan cuplikan teks cerita berikut:\n'Di dalam lembah kristal yang sunyi, Aruna meniup seruling bambunya hingga memancarkan gelombang cahaya hijau ke dedaunan pohon perak. Seketika itu juga, luka gigitan serigala bayangan di lengan sahabatnya menutup rapat tanpa meninggalkan bekas luka sedikit pun. Sahabatnya terbelalak menatap Aruna yang kini tersengal-sengal kehabisan tenaga di atas tanah berbatu. Aruna tersenyum lemah seraya berbisik bahwa setiap kesembuhan yang ia berikan menuntut separuh stamina fisiknya sendiri. Mereka tahu, pasukan bayangan masih menyisir lereng bukit di atas mereka. Dengan sisa kekuatan yang ada, mereka berdua bangkit melangkah menuju gerbang suci sebelum matahari terbenam sempurna.'",
-        question: "Pernyataan yang membuktikan adanya 'unsur keajaiban tokoh yang memiliki konsekuensi nyata' adalah...",
+        passage: "Bacalah kutipan penutup teks prosedur berikut:\n'Dengan merawat rantai sepeda motor secara rutin setiap dua minggu sekali, tarikan mesin akan terasa lebih enteng, konsumsi bahan bakar lebih efisien, dan umur pakai gir rantai menjadi jauh lebih awet. Selamat mencoba panduan perawatan mandiri ini di rumah!'",
+        question: "Karakteristik utama bagian penutup teks prosedur yang tercermin dalam kutipan di atas adalah...",
         options: [
-          { text: "Luka gigitan dapat sembuh seketika melalui alunan seruling, tetapi menguras habis stamina fisik sang peniup.", correct: true },
-          { text: "Serigala bayangan dapat mencium aroma dedaunan pohon perak di lereng bukit.", correct: false },
-          { text: "Matahari terbenam secara perlahan di balik gerbang suci kerajaan kuno.", correct: false },
-          { text: "Sahabat Aruna terbelalak melihat keindahan lembah kristal yang sunyi.", correct: false }
+          { text: "Memberikan penegasan ulang atas manfaat/keuntungan tindakan disertai ungkapan motivasi dan ucapan selamat kepada pembaca.", correct: true },
+          { text: "Menjelaskan daftar rincian harga onderdil mesin yang wajib dibeli di bengkel resmi.", correct: false },
+          { text: "Memuat langkah-langkah kerja baru yang belum sempat disebutkan pada bagian isi.", correct: false },
+          { text: "Menyampaikan permohonan maaf penulis karena petunjuknya sangat sulit dipraktikkan.", correct: false }
         ]
       },
       {
-        passage: "Perhatikan cuplikan resolusi berikut:\n'Kabut hitam yang selama seabad menyelimuti Lembah Eiluned akhirnya menguap terbawa angin fajar setelah pecahan Kristal Surya disatukan kembali. Pohon-pohon apel emas yang lama membeku mulai menumbuhkan tunas-tunas daun baru yang berkilauan diterpa cahaya pagi. Penduduk desa keluar dari rumah-rumah batu mereka seraya menyanyikan lagu pembebasan dengan mata berkaca-kaca. Elian meletakkan pedang cahayanya di atas altar desa, menyadari tugasnya sebagai penjaga pusaka telah usai. Ia menolak tawaran mahkota kerajaan dan memilih kembali menjadi petani sederhana di ladang gandum leluhurnya. Kedamaian sejati telah kembali bersemi di seluruh pelosok negeri tanpa ada dendam yang tersisa.'",
-        question: "Fungsi struktural dari cuplikan teks di atas dalam kerangka alur cerita naratif adalah...",
+        passage: "Prosedur Menanam Tanaman Cabai Rawit dalam Polybag:\n(1) Siapkan benih cabai unggul, wadah polybag ukuran 30x30 cm berlubang bawah, tanah humus, pupuk kandang matang, dan sekam bakar dengan perbandingan 2:1:1.\n(2) Semai benih cabai pada wadah nampan basah selama 7–10 hari hingga tumbuh 3–4 helai daun sejati.\n(3) Masukkan media campuran tanah ke dalam polybag hingga terisi tiga perempat bagian.\n(4) Pindahkan satu bibit cabai secara hati-hati beserta gumpalan tanah akarnya pada sore hari ke lubang tanam polybag.\n(5) Padatkan tanah di sekeliling pangkal batang perlahan, lalu siram dengan air secukupnya menggunakan semprotan halus.\n(6) Letakkan polybag di tempat yang terkena sinar matahari pagi penuh minimal 6 jam sehari dan lakukan pemupukan susulan setiap dua minggu sekali.",
+        question: "Mengapa pemindahan bibit tanaman cabai ke polybag dianjurkan dilakukan pada waktu sore hari pada langkah (4)?",
         options: [
-          { text: "Resolusi (penyelesaian akhir dan penataan kembali harmoni kehidupan pascakonflik).", correct: true },
-          { text: "Orientasi (pengenalan awal watak tokoh utama dan keluarganya di ladang gandum).", correct: false },
-          { text: "Komplikasi (munculnya ancaman musuh baru yang ingin merebut takhta kerajaan).", correct: false },
-          { text: "Klimaks (pertarungan puncak hidup dan mati dalam memperebutkan Kristal Surya).", correct: false }
+          { text: "Menghindari penguapan air yang berlebihan dan mencegah bibit mengalami stres layu akibat terik panas matahari siang.", correct: true },
+          { text: "Mencegah burung liar mematuk daun bibit tanaman cabai yang baru dipindahkan.", correct: false },
+          { text: "Kadar pupuk kandang di dalam tanah hanya bereaksi aktif saat malam hari.", correct: false },
+          { text: "Tanah polybag akan memadat keras jika disiram saat pagi hari.", correct: false }
         ]
       },
       {
-        passage: "Di laboratorium antariksa orbit Saturnus, teknisi Zidan menemukan bahwa kapsul waktu peninggalan tahun 2026 mulai memancarkan radiasi tak dikenal. Ketika segel kapsul dibuka, sebuah hologram berbentuk gadis kecil muncul seraya menyanyikan lagu anak-anak berbahasa Sunda kuno. Gelombang suara dari lagu tersebut secara ajaib memperbaiki sirkuit komputer stasiun yang sempat lumpuh disambar badai ion. Zidan terpaku menyadari bahwa para ilmuwan masa lalu telah menanamkan algoritma pemulihan frekuensi di dalam nada lagu tradisional. Namun, cadangan oksigen stasiun kian menipis dan ia harus segera mentransmisikan kode tersebut ke bumi sebelum satelit pemancar hancur. Dengan jemari lincah, ia menghubungkan kabel optik langsung ke inti proyektor hologram. Sinyal pemulihan berhasil terkirim tepat satu detik sebelum panel surya stasiun terbakar.",
-        question: "Perpaduan unsur fantasi irisan yang terkandung dalam cuplikan teks sains fiksi di atas adalah...",
+        passage: "Bacalah kalimat-kalimat panduan acak berikut:\n(1) Tempelkan kartu uang elektronik (e-money) pada mesin sensor gerbang masuk halte.\n(2) Masuklah ke dalam kabin bus secara tertib dan prioritaskan kursi depan bagi lansia atau ibu hamil.\n(3) Tunggu bus armada Anda tiba di belakang garis aman pembatas peron halte.\n(4) Pastikan saldo kartu pembayaran Anda mencukupi tarif perjalanan yang ditentukan.\n(5) Tempelkan kembali kartu pada mesin keluar (tap-out) saat tiba di halte tujuan Anda.",
+        question: "Urutan prosedur menggunakan transportasi umum Bus Transjakarta yang paling tepat adalah...",
         options: [
-          { text: "Menggabungkan latar stasiun orbit masa depan dengan unsur budaya nyata bumi (lagu tradisional berbahasa daerah).", correct: true },
-          { text: "Menggunakan tokoh robot alien murni yang tidak mengenal peradaban manusia sama sekali.", correct: false },
-          { text: "Menceritakan sejarah pembentukan cincin Planet Saturnus secara akurat sesuai buku astronomi.", correct: false },
-          { text: "Menampilkan pertarungan pedang laser antarpendekar kerajaan di luar angkasa.", correct: false }
+          { text: "(4) - (1) - (3) - (2) - (5)", correct: true },
+          { text: "(1) - (4) - (2) - (3) - (5)", correct: false },
+          { text: "(4) - (3) - (1) - (5) - (2)", correct: false },
+          { text: "(1) - (3) - (4) - (2) - (5)", correct: false }
         ]
       },
       {
-        passage: "Bacalah kutipan cerita berikut:\n'Langkah kaki Sena terhenti di depan gerbang kota yang terbuat dari jalinan tulang naga purba. Udara di sekitarnya begitu dingin hingga uap napasnya membeku menjadi butiran es kecil yang berjatuhan ke tanah. Dari puncak menara gerbang, sesosok burung hantu bertanduk emas menatapnya dengan pupil mata yang membesar. 'Sebutkan kata sandi semesta jika ingin melintasi Jembatan Pelangi!' pekik burung itu dengan suara parau menembus desau angin salju. Sena meraba saku mantelnya, memastikan batu akik peninggalan kakeknya masih memancarkan kehangatan. Ia melangkah maju satu langkah tanpa rasa ragu sedikit pun di dalam dadanya. 'Kebenaran tidak memerlukan jubah kepalsuan,' ucap Sena tegas seraya mengacungkan batu akiknya ke udara.'",
-        question: "Kata keterangan suasana yang menggambarkan efek dingin ekstrem pada teks di atas secara konkret adalah...",
+        passage: "Kutipan Teks Prosedur:\n'Untuk menghasilkan jus alpukat yang lembut dan tidak pahit di lidah, keruklah daging buah alpukat yang telah matang sempurna menggunakan sendok makan secara hati-hati. Hindari mengeruk daging buah terlalu dalam hingga mengenai kulit luar yang berwarna hijau tua pekat, sebab lapisan kulit ari tersebut mengandung zat getah tanin alami yang berasa sangat getir dan pahit.'",
+        question: "Pernyataan di bawah ini yang memuat hubungan sebab-akibat yang benar sesuai kutipan teks adalah...",
         options: [
-          { text: "Uap napasnya membeku menjadi butiran es kecil yang berjatuhan ke tanah.", correct: true },
-          { text: "Langkah kaki Sena terhenti di depan gerbang tulang naga purba.", correct: false },
-          { text: "Burung hantu bertanduk emas menatap dengan pupil mata membesar.", correct: false },
-          { text: "Sena meraba saku mantelnya dengan tenang tanpa rasa ragu.", correct: false }
+          { text: "Mengeruk daging alpukat terlalu dekat ke kulit luar menyebabkan jus berasa pahit akibat tercampurnya getah tanin.", correct: true },
+          { text: "Menggunakan sendok makan akan membuat tekstur jus buah menjadi sangat cair dan encer.", correct: false },
+          { text: "Alpukat yang matang sempurna selalu memiliki rasa getir yang tidak bisa dihilangkan.", correct: false },
+          { text: "Zat tanin membuat jus alpukat menjadi lebih awet dan beraroma harum manis.", correct: false }
         ]
       },
       {
-        passage: "Perhatikan pantun rumpang berikut:\n'Pohon randu berbuah lebat,\nTumbuh subur di pinggir telaga.\n........................................,\n........................................'\n\nSeorang siswa diminta melengkapi bagian isi pantun di atas agar membentuk pesan moral tentang pentingnya tolong-menolong sesama kawan tanpa pamrih.",
-        question: "Larik isi yang paling tepat dan memenuhi syarat rima akhir a-b-a-b serta jumlah suku kata ideal adalah...",
+        passage: "Perhatikan kalimat perintah berikut:\n'Keringkanlah pakaian berbahan sutra tersebut di tempat yang berangin tanpa terkena terik matahari secara langsung.'\n\nJika kalimat perintah aktif di atas diubah menjadi kalimat pasif panduan yang santun, bentuk yang tepat adalah...",
         options: [
-          { text: "Jadilah kawan yang selalu setia, / Membantu sesama dengan sukarela.", correct: false },
-          { text: "Jika ingin hidup beroleh selamat, / Tolong sesama jangan berlengah.", correct: false },
-          { text: "Bila sahabat dalam kepayahan, / Ulurkan tangan jangan ditunda.", correct: false },
-          { text: "Jika ingin punya banyak sahabat, / Saling menolong pupuklah raga.", correct: true }
+          { text: "Pakaian berbahan sutra sebaiknya dikeringkan di tempat yang berangin tanpa dijemur di bawah terik matahari secara langsung.", correct: true },
+          { text: "Jangan sekali-kali mengeringkan pakaian sutra di tempat yang berangin kencang!", correct: false },
+          { text: "Kamu harus menjemur pakaian berbahan sutra di bawah sinar matahari terik sekarang juga.", correct: false },
+          { text: "Mengeringkan pakaian sutra di tempat teduh adalah hal yang sangat membosankan.", correct: false }
         ]
       },
       {
-        passage: "Bacalah kutipan teks fantasi berikut:\n'Di dalam gua bawah tanah Gunung Kelud, Dimas menemukan sumber mata air berwarna emas yang mengalir melawan arah gravitasi—menuju ke atap gua. Menurut buku catatan geologi kuno yang ia temukan, mata air tersebut adalah Air Kehidupan Lemuria. Air itu mampu menyuburkan kembali tanah tandus di seluruh lereng gunung yang rusak akibat letusan lahar dingin. Namun, penjaga mata air berwujud naga kerdil bersayap kelelawar memperingatkannya bahwa air itu hanya boleh diambil menggunakan tempurung kelapa gading. Jika terkena wadah logam, kemurnian air akan musnah dan berubah menjadi cairan asam mematikan. Dimas segera mengeluarkan tempurung kelapa yang telah ia siapkan di dalam ranselnya. Dengan penuh takzim, ia menciduk air emas tersebut setetes demi setetes.'",
-        question: "Cacat logika yang akan memicu kegagalan misi tokoh Dimas berdasarkan aturan dunia cerita di atas adalah...",
+        passage: "Petunjuk Menyimpan Sayuran Hijau di Dalam Kulkas Agar Tetap Segar Selama Dua Minggu:\n(1) Sortir sayuran hijau dan buang helai daun yang menguning, layu, atau mulai membusuk.\n(2) Jangan mencuci sayuran yang hendak disimpan ke dalam kulkas, karena kelembapan air sisa cucian memicu kebusukan dan jamur.\n(3) Bungkus pangkal dan batang sayuran menggunakan selembar kertas koran, kertas buram, atau tisu dapur penyerap lembap.\n(4) Masukkan ikatan sayuran yang terbungkus rapi ke dalam kantong plastik klip berlubang udara mikro.\n(5) Letakkan paket sayuran di dalam laci khusus sayuran (crisper drawer) pada bagian bawah kulkas dengan posisi tegak atau mendatar rapi.",
+        question: "Aturan utama yang harus dipatuhi terkait perlakuan terhadap air sebelum sayuran disimpan adalah...",
         options: [
-          { text: "Jika Dimas tergoda menuangkan air emas tersebut ke dalam botol minum berbahan aluminium logam.", correct: true },
-          { text: "Jika Dimas menciduk air emas menggunakan tempurung kelapa gading yang telah disiapkannya.", correct: false },
-          { text: "Jika naga kerdil mengizinkan Dimas membawa air emas keluar dari gua bawah tanah.", correct: false },
-          { text: "Jika air emas tersebut disiramkan ke tanah lereng gunung yang tandus.", correct: false }
+          { text: "Sayuran tidak boleh dicuci sebelum disimpan karena air cucian memicu pembusukan dini dan perkembangan bakteri jamur.", correct: true },
+          { text: "Sayuran harus direndam dalam air garam es selama tiga jam sebelum masuk kulkas.", correct: false },
+          { text: "Sayuran wajib disemprot dengan air hangat setiap hari agar warnanya tetap hijau cerah.", correct: false },
+          { text: "Sayuran dicuci menggunakan sabun pembersih lantai lalu dikeringkan di atas wajan kompor.", correct: false }
         ]
       },
       {
-        passage: "Perhatikan teks gurindam berikut:\n'Jika hendak mengenal orang mulia,\nLihatlah kepada kelakuan dia.'\n\nBait di atas menekankan bahwa kemuliaan derajat seseorang tidak diukur dari gelar kebangsawanan, ketampanan rupa, atau limpahan harta bendanya. Budi pekerti, sopan santun, dan konsistensi perbuatan sehari-hari adalah cermin utama kehormatan diri seseorang di mata masyarakat.",
-        question: "Pernyataan di bawah ini yang mencerminkan penerapan nilai gurindam tersebut dalam kehidupan sekolah adalah...",
+        passage: "Bacalah teks berikut:\n'Prosedur Mengoperasikan Setrika Listrik Otomatis:\n(1) Periksa kabel daya setrika untuk memastikan tidak ada kawat yang terkelupas atau rusak demi keamanan.\n(2) Tancapkan steker listrik ke stopkontak dinding dengan tangan yang kering.\n(3) Putar kenop pengatur suhu (termostat) ke tingkat panas yang sesuai dengan jenis bahan pakaian (misalnya: wol, katun, atau nilon).\n(4) Tunggu lampu indikator pemanas mati secara otomatis sebagai tanda suhu setrika telah mencapai panas optimal.\n(5) Gosokkan permukaan tapak setrika di atas pakaian secara searah dan perlahan hingga lipatan kain menjadi rapi dan licin.\n(6) Setelah selesai menyetrika, putar kenop suhu ke angka nol (off), cabut steker dari stopkontak, dan letakkan setrika berdiri di tempat aman hingga dingin.'",
+        question: "Fungsi lampu indikator pada setrika listrik otomatis berdasarkan teks di atas adalah...",
         options: [
-          { text: "Menghormati teman bukan karena ia anak pejabat kaya, melainkan karena perangainya yang santun dan suka menolong.", correct: true },
-          { text: "Memilih ketua kelas hanya berdasarkan penampilan fisik yang menarik dan pakaian yang modis.", correct: false },
-          { text: "Menilai kepintaran seseorang dari banyaknya jumlah pengikut di akun media sosialnya.", correct: false },
-          { text: "Hanya berteman akrab dengan siswa yang memiliki nilai rapor tertinggi di kelas.", correct: false }
+          { text: "Menunjukkan kapan suhu panas setrika telah mencapai tingkat optimal sesuai pilihan bahan pakaian.", correct: true },
+          { text: "Menghitung jumlah pakaian yang telah berhasil dilicinkan oleh pemakai.", correct: false },
+          { text: "Mendeteksi apakah pakaian yang disetrika masih berbau apek atau wangi.", correct: false },
+          { text: "Mencegah aliran arus pendek listrik dari stopkontak rumah tangga.", correct: false }
         ]
       },
       {
-        passage: "Kutipan cerpen fantasi:\n'Di ruang simulator kuantum, Radit memegang tuas pengendali gravitasi seraya menatap layar proyeksi tiga dimensi yang berkedip merah. Tiba-tiba, sebuah pesan darurat masuk dari stasiun luar angkasa Palapa-4 yang mengabarkan adanya anomali lubang hitam mini. Radit sadar, jika ia tidak mengunci koordinat lubang hitam tersebut dalam waktu tiga puluh detik, satelit komunikasi Nusantara akan tersedot tanpa sisa. 'Radit, sistem pendingin mesin kita mulai meleleh!' jerit Tania panik dari balik konsol reaktor nuklir. Radit mengatupkan rahangnya rapat-rapat, mengabaikan percikan api plasma yang menyengat lengan kirinya. Dengan perhitungan matematis yang cermat, ia memutar tuas gravitasi ke sudut minus sembilan puluh derajat. Gelombang kejut magnetik seketika memancar menstabilkan ruang hampa di sekeliling satelit.'",
-        question: "Tokoh Radit digambarkan memiliki perwatakan...",
+        passage: "Perhatikan teks rumpang berikut:\n'Cara Membuat Disinfektan Mandiri di Rumah:\n(1) Siapkan sarung tangan karet dan masker pelindung pernapasan.\n(2) Tuangkan 50 ml cairan pemutih pakaian berkonsentrasi natrium hipoklorit 5% ke dalam ember plastik.\n(3) [ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ]\n(4) Aduk larutan secara merata menggunakan bilah tongkat kayu hingga tercampur sempurna.\n(5) Masukkan larutan disinfektan ke dalam botol semprot menggunakan corong kecil.\n(6) Semprotkan cairan pada permukaan benda yang sering disentuh (gagang pintu, sakelar, meja) lalu seka dengan kain bersih.'",
+        question: "Langkah nomor (3) yang tepat dan proporsional untuk mengencerkan cairan pemutih tersebut adalah...",
         options: [
-          { text: "Tenang, berkepala dingin saat krisis, dan mahir dalam perhitungan sains taktis.", correct: true },
-          { text: "Mudah cemas, terburu-buru mengambil keputusan, dan bergantung pada rekannya.", correct: false },
-          { text: "Keras kepala, sombong terhadap penemuannya, dan meremehkan peringatan rekan kerja.", correct: false },
-          { text: "Penakut, pasif menunggu instruksi komputer, dan enggan mengambil risiko terluka.", correct: false }
+          { text: "Tambahkan 950 ml air bersih bersuhu ruang ke dalam ember untuk mengencerkan cairan hingga mencapai takaran 1 liter.", correct: true },
+          { text: "Campurkan 1 liter minyak goreng panas ke dalam ember secara langsung.", correct: false },
+          { text: "Rebus cairan pemutih di atas panci aluminium hingga uapnya mengepul tebal.", correct: false },
+          { text: "Tumpahkan serbuk detergen sebanyak lima kilogram ke dalam ember tanpa air.", correct: false }
         ]
       },
       {
-        passage: "Bacalah teks syair berikut:\n'Jalankan amanah jangan khianat,\nSupaya hidup beroleh berkat,\nJauhkan diri dari maksiat,\nKelak di akhirat selamat sentosa.'\n\nSyair di atas berisi petuah moral yang disampaikan secara berkesinambungan antarlarikh. Pengarang memilih kata-kata bermakna denotatif yang lugas agar pesan etika ketuhanan dapat langsung dipahami oleh pembaca dari berbagai kalangan usia.",
-        question: "Ciri utama syair yang membedakannya secara mutlak dari pantun berdasarkan teks di atas adalah...",
+        passage: "Kutipan Teks Prosedur:\n'Penggunaan pupuk urea pada tanaman padi harus dilakukan dengan dosis yang tepat. Taburkan butiran pupuk urea secukupnya di sela-sela rumpun padi saat tanah dalam kondisi macak-macak (sedikit berair basah). Jangan menaburkan pupuk saat genangan air sawah terlalu tinggi, sebab pupuk akan larut terbawa arus limpasan air dan tidak terserap maksimal oleh perakaran tanaman.'",
+        question: "Kata bermakna istilah teknis pertanian (*kata teknis*) yang terdapat dalam kutipan teks di atas adalah...",
         options: [
-          { text: "Seluruh barisnya berupa untaian isi nasihat yang bersambung dan tidak memiliki sampiran.", correct: true },
-          { text: "Dua baris pertama berupa sampiran kiasan dan dua baris terakhir berupa isi nasihat.", correct: false },
-          { text: "Terdiri atas dua baris sebait yang memiliki pola hubungan syarat dan jawaban kausal.", correct: false },
-          { text: "Jumlah suku kata per baris bebas tanpa adanya aturan metrik pengikat.", correct: false }
+          { text: "Urea, macak-macak, dosis, dan perakaran", correct: true },
+          { text: "Tanaman, padi, tanah, dan air", correct: false },
+          { text: "Taburkan, larut, terbawa, dan terserap", correct: false },
+          { text: "Tepat, secukupnya, tinggi, dan maksimal", correct: false }
         ]
       },
       {
-        passage: "Perhatikan teks berikut:\n'Di pasar terapung terapung langit Kerajaan Aethel, pedagang tidak bertransaksi dengan keping uang emas, melainkan dengan memori ingatan bahagia. Nala membawa sebotol kaca berisi kenangan saat ia pertama kali belajar menunggang burung bangau bersama kakeknya. Ia hendak menukarkan memori tersebut dengan sebutir Benih Bintang yang mampu menyalakan perapian desanya selama musim dingin panjang. Namun, ketika pedagang meletakkan benih bercahaya itu di tangannya, Nala menatap botol memorinya dengan ragu. Jika memori itu diserahkan, wajah senyum kakeknya akan terhapus selamanya dari ingatannya sendiri. Tangisnya tumpah saat ia menyadari harga mahal yang harus dibayar demi menyelamatkan ribuan warga desanya dari kematian beku. Dengan tangan gemetar, ia menyerahkan botol memorinya seraya memeluk benih bintang tersebut.'",
-        question: "Pesan mendalam (*Meaningful Learning*) yang terkandung dalam pengorbanan tokoh Nala adalah...",
+        passage: "Bacalah teks prosedur berikut:\n'Panduan Menghidupkan Komputer PC Laboratorium Sekolah:\n(1) Buka penutup debu (dust cover) monitor dan unit CPU secara rapi.\n(2) Pastikan kabel power CPU, monitor, dan stabilizer telah tertancap kokoh pada jalur kelistrikan.\n(3) Tekan sakelar tombol 'ON' pada perangkat stabilizer (penstabil tegangan listrik).\n(4) Tekan tombol power utama yang terletak pada bagian depan casing CPU hingga lampu LED menyala dan kipas menderu halus.\n(5) Tekan tombol power pada layar monitor hingga indikator lampu berubah menjadi biru atau hijau.\n(6) Tunggu sistem operasi memuat program (*booting*) hingga desktop menampilkan ikon-ikon aplikasi siap pakai.'",
+        question: "Mengapa sakelar stabilizer harus dihidupkan terlebih dahulu sebelum tombol CPU ditekan pada langkah (3)?",
         options: [
-          { text: "Cinta kasih dan pengorbanan sejati sering kali menuntut kerelaan melepaskan hal yang paling berharga demi kemaslahatan bersama.", correct: true },
-          { text: "Membeli barang di pasar terapung langit selalu merugikan masyarakat miskin.", correct: false },
-          { text: "Kenangan masa kecil bersama kakek tidak memiliki nilai guna di masa dewasa.", correct: false },
-          { text: "Musim dingin di kerajaan fantasi hanya bisa diatasi dengan kekuatan uang koin emas.", correct: false }
+          { text: "Menjamin pasokan arus daya listrik telah stabil sehingga komponen elektronik CPU terlindung dari lonjakan daya mendadak.", correct: true },
+          { text: "Membersihkan file sampah (cache) yang menumpuk di memori internal komputer.", correct: false },
+          { text: "Menghubungkan komputer secara nirkabel ke satelit jaringan internet sekolah.", correct: false },
+          { text: "Mengganti gambar wallpaper monitor desktop secara otomatis.", correct: false }
         ]
       },
       {
-        passage: "Bacalah teks narasi berikut:\n'Di dalam labirin cermin Ilusi, Arya melihat puluhan bayangan dirinya bergerak dengan ekspresi yang berbeda-beda. Satu bayangan tertawa mengejek, bayangan lain menangis ketakutan, dan bayangan di tengah memegang pedang bermata dua dengan tatapan dingin. Cermin tempat bayangan bersenjata itu berdiri adalah satu-satunya cermin pintu keluar menuju dunia nyata. Namun, aturan labirin menegaskan bahwa siapa pun yang menyerang bayangannya sendiri akan terperangkap menjadi kaca selamanya. Arya menarik napas panjang, menurunkan pedangnya, lalu melangkah maju seraya merentangkan tangannya memeluk cermin tersebut. Seketika itu juga, permukaan kaca mencair menjadi air jernih yang hangat dan membawanya keluar dari labirin ilusi. Bayangan-bayangan yang menakutkan sirna bersamaan dengan hilangnya rasa takut di dalam hatinya.'",
-        question: "Resolusi konflik dalam cerita di atas tercapai bukan melalui kekerasan fisik, melainkan melalui...",
+        passage: "Perhatikan teks deskripsi alat dan bahan berikut:\n'Bahan yang dibutuhkan:\n- 250 gram tepung terigu berprotein sedang\n- 50 gram gula pasir butiran halus\n- 1 butir telur ayam ras segar bersuhu ruang\n- 1/2 sendok teh ragi instan aktif\n- 150 ml susu cair hangat kuku (jangan panas)\n- 30 gram margarin leleh'",
+        question: "Alasan mengapa susu cair disyaratkan bersuhu 'hangat kuku' dan dilarang panas pada daftar bahan di atas adalah...",
         options: [
-          { text: "Pengendalian diri, keberanian moral, dan penaklukan rasa takut di dalam batin tokoh.", correct: true },
-          { text: "Kecepatan Arya menghancurkan seluruh kaca cermin menggunakan pedang bermata dua.", correct: false },
-          { text: "Bantuan mantra sihir yang dikirimkan oleh guru spiritualnya dari luar labirin.", correct: false },
-          { text: "Kemampuan Arya berlari cepat mendahului gerakan bayangan cerminnya.", correct: false }
+          { text: "Suhu air yang terlalu panas dapat mematikan mikroorganisme ragi aktif sehingga adonan gagal mengembang (bantat).", correct: true },
+          { text: "Susu bersuhu panas akan membuat tepung terigu menjadi gosong seketika.", correct: false },
+          { text: "Ragi instan hanya dapat larut jika dicampur dengan es batu beku.", correct: false },
+          { text: "Suhu hangat kuku membuat telur ayam langsung matang menjadi telur ceplok.", correct: false }
         ]
       },
       {
-        passage: "Perhatikan pantun berikut:\n'Pohon pauh di tepi rawa,\nTempat hinggap burung gelatik.\nOrang tua jangan didua,\nTutur kata hendaklah baik.'\n\nBait di atas diajarkan dalam tradisi lisan Melayu untuk menanamkan adab berbakti kepada ayah dan ibu. Hubungan rima antara larik 1–3 (rawa–didua) dan larik 2–4 (gelatik–baik) terjalin harmonis membentuk keutuhan estetika bunyi.",
-        question: "Sasaran nilai karakter yang ditekankan dalam bait pantun di atas adalah...",
+        passage: "Kutipan Teks Prosedur:\n'Langkah Membuat Herbarium Kering Daun Tumbuhan:\n(1) Petik daun segar yang memiliki bentuk utuh, simetris, dan tidak berlubang hama.\n(2) Bersihkan debu permukaan daun dengan kapas lembap secara hati-hati.\n(3) Letakkan spesimen daun di antara dua lembar kertas koran bekas yang kering.\n(4) Masukkan lembaran koran tersebut ke dalam jepitan papan kayu atau himpit dengan beberapa tumpukan buku yang tebal dan berat.\n(5) Ganti kertas koran setiap dua hari sekali selama dua minggu agar kadar air daun terserap tuntas tanpa membusuk.\n(6) Tempelkan daun kering yang sudah diawetkan pada kertas manila dan lengkapi dengan label nama ilmiah tumbuhan.'",
+        question: "Tujuan utama penggantian kertas koran setiap dua hari sekali pada langkah nomor (5) adalah...",
         options: [
-          { text: "Kewajiban menjaga sopan santun dan adab berbakti penuh hormat kepada kedua orang tua.", correct: true },
-          { text: "Larangan memelihara burung gelatik di sekitar pohon pauh yang tumbuh di tepi rawa.", correct: false },
-          { text: "Pentingnya menanam pohon buah pauh untuk mencegah banjir di sekitar rawa.", correct: false },
-          { text: "Anjuran berbicara dengan suara keras agar didengar oleh sanak saudara sekampung.", correct: false }
+          { text: "Menjaga kondisi spesimen tetap kering serta menyerap kelembapan agar daun tidak berjamur dan membusuk.", correct: true },
+          { text: "Mengubah warna daun hijau menjadi berwarna ungu cerah secara buatan.", correct: false },
+          { text: "Menghilangkan aroma wangi alami daun tumbuhan hutan.", correct: false },
+          { text: "Membuat tekstur daun menjadi lembek dan mudah hancur menjadi bubuk.", correct: false }
         ]
       },
       {
-        passage: "Kutipan cerpen fantasi:\n'Di stasiun kereta bawah tanah Batavia tahun 1920, Harun menemukan sebuah pintu loker besi yang tidak memiliki lubang kunci konvensional, melainkan panel pemindai sidik jari digital modern. Saat Harun menempelkan ibu jarinya, pintu loker mendesis terbuka dan mengeluarkan kacamata hologram berlensa ganda. Begitu kacamata itu ia kenakan, ia dapat melihat jalur rel kereta cepat bawah tanah dan gedung-gedung pencakar langit yang melayang di atas langit Batavia. Di sekelilingnya, sosok-sosok manusia masa lalu berpakaian kebaya dan jas kolonial berjalan tanpa menyadari keberadaan bayangan kota futuristik tersebut. Harun menyadari bahwa kacamata itu adalah jendela pengawas waktu yang ditinggalkan oleh penjelajah waktu dari abad ke-22. Namun, baterai kacamata tersebut berkedip cepat menandakan energinya hampir habis terpakai. Harun harus segera menemukan transmiter waktu sebelum portal lintasan tertutup permanen.'",
-        question: "Berdasarkan ciri-cirinya, latar tempat dan waktu yang dibangun dalam cerita di atas tergolong...",
+        passage: "Bacalah kutipan kalimat panduan berikut:\n'Tariklah tuas rem sepeda secara perlahan-lahan menggunakan jari telunjuk dan jari tengah, kemudian imbangi dengan posisi badan sedikit condong ke belakang agar sepeda tidak terpelanting ke depan.'",
+        question: "Kalimat di atas menggunakan ragam bahasa panduan dengan adverbia cara dan adverbia tujuan, yaitu...",
         options: [
-          { text: "Fantasi Irisan dengan Latar Lintas Waktu (menggabungkan sejarah Batavia 1920 dan teknologi futuristik).", correct: true },
-          { text: "Fantasi Total dengan Latar Sezaman masa purbakala murni.", correct: false },
-          { text: "Teks Sejarah Faktual tanpa unsur rekaan imajinatif.", correct: false },
-          { text: "Fantasi Total yang terjadi di luar angkasa galaksi lain.", correct: false }
+          { text: "Cara: 'secara perlahan-lahan' ; Tujuan: 'agar sepeda tidak terpelanting ke depan'", correct: true },
+          { text: "Cara: 'tuas rem sepeda' ; Tujuan: 'menggunakan jari telunjuk'", correct: false },
+          { text: "Cara: 'condong ke belakang' ; Tujuan: 'kemudian imbangi'", correct: false },
+          { text: "Cara: 'ke depan' ; Tujuan: 'sepeda motor'", correct: false }
         ]
       },
       {
-        passage: "Perhatikan kutipan berikut:\n'Di dalam kubah kaca Observatorium Merapi, Kinan mengamati butiran pasir hisap yang berputar membentuk pusaran angka-angka biner bercahaya hijau. Menurut perhitungan komputernya, letusan gunung kali ini bukan disebabkan oleh dorongan magma vulkanik biasa, melainkan oleh getaran kristal kuarsa raksasa yang tertanam di dasar kawah. Kristal itu bereaksi terhadap gelombang badai matahari yang menghantam medan magnet bumi sore ini. Kinan mengambil setelan pakaian tahan panas dan memasang tabung penstabil frekuensi di punggungnya. Ia harus turun ke bibir kawah sebelum frekuensi kristal mencapai titik resonansi kritis yang dapat memicu gempa megathrust. Di luar observatorium, langit Yogyakarta memerah pekat diterangi kilatan petir vulkanik tanpa hujan. Setiap detik yang terbuang adalah ancaman nyata bagi jutaan nyawa di pulau Jawa.'",
-        question: "Konflik bertekanan tinggi (*Suspense*) yang dialami oleh tokoh Kinan dipicu oleh...",
+        passage: "Petunjuk Melakukan Sikap Lilin dalam Senam Lantai:\n(1) Baringkan tubuh telentang lurus di atas matras dengan kedua lengan rapat di samping badan dan pandangan ke atas.\n(2) Angkat kedua kaki secara bersamaan dalam posisi lurus rapat ke atas hingga membentuk sudut 90 derajat.\n(3) Dorong pinggul ke atas menggunakan kekuatan otot perut dan topang bagian punggung bawah dengan kedua telapak tangan.\n(4) Rapatkan kedua siku tangan di atas matras sebagai tumpuan utama penyeimbang berat tubuh.\n(5) Luruskan kaki ke atas vertikal hingga membentuk garis lurus dari pundak, pinggul, sampai ujung jari kaki.\n(6) Pertahankan posisi sikap lilin ini selama 10–15 hitungan dengan bernapas tenang, lalu turunkan badan perlahan kembali ke matras.",
+        question: "Kesalahan fatal yang sering dilakukan pesenam pemula saat mempraktikkan langkah nomor (3) dan (4) sehingga tubuh goyah/jatuh adalah...",
         options: [
-          { text: "Ancaman bencana katastropik akibat getaran kristal kuarsa di dasar kawah yang terpicu badai matahari.", correct: true },
-          { text: "Kerusakan perangkat komputer observatorium akibat tersiram tumpahan cairan kimia asam.", correct: false },
-          { text: "Penolakan warga Yogyakarta untuk mengungsi dari ancaman letusan lahar dingin.", correct: false },
-          { text: "Ketakutan Kinan terhadap kilatan petir vulkanik di luar gedung observatorium.", correct: false }
+          { text: "Posisi siku tangan terlalu melebar keluar matras dan telapak tangan tidak menopang punggung bawah secara kokoh.", correct: true },
+          { text: "Bernapas secara teratur melalui hidung selama gerakan berlangsung.", correct: false },
+          { text: "Menggunakan matras senam lantai yang memiliki permukaan rata dan empuk.", correct: false },
+          { text: "Menempelkan bagian tengkuk pundak di atas permukaan matras.", correct: false }
         ]
       },
       {
-        passage: "Perhatikan teks gurindam berikut:\n'Cahari olehmu akan sahabat,\nYang boleh dijadikan obat.'\n\nBait di atas merupakan salah satu pasal penting dalam *Gurindam Dua Belas* karya Raja Ali Haji. Nasihat ini memperingatkan kita agar selektif dalam memilih kawan pergaulan dalam kehidupan bermasyarakat.",
-        question: "Makna kias kata 'obat' dalam konteks nasihat pergaulan gurindam di atas adalah...",
+        passage: "Kutipan Teks Prosedur:\n'Jika adonan pempek terasa terlalu lembek di tangan saat hendak dibentuk, taburkan tepung sagu tani sedikit demi sedikit pada telapak tangan Anda sebagai baluran anti-lengket. Hindari menguleni adonan pempek terlalu lama atau menekannya terlalu kuat menggunakan tenaga berlebih, karena gesekan yang berlebihan akan membuat gluten mengeras sehingga tekstur pempek yang dihasilkan menjadi alot dan keras seperti karet saat direbus.'",
+        question: "Peringatan khusus (*warning*) yang diberikan penulis dalam kutipan teks membuat pempek di atas adalah...",
         options: [
-          { text: "Sahabat sejati yang mampu menenteramkan hati, memberi teladan baik, dan meluruskan kita saat berbuat salah.", correct: true },
-          { text: "Teman yang berprofesi sebagai dokter atau apoteker di rumah sakit.", correct: false },
-          { text: "Kawan yang selalu membelikan obat-obatan medis saat kita menderita penyakit fisik.", correct: false },
-          { text: "Orang yang bisa dimanfaatkan untuk mendapatkan keuntungan finansial pribadi.", correct: false }
+          { text: "Jangan menguleni adonan terlalu lama dan terlalu kuat agar tekstur pempek tidak menjadi alot dan keras.", correct: true },
+          { text: "Dilarang menggunakan tepung sagu tani sebagai bahan taburan adonan.", correct: false },
+          { text: "Adonan pempek harus dibiarkan lembek dan basah di dalam air mendidih.", correct: false },
+          { text: "Pempek wajib digoreng dalam kondisi minyak beku tanpa api.", correct: false }
         ]
       },
 
-      // 34-60: Soal HOTS Teori, Struktur & Kaidah Kebahasaan
+      // 34-60: Soal HOTS Teori Struktur, Kaidah Kebahasaan, dan Kaidah Penyuntingan
       {
         passage: "",
-        question: "Manakah di antara pilihan berikut yang merupakan ciri pembeda paling mendasar antara Fantasi Total dan Fantasi Irisan?",
+        question: "Manakah di antara pernyataan berikut yang paling tepat mendefinisikan hakikat dan tujuan utama dari teks prosedur?",
         options: [
-          { text: "Fantasi Total seluruh unsurnya adalah rekaan murni pengarang, sedangkan Fantasi Irisan masih memadukan nama tempat, tokoh, atau peristiwa nyata di bumi.", correct: true },
-          { text: "Fantasi Total hanya berisi cerita tentang binatang purba, sedangkan Fantasi Irisan khusus tentang perjalanan luar angkasa.", correct: false },
-          { text: "Fantasi Total tidak memiliki struktur komplikasi, sedangkan Fantasi Irisan memiliki struktur alur yang lengkap.", correct: false },
-          { text: "Fantasi Total menggunakan bahasa baku formal, sedangkan Fantasi Irisan menggunakan ragam bahasa santai sehari-hari.", correct: false }
+          { text: "Teks yang memberikan panduan langkah-langkah terstruktur dan sistematis agar pembaca dapat membuat, menggunakan, atau melakukan suatu hal secara tepat.", correct: true },
+          { text: "Teks yang menggambarkan suatu objek fisik atau fenomena alam secara terperinci menggunakan cerapan pancaindra pembaca.", correct: false },
+          { text: "Teks yang menceritakan urutan peristiwa khayalan dengan keajaiban tokoh untuk menghibur pembaca.", correct: false },
+          { text: "Teks yang memuat argumen dan pendapat pribadi penulis untuk meyakinkan pembaca atas suatu isu publik.", correct: false }
         ]
       },
       {
         passage: "",
-        question: "Perhatikan ciri-ciri puisi berikut:\n1) Terdiri atas 2 baris dalam satu bait.\n2) Memiliki pola rima akhir a-a.\n3) Baris pertama berisi syarat/persoalan, baris kedua berisi akibat/nasihat.\n\nBerdasarkan karakteristik di atas, genre puisi rakyat yang dimaksud adalah...",
+        question: "Urutan sistematika struktur teks prosedur cara membuat sesuatu yang baku dan lengkap terdiri atas...",
         options: [
-          { text: "Gurindam", correct: true },
-          { text: "Pantun Berkait", correct: false },
-          { text: "Syair Kiasan", correct: false },
-          { text: "Karmina Jenaka", correct: false }
+          { text: "Judul -> Tujuan -> Alat dan Bahan -> Langkah-langkah -> Penutup / Simpulan", correct: true },
+          { text: "Judul -> Orientasi -> Komplikasi -> Klimaks -> Resolusi", correct: false },
+          { text: "Judul -> Tesis -> Rangkaian Argumen -> Penegasan Ulang", correct: false },
+          { text: "Judul -> Deskripsi Umum -> Deskripsi Bagian -> Simpulan Nilai", correct: false }
         ]
       },
       {
         passage: "",
-        question: "Dalam penulisan naskah narasi fantasi, teknik 'Show, Don't Tell' sangat penting diterapkan karena...",
+        question: "Perbedaan mendasar antara 'Teks Prosedur Cara Membuat Sesuatu' dan 'Teks Prosedur Cara Menggunakan Alat (Manual)' terletak pada keberadaan struktur...",
         options: [
-          { text: "Membantu pembaca merasakan emosi dan suasana adegan secara nyata melalui pancaindra, bukan sekadar diberitahu secara hambar.", correct: true },
-          { text: "Membuat jumlah halaman buku karangan menjadi lebih tebal sehingga bernilai jual tinggi.", correct: false },
-          { text: "Mempercepat penyelesaian cerita tanpa perlu menyusun alur orientasi dan komplikasi.", correct: false },
-          { text: "Menggantikan seluruh kalimat percakapan dialog dengan tabel dan grafik data fakta.", correct: false }
+          { text: "Struktur Alat dan Bahan (prosedur membuat memuat rincian takaran bahan mentah, sedangkan prosedur alat umumnya fokus pada langkah pengoperasian).", correct: true },
+          { text: "Struktur Judul yang tidak wajib ada pada teks panduan manual alat.", correct: false },
+          { text: "Struktur Langkah-langkah yang sama sekali ditiadakan pada teks cara membuat kue.", correct: false },
+          { text: "Penggunaan kalimat imperatif yang hanya boleh dipakai pada teks pembuatan resep kuliner.", correct: false }
         ]
       },
       {
         passage: "",
-        question: "Manakah kalimat langsung berikut yang ditulis dengan tanda baca dan huruf kapital paling tepat sesuai PUEBI?",
+        question: "Manakah di antara kalimat berikut yang memuat penggunaan kalimat imperatif saran (anjuran halus)?",
         options: [
-          { text: "\"Kunci portal itu ada di puncak menara!\" seru Danu seraya menunjuk ke arah langit.", correct: true },
-          { text: "\"Kunci portal itu ada di puncak menara!\" Seru Danu seraya menunjuk ke arah langit.", correct: false },
-          { text: "\"Kunci portal itu ada di puncak menara!,\" seru Danu seraya menunjuk ke arah langit.", correct: false },
-          { text: "\"Kunci portal itu ada di puncak menara!\" seru Danu, Seraya menunjuk ke arah langit.", correct: false }
+          { text: "Sebaiknya, gunakan pisau dapur berbahan keramik agar potongan buah tidak cepat mengalami oksidasi.", correct: true },
+          { text: "Potonglah wortel tersebut menjadi dadu berukuran dadu 1 sentimeter sekarang juga!", correct: false },
+          { text: "Jangan sekali-kali mencampurkan air mendidih ke dalam adonan ragi roti!", correct: false },
+          { text: "Apakah Anda telah membersihkan saringan blender sebelum digunakan?", correct: false }
         ]
       },
       {
         passage: "",
-        question: "Sebuah cerita mengisahkan seorang penjelajah abad ke-21 yang terlempar ke zaman Kerajaan Singasari pada tahun 1222 Masehi. Berdasarkan linimasanya, cerita tersebut tergolong jenis fantasi...",
+        question: "Perhatikan kalimat berikut:\n'Rebuslah mie instan tersebut . . . . . tiga menit, kemudian tiriskan airnya . . . . . benar-benar kering.'\n\nKata penghubung (konjungsi) pembatas dan waktu yang tepat untuk melengkapi kalimat panduan di atas adalah...",
         options: [
-          { text: "Fantasi Latar Lintas Waktu", correct: true },
-          { text: "Fantasi Latar Sezaman Masa Kini", correct: false },
-          { text: "Fantasi Latar Sezaman Masa Lampau", correct: false },
-          { text: "Fantasi Latar Sezaman Futuristik", correct: false }
+          { text: "selama ; hingga", correct: true },
+          { text: "sebab ; karena", correct: false },
+          { text: "walaupun ; jikalau", correct: false },
+          { text: "setelah ; melainkan", correct: false }
         ]
       },
       {
         passage: "",
-        question: "Perhatikan baris pantun berikut:\n'Asam kandis asam gelugur,\nKedua asam riang-riang.'\n\nFungsi kedua baris di atas dalam struktur pantun empat baris adalah...",
+        question: "Ciri kebahasaan teks prosedur berupa 'adverbia alat' ditandai dengan penggunaan kata tugas preposisi...",
         options: [
-          { text: "Sebagai sampiran yang menyiapkan pola rima akhir dan irama merdu bagi bait isi.", correct: true },
-          { text: "Sebagai inti pesan moral dan nasihat utama yang ingin disampaikan pengarang.", correct: false },
-          { text: "Sebagai syarat sebab-akibat dari peristiwa yang akan terjadi pada baris berikutnya.", correct: false },
-          { text: "Sebagai penjelas watak tokoh utama dalam teks cerita naratif.", correct: false }
+          { text: "dengan / menggunakan (contoh: potonglah kertas dengan gunting tajam)", correct: true },
+          { text: "karena / sebab (contoh: ia terjatuh karena licin)", correct: false },
+          { text: "jika / apabila (contoh: jika suhu panas meningkat)", correct: false },
+          { text: "di mana / ke mana (contoh: tempat di mana ia berdiri)", correct: false }
         ]
       },
       {
         passage: "",
-        question: "Manakah di antara kalimat berikut yang memuat konjungsi penanda keterkejutan / perubahan alur mendadak?",
+        question: "Manakah kalimat panduan di bawah ini yang paling efektif dan hemat kata (menghindari pleonasme)?",
         options: [
-          { text: "Tanpa disangka-sangka, langit yang semula cerah mendadak membelah dan menumpahkan pusaran air emas.", correct: true },
-          { text: "Setelah makan malam bersama keluarga, Aldo beristirahat di kamarnya yang nyaman.", correct: false },
-          { text: "Rani merawat tanaman mawarnya setiap pagi dengan menyiramkan air bersih secara teratur.", correct: false },
-          { text: "Mereka berjalan beriringan menyusuri pematang sawah menuju ke balai desa terdekat.", correct: false }
+          { text: "Aduk adonan tersebut perlahan hingga seluruh bahan tercampur rata.", correct: true },
+          { text: "Aduk-aduklah adonan tersebut secara sangat perlahan-lahan sekali sampai semua bahan-bahan tercampur rata semuanya.", correct: false },
+          { text: "Para hadirin semua harus mengaduk adonan adonan kue itu perlahan.", correct: false },
+          { text: "Aduklah adonan itu pelan-pelan sekali agar supaya adonan tercampur.", correct: false }
         ]
       },
       {
         passage: "",
-        question: "Dalam merancang semesta fantasi (*Worldbuilding*), mengapa seorang penulis harus menentukan batasan atau kelemahan dari suatu kekuatan sihir/teknologi?",
+        question: "Penulisan daftar rincian bahan berikut yang tepat menurut kaidah ejaan tanda baca dan huruf kapital adalah...",
         options: [
-          { text: "Agar cerita memiliki logika internal yang kuat dan menciptakan ketegangan dramatis saat tokoh menghadapi rintangan.", correct: true },
-          { text: "Agar kekuatan tokoh utama menjadi tidak terbatas dan dapat mengalahkan musuh dalam sekejap.", correct: false },
-          { text: "Agar pembaca merasa bosan karena tokoh tidak bisa melakukan apa pun di semestanya.", correct: false },
-          { text: "Agar cerita fantasi berubah genre menjadi buku teks ensiklopedia sejarah faktual.", correct: false }
+          { text: "Bahan-bahan yang diperlukan:\n- 250 gram tepung terigu;\n- 2 butir telur ayam;\n- 100 ml susu segar.", correct: true },
+          { text: "Bahan-bahan yang diperlukan;\n* 250 gram tepung terigu:\n* 2 butir telur ayam:\n* 100 ml susu segar:", correct: false },
+          { text: "Bahan-bahan yang diperlukan,\n1. 250 Gram Tepung Terigu,\n2. 2 Butir Telur Ayam,\n3. 100 Ml Susu Segar,", correct: false },
+          { text: "Bahan-Bahan yang diperlukan:\n- 250 gram tepung terigu.\n- 2 butir telur ayam.\n- 100 ml susu segar;", correct: false }
         ]
       },
       {
         passage: "",
-        question: "Perhatikan kutipan gurindam berikut:\n'Kurang pikir kurang siasat,\nTentu dirimu kelak tersesat.'\n\nKata arkais/khusus 'siasat' dalam konteks nasihat di atas bermakna...",
+        question: "Dalam teks prosedur, penggunaan kata penunjuk waktu urutan peristiwa (*konjungsi temporal*) sangat penting karena berfungsi untuk...",
         options: [
-          { text: "Pertimbangan yang matang, ketelitian, dan perencanaan langkah secara cermat.", correct: true },
-          { text: "Trik licik untuk mengelabui lawan dalam sebuah kompetisi permainan.", correct: false },
-          { text: "Peralatan perang kuno yang digunakan prajurit di medan pertempuran.", correct: false },
-          { text: "Hukuman denda yang wajib dibayarkan kepada penguasa kerajaan.", correct: false }
+          { text: "Menjaga keruntutan kronologis setiap tahapan kerja agar pembaca tidak tertukar urutan langkahnya.", correct: true },
+          { text: "Memperindah rima bunyi suku kata terakhir pada setiap bait kalimat.", correct: false },
+          { text: "Menjelaskan watak kepribadian tokoh utama dalam alur cerita naratif.", correct: false },
+          { text: "Memperbanyak jumlah kata agar naskah tulisan menjadi lebih panjang.", correct: false }
         ]
       },
       {
         passage: "",
-        question: "Manakah urutan tahapan struktur alur narasi fantasi yang paling logis dan sistematis?",
+        question: "Manakah kelompok kata di bawah ini yang seluruhnya merupakan kata kerja imperatif (perintah) dalam teks prosedur?",
         options: [
-          { text: "Orientasi -> Pemicu Masalah -> Eskalasi Konflik -> Klimaks -> Resolusi", correct: true },
-          { text: "Klimaks -> Orientasi -> Resolusi -> Pemicu Masalah -> Koda", correct: false },
-          { text: "Resolusi -> Komplikasi -> Orientasi -> Antiklimaks -> Klimaks", correct: false },
-          { text: "Pemicu Masalah -> Resolusi -> Klimaks -> Orientasi -> Komplikasi", correct: false }
+          { text: "Keringkan, lumuri, rebuslah, tuangkan, dan tekanlah", correct: true },
+          { text: "Mengeringkan, pelumuran, merebus, penuangan, dan tekanan", correct: false },
+          { text: "Terkering, berlumur, terebus, tertuang, dan tertekan", correct: false },
+          { text: "Kekeringan, selumur, perebusan, menuangi, dan ditekan", correct: false }
         ]
       },
       {
         passage: "",
-        question: "Perhatikan teks deskripsi latar berikut:\n'Lantai gua yang dipijaknya terasa licin berlendir, sementara bau amis lumut basah menusuk tajam ke dalam rongga hidungnya.'\n\nCerapan pancaindra yang dominan digunakan dalam kalimat di atas adalah...",
+        question: "Perhatikan kalimat panduan berikut:\n'Kupaslah kulit mangga itu tipis-tipis!'\n\nFrasa 'tipis-tipis' dalam struktur kalimat imperatif di atas menduduki fungsi keterangan...",
         options: [
-          { text: "Penciuman dan Perabaan (Taktil)", correct: true },
-          { text: "Penglihatan dan Pendengaran", correct: false },
-          { text: "Pengecapan dan Penglihatan", correct: false },
-          { text: "Pendengaran dan Gerak", correct: false }
+          { text: "Keterangan cara / kualitas tindakan", correct: true },
+          { text: "Keterangan tujuan perbuatan", correct: false },
+          { text: "Keterangan alat operasional", correct: false },
+          { text: "Keterangan tempat kejadian", correct: false }
         ]
       },
       {
         passage: "",
-        question: "Dalam sebuah cerita fantasi, tokoh antagonis yang memiliki julukan 'Sang Penguasa Kelam' ditulis menggunakan kata sandang...",
+        question: "Mengapa bagian 'Tujuan' pada awal teks prosedur sangat penting bagi pembaca?",
         options: [
-          { text: "Sang", correct: true },
-          { text: "Si", correct: false },
-          { text: "Hang", correct: false },
-          { text: "Dang", correct: false }
+          { text: "Memberikan gambaran umum mengenai manfaat hasil akhir yang akan dicapai jika seluruh panduan diikuti dengan benar.", correct: true },
+          { text: "Menjelaskan riwayat hidup penulis naskah sejak masa kecil hingga sekarang.", correct: false },
+          { text: "Menyebutkan seluruh harga bahan yang harus dibayar oleh pembaca di toko grosir.", correct: false },
+          { text: "Sebagai penanda akhir selesainya kegiatan eksperimen di laboratorium.", correct: false }
         ]
       },
       {
         passage: "",
-        question: "Apa tujuan utama penggunaan kalimat dialog langsung dalam teks cerita fantasi?",
+        question: "Manakah di antara kalimat berikut yang menggunakan 'kalimat deklaratif' (pernyataan informasi) yang lazim terdapat pada bagian orientasi teks prosedur?",
         options: [
-          { text: "Membuat karakterisasi tokoh terasa lebih hidup, natural, dan mempercepat dinamika emosi cerita.", correct: true },
-          { text: "Menghemat penggunaan kosa kata deskriptif dalam naskah karangan siswa.", correct: false },
-          { text: "Menghindari penilaian ejaan dan tanda baca oleh guru bahasa Indonesia.", correct: false },
-          { text: "Menjelaskan teori ilmiah tentang proses terjadinya keajaiban sihir secara kaku.", correct: false }
+          { text: "Mencuci tangan dengan sabun merupakan cara termudah dan paling ampuh untuk memutus rantai penularan kuman penyakit.", correct: true },
+          { text: "Cucilah tangan Anda menggunakan sabun antiseptik selama dua puluh detik!", correct: false },
+          { text: "Jangan menyentuh mata dan hidung Anda sebelum mencuci tangan hingga bersih!", correct: false },
+          { text: "Apakah Anda sudah mencuci tangan dengan air mengalir hari ini?", correct: false }
         ]
       },
       {
         passage: "",
-        question: "Bait puisi rakyat berikut memiliki pola rima akhir a-a-a-a dan berisi kisah pengembaraan seorang kesatria. Bentuk puisi tersebut adalah...",
+        question: "Perhatikan kalimat rumpang berikut:\n'Tarik tali busur panah ke belakang . . . . . telunjuk menyentuh sudut bibir Anda.'\n\nKata hubung pembatas yang paling tepat untuk mengisi bagian rumpang di atas adalah...",
         options: [
-          { text: "Syair", correct: true },
-          { text: "Pantun", correct: false },
-          { text: "Gurindam", correct: false },
-          { text: "Seloka", correct: false }
+          { text: "sampai / hingga", correct: true },
+          { text: "sebab / lantaran", correct: false },
+          { text: "walaupun / meskipun", correct: false },
+          { text: "melainkan / tetapi", correct: false }
         ]
       },
       {
         passage: "",
-        question: "Kalimat di bawah ini yang menggunakan kata khusus bermakna kiasan magis yang ekspresif adalah...",
+        question: "Bentuk kalimat pasif dari kalimat imperatif 'Oleskan mentega pada permukaan roti tawar tersebut!' adalah...",
         options: [
-          { text: "Matahari jingga meneteskan cahaya terakhirnya ke pelupuk lembah berkabut ungu.", correct: true },
-          { text: "Siswa kelas 7 sedang mengerjakan tugas kelompok di ruang perpustakaan sekolah.", correct: false },
-          { text: "Bapak guru menuliskan catatan materi di papan tulis menggunakan spidol hitam.", correct: false },
-          { text: "Kereta api eksekutif jurusan Bandung-Surabaya berangkat tepat pukul tujuh pagi.", correct: false }
+          { text: "Mentega dioleskan pada permukaan roti tawar tersebut.", correct: true },
+          { text: "Roti tawar mengoleskan mentega pada permukaannya.", correct: false },
+          { text: "Kamu mengoles mentega di atas roti tawar itu.", correct: false },
+          { text: "Jangan mengoleskan mentega di roti tawar itu!", correct: false }
         ]
       },
       {
         passage: "",
-        question: "Mengapa sebuah cerita fantasi tetap harus memiliki pesan moral (amanat) meskipun latarnya serba ajaib dan tidak nyata?",
+        question: "Manakah di antara pernyataan berikut yang merupakan contoh kalimat instruksi dengan 'adverbia kuantitas ukuran pasti'?",
         options: [
-          { text: "Karena karya sastra yang bermakna (*Meaningful*) berfungsi menghibur sekaligus menanamkan nilai-nilai kemanusiaan luhur kepada pembaca.", correct: true },
-          { text: "Agar cerita tersebut dapat diubah menjadi undang-undang resmi pemerintahan negara.", correct: false },
-          { text: "Karena cerita tanpa pesan moral dilarang terbit oleh percetakan mana pun di dunia.", correct: false },
-          { text: "Agar pembaca percaya bahwa keajaiban sihir benar-benar ada di dunia nyata.", correct: false }
+          { text: "Tambahkan 150 ml santan kelapa kental dan 2 sendok makan perasan jeruk nipis ke dalam wajan.", correct: true },
+          { text: "Beri garam dan gula secukupnya sesuai dengan selera lidah Anda masing-masing.", correct: false },
+          { text: "Taburkan sedikit tepung terigu di atas meja kerja yang bersih.", correct: false },
+          { text: "Tuangkan air panas seperlunya hingga mangkuk terlihat cukup penuh.", correct: false }
         ]
       },
       {
         passage: "",
-        question: "Perhatikan teks rumpang berikut:\n'Tegar mengayunkan tongkat kayunya ke arah batu hitam. ..................., dari dalam batu memancar pilar cahaya biru yang menembus langit malam.'\n\nKata penanda peralihan waktu dramatis yang paling tepat untuk melengkapi bagian rumpang di atas adalah...",
+        question: "Dalam teks prosedur, kata 'selanjutnya', 'setelah itu', 'kemudian', dan 'berikutnya' termasuk ke dalam kategori kelas kata...",
         options: [
-          { text: "Seketika itu juga", correct: true },
-          { text: "Meskipun demikian", correct: false },
-          { text: "Oleh karena itu", correct: false },
-          { text: "Walaupun begitu", correct: false }
+          { text: "Konjungsi temporal (penghubung antarlangkah waktu)", correct: true },
+          { text: "Pronomina persona (kata ganti orang)", correct: false },
+          { text: "Nomina konkret (kata benda berwujud fisik)", correct: false },
+          { text: "Adjektiva kepemilikan (kata sifat penunjuk hak milik)", correct: false }
         ]
       },
       {
         passage: "",
-        question: "Perbedaan utama antara rima pantun dan rima syair terletak pada...",
+        question: "Ciri bahasa teks prosedur yang baik harus bersifat 'komunikatif dan objektif'. Hal ini bermakna...",
         options: [
-          { text: "Pantun berpola silang a-b-a-b, sedangkan syair berpola rata/monorima a-a-a-a.", correct: true },
-          { text: "Pantun berpola a-a-a-a, sedangkan syair berpola bebas tanpa aturan rima.", correct: false },
-          { text: "Pantun tidak memiliki rima akhir, sedangkan syair wajib berima a-b-b-a.", correct: false },
-          { text: "Pantun berpola rima berpasangan a-a, sedangkan syair berpola silang a-b-a-b.", correct: false }
+          { text: "Bahasa yang digunakan mudah dipahami, instruksinya lugas, tidak berbelit-belit, dan dapat dipraktikkan oleh siapa pun secara tepat.", correct: true },
+          { text: "Banyak memuat ungkapan kiasan puitis dan majas personifikasi yang indah.", correct: false },
+          { text: "Hanya dapat dimengerti oleh kalangan ilmuwan dan guru besar di universitas.", correct: false },
+          { text: "Memuat lelucon jenaka agar pembaca tertawa terbahak-bahak saat memasak.", correct: false }
         ]
       },
       {
         passage: "",
-        question: "Manakah pernyataan berikut yang paling tepat mendefinisikan istilah 'Klimaks' dalam struktur teks cerita narasi?",
+        question: "Perhatikan kalimat berikut:\n'Sebelum dicolokkan ke stopkontak, pastikan tombol sakelar blender berada di posisi angka 0 (mati).'\n\nFungsi klausa anak kalimat 'sebelum dicolokkan ke stopkontak' adalah sebagai...",
         options: [
-          { text: "Titik puncak ketegangan masalah di mana tokoh utama harus mengambil keputusan hidup-mati yang menentukan nasib ceritanya.", correct: true },
-          { text: "Bagian pembuka yang berisi perkenalan nama tokoh, asal-usul keluarga, dan deskripsi latar tempat.", correct: false },
-          { text: "Bagian penutup cerita yang berisi pesan moral yang dituliskan langsung oleh pengarang di akhir buku.", correct: false },
-          { text: "Peristiwa pengenalan awal saat tokoh utama masih hidup tenang di rumahnya.", correct: false }
+          { text: "Keterangan waktu pendahulu (syarat antisipatif keselamatan kerja)", correct: true },
+          { text: "Objek penderita tindakan perbuatan", correct: false },
+          { text: "Predikat utama kalimat majemuk", correct: false },
+          { text: "Subjek pelaku yang mengoperasikan blender", correct: false }
         ]
       },
       {
         passage: "",
-        question: "Ciri kebahasaan berupa kalimat imperatif (perintah/anjuran) dalam puisi rakyat paling lazim dijumpai pada bentuk...",
+        question: "Manakah penulisan kata berimbuhan gabungan (konfiks) yang tepat pada kalimat panduan teks prosedur?",
         options: [
-          { text: "Syair nasihat dan gurindam (penggunaan kata *wahai, hendaklah, janganlah*)", correct: true },
-          { text: "Sampiran pantun jenaka dan teka-teki anak-anak", correct: false },
-          { text: "Teks berita dan artikel ilmiah populer", correct: false },
-          { text: "Dialog antartokoh dalam komik fantasi bisu", correct: false }
+          { text: "Pengguna diwajibkan mempertanggungjawabkan keselamatan peralatan laboratorium setelah praktik usai.", correct: true },
+          { text: "Pengguna diwajibkan mempertanggung jawabkan keselamatan peralatan laboratorium setelah praktik usai.", correct: false },
+          { text: "Pengguna diwajibkan mem pertanggungjawabkan keselamatan peralatan laboratorium setelah praktik usai.", correct: false },
+          { text: "Pengguna diwajibkan mempertanggung-jawabkan keselamatan peralatan laboratorium setelah praktik usai.", correct: false }
         ]
       },
       {
         passage: "",
-        question: "Perhatikan kalimat berikut:\n'Ia merasa sedih saat melihat istananya runtuh terbakar.'\n\nJika diubah ke dalam teknik 'Show, Don't Tell' yang hidup, kalimat tersebut menjadi...",
+        question: "Dalam infografik teks prosedur visual, fungsi pencantuman gambar ilustrasi/ikon langkah adalah...",
         options: [
-          { text: "Air matanya menganak sungai membasahi pipi seraya dadanya terguncang menatap kobaran api melalap pilar-pilar istana leluhurnya.", correct: true },
-          { text: "Ia benar-benar merasa sangat berduka dan sangat kecewa karena istananya terbakar.", correct: false },
-          { text: "Istananya terbakar hebat sehingga ia menjadi sosok yang sangat pemurung setiap hari.", correct: false },
-          { text: "Kerajaan itu hancur terbakar api dan seluruh warganya merasa sedih bersama sang raja.", correct: false }
+          { text: "Membantu memperjelas instruksi tertulis secara visual sehingga mengurangi risiko salah tafsir oleh pembaca.", correct: true },
+          { text: "Menghabiskan ruang kertas agar tidak perlu menuliskan kalimat petunjuk.", correct: false },
+          { text: "Menggantikan seluruh bahan mentah yang diperlukan dalam proses pembuatan kue.", correct: false },
+          { text: "Membuat dokumen ujian menjadi lebih berat saat diunggah ke internet.", correct: false }
         ]
       },
       {
         passage: "",
-        question: "Dalam tahap swasunting (*Self-Editing*) teks cerita fantasi, hal utama yang diperiksa pada aspek mekanik kebahasaan adalah...",
+        question: "Perhatikan teks rumpang berikut:\n'Gosoklah permukaan panci yang berkarat . . . . . spons kawat baja . . . . . karat menghilang.'\n\nKata yang paling tepat untuk melengkapi keterangan alat dan keterangan pembatas di atas secara berturut-turut adalah...",
         options: [
-          { text: "Ketepatan ejaan huruf kapital, tanda baca dialog petik dua, dan efektivitas struktur kalimat narasi.", correct: true },
-          { text: "Jumlah warna spidol yang digunakan untuk menggambar sampul buku cerita.", correct: false },
-          { text: "Seberapa banyak nama alien luar angkasa yang dimasukkan ke dalam daftar isi buku.", correct: false },
-          { text: "Tingkat ketebalan kertas yang digunakan saat mencetak naskah ujian mandiri.", correct: false }
+          { text: "menggunakan ; hingga", correct: true },
+          { text: "daripada ; serta", correct: false },
+          { text: "terhadap ; karena", correct: false },
+          { text: "bagi ; bilamana", correct: false }
         ]
       },
       {
         passage: "",
-        question: "Perhatikan pernyataan berikut:\n'Sebuah portal waktu yang diciptakan profesor hanya bisa aktif jika disinari cahaya gerhana bulan total.'\n\nPernyataan di atas dalam penulisan cerita fantasi berperan sebagai...",
+        question: "Pada tahap menyunting naskah teks prosedur karya teman sebaya, aspek 'kelogisan alur langkah' diperiksa untuk memastikan bahwa...",
         options: [
-          { text: "Hukum aturan/syarat pengaktifan teknologi keajaiban dalam desain semesta (*Worldbuilding*).", correct: true },
-          { text: "Amanat moral langsung yang ditujukan kepada masyarakat luas.", correct: false },
-          { text: "Bagian resolusi yang menandai berakhirnya seluruh konflik cerita.", correct: false },
-          { text: "Sampiran pantun empat baris tentang keindahan alam semesta.", correct: false }
+          { text: "Setiap langkah saling berkaitan secara sebab-akibat yang masuk akal dan tidak ada tahapan kunci yang tertukar urutannya.", correct: true },
+          { text: "Harga bahan yang dibeli oleh teman sebaya bernilai sangat murah di pasar swalayan.", correct: false },
+          { text: "Nama teman yang menulis teks prosedur memiliki nilai bahasa Indonesia tertinggi di sekolah.", correct: false },
+          { text: "Teks tersebut telah diterjemahkan ke dalam sepuluh bahasa asing di dunia.", correct: false }
         ]
       },
       {
         passage: "",
-        question: "Manakah contoh kalimat deskripsi suasana yang paling efektif membangkitkan rasa misteri dan ketakutan?",
+        question: "Kalimat di bawah ini yang memuat kata keterangan derajat/tingkat adalah...",
         options: [
-          { text: "Suara langkah kaki tak bertubuh berderit lambat di lorong gelap, diiringi desah napas dingin di tengkuk lehernya.", correct: true },
-          { text: "Rumah tua itu sangat kotor karena sudah lama ditinggalkan oleh pemilik aslinya ke luar kota.", correct: false },
-          { text: "Malam hari di desa itu sangat gelap karena lampu jalan sedang padam total akibat pemadaman listrik.", correct: false },
-          { text: "Ia takut berjalan sendirian di gang sempit karena di sana banyak anjing liar menggonggong.", correct: false }
+          { text: "Kocoklah adonan telur tersebut hingga benar-benar mengembang kaku.", correct: true },
+          { text: "Potong apel menggunakan pisau buah bergerigi halus.", correct: false },
+          { text: "Letakkan adonan di atas loyang yang telah diolesi mentega.", correct: false },
+          { text: "Masak sayur sup tersebut di dapur bersama ibu.", correct: false }
         ]
       },
       {
         passage: "",
-        question: "Fungsi utama tahap Resolusi dalam alur cerita teks narasi fantasi adalah...",
+        question: "Manakah kalimat imperatif ajakan yang tepat untuk digunakan dalam teks panduan gaya hidup sehat?",
         options: [
-          { text: "Menuntaskan konflik utama, meredakan ketegangan, dan memperlihatkan kondisi tatanan dunia baru bagi para tokoh.", correct: true },
-          { text: "Memunculkan musuh baru yang lebih sakti untuk memulai perang yang tidak berkesudahan.", correct: false },
-          { text: "Memperkenalkan silsilah keluarga tokoh utama dari generasi kakek buyutnya.", correct: false },
-          { text: "Menghapus seluruh ingatan pembaca mengenai peristiwa menegangkan di bab sebelumnya.", correct: false }
+          { text: "Marilah kita biasakan minum air putih minimal delapan gelas setiap hari demi kebugaran tubuh!", correct: true },
+          { text: "Dilarang meminum minuman bersoda bagi penderita maag akut!", correct: false },
+          { text: "Kamu harus minum obat antibiotik sekarang juga sebelum terlambat!", correct: false },
+          { text: "Mengapa kamu enggan berolahraga lari pagi setiap hari Minggu?", correct: false }
         ]
       },
       {
         passage: "",
-        question: "Ciri utama bahasa pantun yang santun dan bernilai estetis tinggi tercermin dari penggunaan...",
+        question: "Di dalam teks prosedur pembuatan obat tradisional herbal, kalimat: 'Konsultasikan terlebih dahulu kepada dokter sebelum meminum jamu ini jika Anda sedang mengonsumsi obat resep lain,' berfungsi sebagai...",
         options: [
-          { text: "Kiasan alam yang harmonis pada baris sampiran serta diksi nasihat yang penuh kearifan pada baris isi.", correct: true },
-          { text: "Istilah-istilah bahasa asing yang rumit dan tidak dipahami oleh masyarakat awam.", correct: false },
-          { text: "Kalimat bentakan dan ancaman hukuman fisik secara terang-terangan.", correct: false },
-          { text: "Kata-kata gaul kekinian yang sedang viral di media sosial internet.", correct: false }
+          { text: "Pernyataan kehati-hatian (*safety warning*) untuk mencegah kontraindikasi obat kimia yang berbahaya.", correct: true },
+          { text: "Langkah utama dalam proses merebus daun tanaman herbal di atas kompor.", correct: false },
+          { text: "Daftar takaran alat dan bahan yang wajib ditimbang di apotek.", correct: false },
+          { text: "Penetapan harga tarif biaya periksa dokter di klinik kesehatan.", correct: false }
         ]
       },
       {
         passage: "",
-        question: "Perhatikan kutipan dialog berikut:\n'\"Jangan sentuh cermin itu, Arya!\" teriak Paman Dafi. \"Itu perangkap jiwa!\"'\n\nReaksi Paman Dafi dalam kutipan di atas berfungsi untuk membangun...",
+        question: "Ciri utama dari teks prosedur bertipe 'Protokol' yang membedakannya dari teks prosedur manual alat yang kaku adalah...",
         options: [
-          { text: "Rasa urgensi bahaya dan eskalasi ketegangan dramatik dalam cerita.", correct: true },
-          { text: "Lelucon jenaka agar pembaca merasa terhibur dan tertawa gembira.", correct: false },
-          { text: "Penjelasan ilmiah tentang proses pemantulan cahaya pada permukaan cermin datar.", correct: false },
-          { text: "Penyelesaian damai atas seluruh sengketa warisan keluarga di istana.", correct: false }
+          { text: "Langkah-langkahnya bersifat fleksibel dan urutannya tidak harus mutlak kaku, namun tujuannya tetap tercapai sempurna.", correct: true },
+          { text: "Teks protokol sama sekali tidak memiliki tujuan dan tidak memiliki kalimat perintah.", correct: false },
+          { text: "Hanya boleh ditulis oleh pejabat pemerintah di bidang militer angkatan bersenjata.", correct: false },
+          { text: "Wajib menggunakan bahasa daerah kedaerahan tanpa tanda baca PUEBI.", correct: false }
         ]
       }
     ];
@@ -1351,37 +1350,37 @@
       let spentSecs = timeSpentSeconds % 60;
       let spentFormatted = `${spentMins} Menit ${spentSecs} Detik`;
 
-      // Gelar Pencapaian (Rank Badge) & Feedback
+      // Gelar Pencapaian (Rank Badge) & Feedback khusus Teks Prosedur
       let rankTitle = "";
       let rankBg = "";
       let rankColor = "#ffffff";
       let feedbackMsg = "";
 
       if (finalScore >= 90) {
-        rankTitle = "👑 MAHA SANGGRAHA SASTRA (ISTIMEWA)";
-        rankBg = "#e11d48";
-        feedbackMsg = "Luar biasa sempurna! Anda telah menguasai seluruh hakikat estetika puisi rakyat dan hukum semesta fantasi dengan ketajaman berpikir tingkat tinggi.";
+        rankTitle = "👑 MASTER INSTRUKSI & PROSEDUR (ISTIMEWA)";
+        rankBg = "#16a34a";
+        feedbackMsg = "Luar biasa sempurna! Anda telah menguasai seluruh struktur teks prosedur, ketepatan kaidah kebahasaan imperatif, serta analisis logika keselamatan kerja dengan sangat akurat.";
       } else if (finalScore >= 80) {
-        rankTitle = "⚔️ PENJAGA CAKRAWALA IMAJINASI (SANGAT BAIK)";
-        rankBg = "#7c3aed";
-        feedbackMsg = "Kerja yang sangat hebat! Kemampuan analisis struktur, kaidah kebahasaan, dan daya nalar kritis Anda berada pada tingkat unggul.";
+        rankTitle = "⚙️ PANDU TEKNIS MAHIR (SANGAT BAIK)";
+        rankBg = "#2563eb";
+        feedbackMsg = "Kerja yang sangat baik! Kemampuan Anda dalam memahami rincian instruksi, urutan kronologis, dan variasi kalimat panduan berada pada tingkat tinggi.";
       } else if (finalScore >= 70) {
-        rankTitle = "🛡️ PENJELAJAH SEMESTA SASTRA (BAIK / TUNTAS)";
+        rankTitle = "📋 PRAKTISI PROSEDUR TUNTAS (BAIK)";
         rankBg = "#0284c7";
-        feedbackMsg = "Bagus! Anda telah mencapai batas ketuntasan belajar dengan pemahaman yang baik pada sebagian besar materi.";
+        feedbackMsg = "Bagus! Anda telah mencapai batas ketuntasan belajar dengan pemahaman yang solid terhadap teks prosedur dan kaidah kebahasaannya.";
       } else if (finalScore >= 60) {
-        rankTitle = "📜 PENEMPA KARYA MUDA (CUKUP)";
+        rankTitle = "📝 ASISTEN PANDUAN MUDA (CUKUP)";
         rankBg = "#d97706";
-        feedbackMsg = "Cukup baik, namun perkuat kembali pemahaman pada detail kaidah kebahasaan dan analisis pesan moral cerita.";
+        feedbackMsg = "Cukup baik, namun perkuat kembali ketelitian dalam membaca urutan langkah dan membedakan jenis kata keterangan (adverbia).";
       } else {
-        rankTitle = "🌱 CANTRIK PEMULA (PERLU PENGAYAAN)";
+        rankTitle = "🌱 PEMELAJAR PEMULA (PERLU PENGAYAAN)";
         rankBg = "#475569";
-        feedbackMsg = "Jangan berkecil hati. Pelajari kembali modul interaktif Bab II dan perbanyak membaca teks model naratif untuk mengasah penalaran.";
+        feedbackMsg = "Jangan berkecil hati. Buka kembali modul panduan teks prosedur, cermati ciri bahasa instruksi, dan latihan menganalisis teks prosedur bertema sains atau teknologi.";
       }
 
       // Populate Result Screen
       document.getElementById('res-name').innerText = studentData.name;
-      document.getElementById('res-class').innerText = `Kelas ${studentData.sClass} • SMPN 28 Bandung`;
+      document.getElementById('res-class').innerText = `Kelas ${studentData.sClass}`;
       document.getElementById('res-score').innerText = finalScore;
       document.getElementById('res-correct').innerText = correctCount;
       document.getElementById('res-wrong').innerText = wrongCount;
