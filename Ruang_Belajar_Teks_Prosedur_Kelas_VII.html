@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ruang Belajar Teks Prosedur | Bahasa Indonesia Kelas VII</title>
+<style>
+:root{--bg:#07161b;--panel:#0d2229;--panel2:#132d36;--line:#224652;--text:#e8f7fa;--muted:#90b4be;--accent:#2ee6a8;--accent2:#5cd4ff;--gold:#ffd166;--danger:#ff8080;--shadow:0 16px 40px rgba(0,0,0,0.35)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at top left,#133b45 0,transparent 40%),var(--bg);color:var(--text);font:16px/1.7 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+button,input,textarea,select{font:inherit}button{cursor:pointer}a{color:var(--accent2)}.app{min-height:100vh}
+.topbar{position:sticky;top:0;z-index:20;background:#07161bf2;backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:12px clamp(14px,3vw,36px);display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:12px}.logo{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#042120;font-size:22px;font-weight:900}
+.brand h1{font-size:1rem;line-height:1.25;margin:0}.brand small{display:block;color:var(--muted);font-weight:500;margin-top:3px}
+.top-actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:9px 13px;border-radius:11px;transition:.2s}
+.btn:hover{transform:translateY(-1px);border-color:var(--accent)}.btn.primary{background:var(--accent);border-color:var(--accent);color:#04241d;font-weight:800}.btn.ghost{background:transparent}
+.hero{padding:36px clamp(16px,4vw,48px) 24px;max-width:1450px;margin:auto}.hero-grid{display:grid;grid-template-columns:1.4fr .8fr;gap:22px;align-items:stretch}
+.eyebrow{color:var(--accent);font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.16em}
+.hero h2{font-size:clamp(1.9rem,4vw,3.6rem);line-height:1.1;letter-spacing:-.03em;margin:10px 0 14px;max-width:850px}
+.hero p{color:var(--muted);max-width:720px;margin:0}
+.hero-card{border:1px solid var(--line);background:linear-gradient(145deg,#13303a,#0b1e25);border-radius:24px;padding:24px;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:space-between}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:22px}
+.stat{padding:12px;background:#07171d;border:1px solid var(--line);border-radius:14px;text-align:center}.stat b{display:block;font-size:1.5rem;color:var(--accent)}.stat span{font-size:.76rem;color:var(--muted)}
+.layout{display:grid;grid-template-columns:290px minmax(0,1fr);gap:22px;max-width:1450px;padding:0 clamp(12px,3vw,36px) 50px;margin:auto;align-items:start}
+.sidebar{position:sticky;top:84px;max-height:calc(100vh - 100px);overflow:auto;border:1px solid var(--line);background:#0a1c23ee;border-radius:20px;padding:14px}
+.search{width:100%;padding:11px 13px;background:#051217;border:1px solid var(--line);border-radius:12px;color:var(--text);outline:none}
+.search:focus,textarea:focus,input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(46,230,168,0.18)}
+.side-label{font-size:.7rem;color:#7aa0ac;text-transform:uppercase;letter-spacing:.15em;font-weight:800;margin:18px 8px 8px}
+.nav-list{display:grid;gap:5px}
+.nav-btn{width:100%;text-align:left;display:flex;gap:10px;align-items:flex-start;padding:10px;border:1px solid transparent;border-radius:11px;background:transparent;color:#b2d2db}
+.nav-btn .num{flex:0 0 28px;height:28px;border-radius:9px;background:#163540;display:grid;place-items:center;color:var(--accent2);font-weight:800;font-size:.83rem}
+.nav-btn .nav-text{font-size:.88rem;line-height:1.35}
+.nav-btn.active{background:#153945;border-color:#2a6375;color:white}
+.nav-btn.active .num{background:var(--accent);color:#042120}
+.side-foot{font-size:.78rem;color:var(--muted);padding:12px 7px 2px}
+.content{min-width:0}
+.toolbar{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:14px}
+.crumb{color:var(--muted);font-size:.86rem}
+.progress-wrap{height:5px;background:#15343f;border-radius:20px;overflow:hidden;flex:1;min-width:80px;max-width:220px}
+.progress{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .25s}
+.panel{display:none;border:1px solid var(--line);border-radius:22px;background:linear-gradient(150deg,#0d232a,#08171d);padding:clamp(18px,3vw,34px);box-shadow:var(--shadow);animation:appear .25s ease}
+.panel.active{display:block}
+@keyframes appear{from{opacity:.45;transform:translateY(5px)}to{opacity:1;transform:none}}
+.chapter-head{display:flex;gap:15px;align-items:flex-start;margin-bottom:22px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+.chapter-number{width:54px;height:54px;flex:0 0 54px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),#9ef3d7);color:#042120;border-radius:17px;font-weight:900;font-size:1.5rem}
+.chapter-head h2{font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.15;margin:0 0 6px}
+.chapter-head p{margin:0;color:var(--muted)}
+h3{font-size:1.25rem;margin:26px 0 10px;color:#cbf5ff}
+h4{font-size:1.02rem;margin:18px 0 7px;color:var(--accent)}
+p{margin:9px 0 14px}ul,ol{padding-left:1.35rem}li{padding-left:3px;margin:5px 0}
+blockquote{margin:14px 0;padding:15px 18px;border-left:3px solid var(--accent);background:#112a33;border-radius:0 12px 12px 0;color:#daf0f5}
+.note{padding:14px 16px;border:1px solid #235868;background:#0d303a;border-radius:13px;margin:16px 0}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:15px 0}
+.mini-card{background:#112a33;border:1px solid var(--line);border-radius:15px;padding:16px}
+.mini-card h4{margin:0 0 7px}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:13px;margin:14px 0}
+table{width:100%;border-collapse:collapse;min-width:500px;font-size:.92rem}
+th,td{text-align:left;vertical-align:top;padding:11px 13px;border-bottom:1px solid var(--line)}
+th{background:#153744;color:#daf3fc;font-weight:800}tr:last-child td{border-bottom:0}td{color:#cfe5ec}
+.callout-title{font-weight:850;color:var(--accent);margin-bottom:4px}
+.example-title{font-weight:850;color:var(--gold);margin-bottom:8px}
+.structure{display:grid;gap:10px;margin:14px 0}.structure .mini-card{border-left:4px solid var(--accent)}
+.quiz{border:1px solid var(--line);background:#0c1f26;border-radius:15px;padding:17px;margin:14px 0}
+.q-title{font-weight:800;margin-bottom:12px}
+.option{display:flex;gap:10px;align-items:flex-start;padding:9px 11px;border:1px solid #1f434f;border-radius:10px;margin:7px 0;cursor:pointer}
+.option:hover{border-color:#387487}.option input{accent-color:var(--accent);margin-top:6px}
+.feedback{margin-top:10px;padding:11px;border-radius:10px;background:#14343f;color:#daf0f7;font-size:.9rem}
+.feedback.good{border:1px solid #2db888}.feedback.bad{border:1px solid #bd5757}
+.quiz-result{display:none;padding:15px;border-radius:13px;background:#14333e;border:1px solid #2e697a;margin-top:15px}
+.worksheet{border:1px solid #265564;background:#0c2027;border-radius:17px;padding:18px;margin:18px 0}
+.worksheet-head{display:flex;align-items:center;gap:10px}
+.worksheet-head .icon{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:#1a414e;color:var(--accent);font-size:1.2rem}
+.worksheet h3{margin:0}.worksheet .meta{font-size:.82rem;color:var(--muted);margin:4px 0 12px}
+.field{display:grid;gap:6px;margin:12px 0}.field label{font-size:.9rem;color:#cdeaf1;font-weight:700}
+.field input,.field textarea,.field select{width:100%;background:#06151b;color:var(--text);border:1px solid #234b57;border-radius:10px;padding:10px 12px;outline:none}
+.field textarea{min-height:90px;resize:vertical}
+.worksheet-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.footer-nav{display:flex;justify-content:space-between;gap:10px;margin-top:20px}
+.toast{position:fixed;bottom:20px;right:20px;background:#c3fae8;color:#032921;padding:12px 17px;border-radius:12px;font-weight:800;box-shadow:var(--shadow);z-index:50;opacity:0;transform:translateY(10px);pointer-events:none;transition:.2s}
+.toast.show{opacity:1;transform:none}.hidden{display:none!important}
+.light{--bg:#f2f8fa;--panel:#fff;--panel2:#e3eff2;--line:#c7dbe0;--text:#13292f;--muted:#546d74;--shadow:0 12px 30px rgba(22,50,58,0.08);background:radial-gradient(ellipse at top left,#d8eff4 0,transparent 40%),var(--bg);color:var(--text)}
+.light .topbar{background:#f6fafbf2}.light .hero-card,.light .panel{background:#fff}.light .sidebar{background:#ffffffea}
+.light .nav-btn{color:#3f5860}.light .nav-btn.active{background:#daf0f5;color:#0b252b}.light .nav-btn .num{background:#dcedf0}
+.light .search,.light .field input,.light .field textarea,.light .field select{background:#f7fbfc;color:#13292f}
+.light .mini-card,.light .quiz,.light .worksheet{background:#f8fcfe}.light blockquote{background:#ebf7fa;color:#173841}
+.light .note{background:#e7f7f3}.light th{background:#e0f0f4;color:#13292f}.light td{color:#2a454d}.light .option{border-color:#c8dce1}
+@media(max-width:950px){.hero-grid{grid-template-columns:1fr}.layout{grid-template-columns:1fr}.sidebar{position:relative;top:auto;max-height:none}.nav-list{grid-template-columns:repeat(2,minmax(0,1fr))}.panel{padding:20px}}
+@media(max-width:560px){.brand small{display:none}.nav-list{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}.hero-stats{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+<header class="topbar">
+  <div class="brand"><div class="logo">P</div><div><h1>RUANG BELAJAR TEKS PROSEDUR</h1><small>Bahasa Indonesia · Kelas VII SMP · Kurikulum Merdeka</small></div></div>
+  <div class="top-actions">
+    <button class="btn ghost" id="themeBtn" title="Ubah tema terang/gelap">☼ Tema</button>
+    <button class="btn ghost" id="printBtn">⎙ Cetak / PDF</button>
+    <button class="btn primary" id="saveAllBtn">✓ Simpan Semua LKPD</button>
+  </div>
+</header>
+<section class="hero">
+ <div class="hero-grid">
+  <div>
+    <div class="eyebrow">Modul Interaktif · Kelas 7 Fase D</div>
+    <h2>Pahami langkahnya.<br><span style="color:var(--accent)">Berhasil buat karyamu!</span></h2>
+    <p>Belajar teks prosedur jadi mudah dan seru! Pahami ciri, struktur, bahasa petunjuk, hingga praktik menulis panduan sehat sehari-hari sesuai buku paket Kurikulum Merdeka.</p>
+    <div class="hero-stats">
+      <div class="stat"><b>10</b><span>Bagian Materi</span></div>
+      <div class="stat"><b>10</b><span>Kuis Interaktif</span></div>
+      <div class="stat"><b>10</b><span>LKPD Mandiri</span></div>
+    </div>
+  </div>
+  <div class="hero-card">
+    <div>
+      <div class="eyebrow">Panduan Belajar</div>
+      <strong>Pelajari bab secara berurutan atau pilih dari menu kiri.</strong>
+      <p style="margin-top:8px;font-size:.9rem;color:var(--muted)">Jawaban kuis langsung diperiksa otomatis. Setiap LKPD dapat disimpan di browsermu atau diunduh sebagai berkas teks (.txt).</p>
+    </div>
+    <div class="note" style="margin-bottom:0"><strong>Penyimpanan Otomatis</strong><br><span style="font-size:.82rem;color:var(--muted)">Tulisanmu tersimpan otomatis di perangkat ini (localStorage). Jangan khawatir hilang saat menutup browser!</span></div>
+  </div>
+ </div>
+</section>
+
+<div class="layout">
+<aside class="sidebar">
+ <input id="searchNav" class="search" type="search" placeholder="Cari materi (misal: bahan, kata kerja)..." aria-label="Cari bab">
+ <div class="side-label">Daftar Bab Belajar</div>
+ <nav class="nav-list" id="navList"></nav>
+ <div class="side-foot">Tanda <b>•</b> di samping nomor menandakan LKPD pada bab tersebut sudah kamu isi.</div>
+</aside>
+
+<main class="content">
+ <div class="toolbar">
+   <div class="crumb" id="crumb">Bagian 1 dari 10</div>
+   <div class="progress-wrap"><div class="progress" id="progress"></div></div>
+   <button class="btn" id="prevBtn">← Sebelumnya</button>
+   <button class="btn" id="nextBtn">Berikutnya →</button>
+ </div>
+ <div id="panels"></div>
+</main>
+</div>
+</div>
+<div class="toast" id="toast">Tersimpan</div>
+
+<script>
+const chapters = [
+{title:"Mengenal Teks Prosedur",subtitle:"Apa itu teks prosedur dan mengapa penting bagi kita?",html:`
+<h3>1.1 Apa Itu Teks Prosedur?</h3>
+<p>Pernahkah kamu membaca cara memasak mi instan di balik bungkusnya? Atau membaca panduan mencuci tangan yang benar di dinding UKS sekolah? Nah, tulisan-tulisan itu disebut <strong>teks prosedur</strong>!</p>
+<p><strong>Teks prosedur</strong> adalah teks yang berisi panduan langkah demi langkah agar seseorang dapat melakukan, membuat, atau menggunakan sesuatu secara tepat, aman, dan berhasil.</p>
+<div class="note"><strong>Tujuan Utama:</strong> Membimbing pembaca agar tidak salah arah, tidak bingung, dan mencapai hasil yang memuaskan.</div>
+<h3>1.2 Ciri-Ciri Teks Prosedur yang Mudah Dikenali</h3>
+<div class="grid2">
+  <div class="mini-card"><h4>1. Memiliki Panduan Runtut</h4><p>Langkah-langkah disusun dari awal persiapan sampai hasil akhir secara urut.</p></div>
+  <div class="mini-card"><h4>2. Menggunakan Kalimat Perintah Santun</h4><p>Banyak memakai kata tindakan seperti <em>potonglah, tuangkan, campurkan</em>.</p></div>
+  <div class="mini-card"><h4>3. Ada Takaran / Ukuran yang Jelas</h4><p>Menyebutkan ukuran pasti, misalnya <em>2 sendok makan, 200 ml air, selama 5 menit</em>.</p></div>
+  <div class="mini-card"><h4>4. Kalimatnya Singkat dan Padat</h4><p>Petunjuk ditulis secara langsung agar mudah dipraktikkan tanpa berbelit-belit.</p></div>
+</div>`},
+
+{title:"Tiga Jenis Teks Prosedur",subtitle:"Membuat, memainkan alat, dan melakukan kegiatan",html:`
+<h3>2.1 Jenis-Jenis Teks Prosedur di Sekitar Kita</h3>
+<p>Di buku Bahasa Indonesia Kelas VII, teks prosedur dibagi menjadi 3 jenis utama berdasarkan tujuannya:</p>
+<div class="structure">
+  <div class="mini-card"><h4>A. Teks Prosedur Membuat Sesuatu</h4><p>Memandu pembaca menghasilkan suatu barang atau makanan baru. Biasanya dilengkapi daftar bahan dan takaran.<br><strong>Contoh:</strong> <em>Cara Membuat Jus Alpukat Madu yang Segar, Cara Membuat Wadah Pensil dari Kardus Bekas</em>.</p></div>
+  <div class="mini-card"><h4>B. Teks Prosedur Memainkan / Menggunakan Alat</h4><p>Memandu pembaca cara memakai alat musik, gawai, atau perkakas secara tepat agar tidak cepat rusak.<br><strong>Contoh:</strong> <em>Cara Memainkan Pianika dengan Benar, Cara Menyalakan dan Mematikan Komputer Sekolah</em>.</p></div>
+  <div class="mini-card"><h4>C. Teks Prosedur Melakukan Kegiatan (Aktivitas Sehat)</h4><p>Memandu pembaca melakukan serangkaian kebiasaan atau gerakan fisik.<br><strong>Contoh:</strong> <em>Cara Melakukan Peregangan Otot Saat Belajar di Kelas, Langkah-Langkah Cuci Tangan 6 Tahap WHO</em>.</p></div>
+</div>`},
+
+{title:"Struktur Teks Prosedur",subtitle:"Judul, tujuan, bahan/alat, langkah, dan penutup",html:`
+<h3>3.1 Bagian-Bagian Penting Pembentuk Teks</h3>
+<div class="structure">
+  <div class="mini-card"><h4>1. Judul</h4><p>Menyebutkan nama kegiatan secara menarik dan jelas (misal: <em>Resep Praktis Salad Buah Segar dan Sehat</em>).</p></div>
+  <div class="mini-card"><h4>2. Tujuan</h4><p>Pengantar singkat (1–2 kalimat) yang menjelaskan apa manfaat atau hasil yang akan didapat pembaca.</p></div>
+  <div class="mini-card"><h4>3. Alat dan Bahan (Dengan Takaran)</h4><p>Daftar perlengkapan yang wajib disiapkan sebelum mulai bekerja. Jangan lupa sertakan jumlahnya!</p></div>
+  <div class="mini-card"><h4>4. Langkah-Langkah (Inti Cerita)</h4><p>Rangkaian tindakan bernomor (1, 2, 3...) yang wajib dikerjakan dari pertama hingga tuntas.</p></div>
+  <div class="mini-card"><h4>5. Penutup / Tips (Opsional)</h4><p>Saran penyajian, tips trik, atau ucapan selamat mencoba kepada pembaca.</p></div>
+</div>
+<h3>3.2 Contoh Teks Berdasarkan Struktur</h3>
+<blockquote>
+<strong>Cara Membuat Infused Water Lemon Sehat</strong><br><br>
+<em>[Tujuan]</em> Minuman ini sangat baik dikonsumsi saat belajar karena membantu menyegarkan tubuh dan menambah vitamin C.<br><br>
+<em>[Bahan & Alat]</em> 1 buah lemon segar, 500 ml air matang, botol kaca bersih, dan pisau.<br><br>
+<em>[Langkah-Langkah]</em><br>
+1. Cucilah buah lemon dengan air mengalir sampai kulitnya bersih.<br>
+2. Irislah lemon menjadi potongan tipis-tipis melingkar.<br>
+3. Masukkan irisan lemon ke dalam botol kaca.<br>
+4. Tuangkan 500 ml air matang ke dalam botol, lalu tutuplah dengan rapat.<br>
+5. Simpan botol di dalam kulkas selama 2 jam sebelum diminum.<br><br>
+<em>[Penutup]</em> Infused water siap dinikmati! Minuman ini paling nikmat diminum dingin saat cuaca terik.
+</blockquote>`},
+
+{title:"Bahasa Petunjuk (Kalimat Perintah)",subtitle:"Menggunakan kata ajakan, perintah, saran, dan larangan",html:`
+<h3>4.1 Mengenal Kalimat Perintah (Imperatif)</h3>
+<p>Dalam teks prosedur, kita sering memakai kata perintah dengan imbuhan <strong>-kan</strong>, <strong>-i</strong>, atau partikel penghalus <strong>-lah</strong> agar petunjuk terdengar santun namun tegas.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Kata Dasar</th><th>Bentuk Perintah</th><th>Contoh Kalimat</th></tr></thead>
+<tbody>
+<tr><td>Kupas</td><td>Kupaslah / Kupas</td><td>Kupaslah wortel hingga bersih dari kulit luarnya.</td></tr>
+<tr><td>Tuang</td><td>Tuangkan</td><td>Tuangkan segelas susu hangat ke dalam mangkuk.</td></tr>
+<tr><td>Tabur</td><td>Taburi</td><td>Taburi bagian atas kue dengan parutan keju.</td></tr>
+<tr><td>Masuk</td><td>Masukkan</td><td>Masukkan potongan buah ke dalam wadah tertutup.</td></tr>
+</tbody></table></div>
+
+<h3>4.2 Kalimat Larangan dan Kalimat Saran</h3>
+<ul>
+  <li><strong>Kalimat Larangan:</strong> Menggunakan kata <em>jangan</em> atau <em>hindari</em> agar terhindar dari bahaya.<br><em>Contoh:</em> <em>Jangan</em> menggunakan air mendidih agar kandungan madu tidak rusak.</li>
+  <li><strong>Kalimat Saran:</strong> Menggunakan kata <em>sebaiknya</em> atau <em>lebih baik</em>.<br><em>Contoh:</em> <em>Sebaiknya</em> gunakan pisau buah berukuran sedang agar potongan lebih rapi.</li>
+</ul>`},
+
+{title:"Kata Penghubung Urutan Waktu",subtitle:"Menyusun langkah agar mengalir rapi dan tidak kaku",html:`
+<h3>5.1 Konjungsi Temporal (Kata Hubung Waktu)</h3>
+<p>Agar teks tidak melulu menggunakan nomor angka, kita bisa mempercantik tulisan dengan kata hubung urutan waktu:</p>
+<div class="grid2">
+  <div class="mini-card"><h4>Penanda Tahap Awal</h4><p><em>Pertama-tama, mula-mula, siapkan terlebih dahulu...</em></p></div>
+  <div class="mini-card"><h4>Penanda Tahap Tengah</h4><p><em>Setelah itu, kemudian, lalu, selanjutnya...</em></p></div>
+  <div class="mini-card"><h4>Penanda Tahap Akhir</h4><p><em>Terakhir, akhirnya, sebagai langkah penutup...</em></p></div>
+  <div class="mini-card"><h4>Tindakan Bersamaan</h4><p><em>Sambil diaduk, selagi hangat, sementara menunggu...</em></p></div>
+</div>
+<div class="note"><strong>Tips:</strong> Hindari menggunakan kata <em>"lalu"</em> atau <em>"kemudian"</em> di setiap baris. Gunakan variasi kata hubung di atas agar pembaca merasa nyaman membaca teksmu!</div>`},
+
+{title:"Keterangan Ukuran dan Batasan",subtitle:"Menuliskan petunjuk yang pasti dan tidak menimbulkan salah tafsir",html:`
+<h3>6.1 Mengapa Takaran Harus Pasti?</h3>
+<p>Coba bandingkan dua petunjuk berikut ini:</p>
+<div class="grid2">
+  <div class="mini-card" style="border-left:4px solid var(--danger)"><h4>Petunjuk A (Masih Samar)</h4><p>"Rebus sayur sampai agak lunak, lalu tambahkan sedikit garam."</p></div>
+  <div class="mini-card" style="border-left:4px solid var(--accent)"><h4>Petunjuk B (Jelas dan Pasti)</h4><p>"Rebus sayur bayam selama 2 menit, lalu tambahkan ½ sendok teh garam."</p></div>
+</div>
+<p>Petunjuk B jauh lebih disukai pembaca karena memiliki satuan pasti: waktu (<strong>selama 2 menit</strong>) dan takaran bahan (<strong>½ sendok teh</strong>). Dengan begitu, sayur tidak akan terlalu asin atau terlalu layu.</p>
+<h3>6.2 Ragam Keterangan dalam Prosedur</h3>
+<ul>
+  <li><strong>Keterangan Kuantitas/Jumlah:</strong> 3 butir telur, 250 gram tepung, 2 siung bawang putih.</li>
+  <li><strong>Keterangan Waktu/Durasi:</strong> tunggu selama 10 menit, aduk perlahan selama 30 detik.</li>
+  <li><strong>Keterangan Cara:</strong> potong memanjang, aduk perlahan searah jarum jam, lipat secara simetris.</li>
+</ul>`},
+
+{title:"Membaca Infografik Prosedur",subtitle:"Memahami petunjuk visual, simbol, dan alur gambar",html:`
+<h3>7.1 Teks Prosedur di Era Digital (Infografik)</h3>
+<p>Zaman sekarang, banyak petunjuk tidak lagi disajikan dalam bentuk paragraf panjang, melainkan berupa gambar infografik atau poster di media sosial.</p>
+<p>Ketika membaca infografik prosedur, perhatikan 3 hal ini:</p>
+<ol>
+  <li><strong>Arah Panah / Nomor Urut:</strong> Ikuti arah panah untuk mengetahui mana langkah awal dan mana langkah lanjutan.</li>
+  <li><strong>Ikon atau Simbol:</strong> Ikon sendok, jam pasir, api kecil, atau air keran membantu kita memahami pesan secara cepat.</li>
+  <li><strong>Teks Pendek Pendamping:</strong> Bacalah kalimat di bawah ikon karena biasanya berisi perintah penting atau peringatan keselamatan.</li>
+</ol>`},
+
+{title:"Langkah Menulis Teks Prosedur",subtitle:"Mulai dari memilih ide sampai memeriksa draf tulisan",html:`
+<h3>8.1 Lima Langkah Mudah Menulis Prosedur</h3>
+<ol>
+  <li><strong>Pilih Topik yang Dikuasai:</strong> Pilih kegiatan yang biasa kamu lakukan, misalnya membuat camilan sehat, merawat sepeda, melipat origami, atau merapikan meja belajar.</li>
+  <li><strong>Tulis Tujuan yang Menarik:</strong> Jelaskan secara singkat mengapa kegiatan ini berguna bagi teman sebayamu.</li>
+  <li><strong>Rinci Bahan dan Alat:</strong> Tuliskan nama alat dan bahan beserta takarannya secara lengkap.</li>
+  <li><strong>Susun Langkah dari Awal sampai Akhir:</strong> Gunakan kata kerja perintah (*potonglah, tuanglah, simpanlah*) dan susun sesuai urutan logis.</li>
+  <li><strong>Periksa Ulang (Sunting):</strong> Gunakan daftar periksa di bawah sebelum mengumpulkan tugasmu!</li>
+</ol>
+<div class="note"><strong>Daftar Periksa Mandiri (Checklist Editor Muda)</strong>
+<div id="prosedurChecklist"></div>
+</div>`},
+
+{title:"Praktik Menyajikan Prosedur Lisan",subtitle:"Berani mempraktikkan petunjuk di depan kelas atau video",html:`
+<h3>9.1 Memperagakan Petunjuk Seperti Vlogger</h3>
+<p>Selain menulis, siswa kelas VII juga dilatih untuk menyampaikan prosedur secara lisan (misalnya membawakan demo resep atau panduan mencuci tangan di depan kelas).</p>
+<div class="grid2">
+  <div class="mini-card"><h4>1. Suara dan Artikulasi</h4><p>Ucapkan kata-kata perintah dengan jelas dan intonasi yang ramah, tidak terburu-buru.</p></div>
+  <div class="mini-card"><h4>2. Tunjukkan Alat dan Bahan</h4><p>Arahkan barang yang sedang dijelaskan ke hadapan teman atau kamera.</p></div>
+  <div class="mini-card"><h4>3. Gunakan Bahasa Tubuh yang Sopan</h4><p>Tersenyumlah, jaga kontak mata dengan pendengar, dan peragakan gerakan dengan percaya diri.</p></div>
+  <div class="mini-card"><h4>4. Berikan Pengingat Penting</h4><p>Ingatkan teman mengenai keselamatan (misalnya berhati-hati saat memegang pisau atau gunting).</p></div>
+</div>`},
+
+{title:"Rangkuman & Kuis Pemahaman",subtitle:"Peta konsep dan latihan uji kemampuan interaktif",html:`
+<h3>10.1 Peta Konsep Teks Prosedur</h3>
+<div class="structure">
+  <div class="mini-card" style="text-align:center"><h4 style="font-size:1.3rem">TEKS PROSEDUR</h4><p>Panduan langkah demi langkah untuk mencapai tujuan dengan benar</p></div>
+  <div class="grid2">
+    <div class="mini-card"><h4>3 Jenis</h4><p>Membuat sesuatu, menggunakan alat, melakukan kegiatan.</p></div>
+    <div class="mini-card"><h4>Struktur Teks</h4><p>Judul, Tujuan, Alat & Bahan, Langkah, Penutup.</p></div>
+    <div class="mini-card"><h4>Ciri Bahasa</h4><p>Kalimat imperatif (-kan, -lah), saran, larangan, takaran pasti.</p></div>
+    <div class="mini-card"><h4>Kata Hubung</h4><p>Pertama, lalu, selanjutnya, setelah itu, terakhir.</p></div>
+  </div>
+</div>
+<h3>10.2 Uji Kemampuanmu (Kuis Interaktif)</h3>
+<div id="mainQuiz"></div>`}
+];
+
+const quizQuestions = [
+{q:"Tujuan utama dari teks prosedur adalah ....",o:["Menghibur pembaca dengan cerita seru","Menceritakan kembali peristiwa masa lalu","Memandu pembaca membuat atau melakukan sesuatu secara runtut","Membujuk pembaca agar membeli suatu barang dagangan"],a:2,e:"Teks prosedur bertujuan membimbing pembaca melakukan atau membuat sesuatu lewat langkah-langkah yang jelas."},
+{q:"Bagian yang memuat peralatan serta bahan lengkap dengan takarannya disebut ....",o:["Tujuan","Langkah-langkah","Alat dan Bahan","Reorientasi"],a:2,e:"Bagian Alat dan Bahan berisi daftar perlengkapan yang dibutuhkan beserta ukurannya."},
+{q:"Di bawah ini manakah kalimat yang menggunakan kata kerja perintah yang benar?",o:["Ibu sedang mengupas bawang di dapur.","Kupaslah kulit mangga itu secara perlahan!","Budi telah mengupas jeruk itu sampai bersih.","Apakah kamu sudah selesai mengupas apel?"],a:1,e:"'Kupaslah' merupakan kata kerja perintah (imperatif) dengan partikel -lah."},
+{q:"Manakah contoh teks prosedur jenis 'melakukan suatu kegiatan'?",o:["Cara Memainkan Alat Musik Suling Bambu","Cara Membuat Keripik Pisang Renyah","Cara Merawat Gigi dengan Menyikat 2 Kali Sehari","Cara Menggunakan Mesin Blender"],a:2,e:"Menyikat gigi merupakan panduan aktivitas atau kebiasaan hidup sehat."},
+{q:"Kalimat yang menunjukkan takaran pasti adalah ....",o:["Tambahkan garam secukupnya saja sampai pas.","Rebus air selama beberapa menit hingga agak panas.","Tuangkan 200 ml air matang ke dalam gelas.","Masukkan sedikit gula pasir sesuai selera."],a:2,e:"'200 ml air matang' adalah ukuran yang terukur dan pasti."},
+{q:"Kata penghubung yang paling tepat untuk menandai langkah terakhir adalah ....",o:["Mula-mula","Selanjutnya","Terakhir","Setelah itu"],a:2,e:"Kata 'terakhir' atau 'sebagai penutup' digunakan pada tahapan paling akhir."},
+{q:"Manakah contoh kalimat larangan yang santun?",o:["Jangan sentuh barang itu, nanti rusak!","Sebaiknya kamu tidak mencuci tangan sekarang.","Hindari penggunaan minyak berlebih agar makanan tetap sehat.","Pergilah dari dapur sekarang juga!"],a:2,e:"Kata 'hindari...' merupakan bentuk larangan yang santun dan bernada anjuran keselamatan."},
+{q:"'Cucilah beras hingga bersih, ... masukkan beras ke dalam panci penanak nasi.' Kata hubung yang tepat adalah ....",o:["karena","kemudian","meskipun","tetapi"],a:1,e:"'Kemudian' menghubungkan dua perbuatan yang berlangsung secara berurutan."},
+{q:"Mengapa teks prosedur harus disusun secara urut dan tidak boleh acak?",o:["Agar teksnya terlihat sangat panjang","Agar pembaca tidak bingung dan tidak terjadi kegagalan/kecelakaan","Supaya banyak menggunakan tanda seru","Agar teksnya terdengar seperti puisi"],a:1,e:"Urutan yang acak dapat menyebabkan kegagalan hasil atau bahkan bahaya kecelakaan."},
+{q:"Bagian penutup dalam teks prosedur biasanya berisi ....",o:["Daftar riwayat hidup penulis","Biaya total pembelian bahan-bahan","Saran penyajian, tips, atau ucapan selamat mencoba","Daftar kata-kata sulit"],a:2,e:"Penutup biasanya memuat pesan singkat selamat mencoba atau saran penyajian."}
+];
+
+const worksheets = [
+{goal:"Memahami definisi dan fungsi teks prosedur di lingkungan sekitar.",tasks:["Tuliskan pengertian teks prosedur dengan kata-katamu sendiri!","Carilah satu contoh teks prosedur yang ada di rumahmu (misal: bungkus makanan/minuman, sabun, obat)! Tuliskan judul teks tersebut!","Apa manfaat petunjuk tersebut bagi orang yang membacanya?","Apa akibatnya jika seseorang tidak mengikuti petunjuk langkah tersebut?"],product:"Catatan analisis teks prosedur di rumah."},
+{goal:"Mengelompokkan teks prosedur berdasarkan 3 jenis utamanya.",tasks:["Sebutkan 3 jenis teks prosedur yang sudah kamu pelajari!","Tuliskan masing-masing 1 contoh judul untuk: (a) Cara membuat, (b) Cara menggunakan alat, (c) Cara melakukan kegiatan sehat!","Mengapa teks 'Cara Membuat Jamu Beras Kencur' berbeda dengan 'Cara Memainkan Angklung'? Jelaskan perbedaannya!"],product:"Tabel pengelompokan 3 jenis teks prosedur."},
+{goal:"Mengidentifikasi struktur teks prosedur secara teliti.",tasks:["Pilihlah salah satu resep minuman sehat favoritmu!","Tuliskan bagian Judul dan Tujuannya!","Tuliskan bagian Alat dan Bahan lengkap dengan takaran atau jumlahnya!","Tuliskan 3 langkah pertama dari kegiatan tersebut!"],product:"Analisis struktur teks minuman sehat."},
+{goal:"Mengubah kalimat biasa menjadi kalimat perintah santun.",tasks:["Ubahlah kalimat ini menjadi kalimat perintah berakhiran -kan: 'Siswa memasukkan buku ke dalam tas.'","Ubahlah kalimat ini menjadi kalimat perintah berakhiran -i: 'Kakak memberi garam pada masakan sup.'","Buatlah 1 contoh kalimat larangan menggunakan kata 'hindari'!","Buatlah 1 contoh kalimat saran menggunakan kata 'sebaiknya'!"],product:"Latihan variasi kalimat perintah, larangan, dan saran."},
+{goal:"Menyusun kalimat menggunakan konjungsi urutan waktu.",tasks:["Sebutkan 3 kata hubung waktu yang biasa digunakan di bagian tengah langkah-langkah!","Urutkan 3 kalimat acak berikut menjadi rapi: (A) Terakhir, sajikan di piring. (B) Pertama, potonglah buah. (C) Setelah itu, tuang saus mayones.","Tuliskan kembali hasil urutan yang sudah kamu susun rapi!"],product:"Paragraf padu dengan konjungsi waktu."},
+{goal:"Melengkapi petunjuk dengan ukuran/takaran yang pasti.",tasks:["Perbaikilah kalimat ini agar takarannya pasti: 'Rebus telur sebentar dengan sedikit garam.'","Perbaikilah kalimat ini: 'Beri air secukupnya lalu aduk sebentar.'","Mengapa dalam membuat makanan atau obat takaran tidak boleh asal-asalan?"],product:"Revisi kalimat dengan ukuran pasti."},
+{goal:"Membaca dan menelaah informasi visual pada infografik prosedur.",tasks:["Bayangkan kamu melihat poster 'Langkah Mencuci Tangan Bersih 6 Langkah'. Simbol apa saja yang biasanya digambar di poster itu?","Mengapa poster prosedur selalu dilengkapi gambar/ikon warna-warni?","Apakah menurutmu gambar saja sudah cukup tanpa teks penjelasan? Jelaskan alasanmu!"],product:"Pendapat telaah literasi visual."},
+{goal:"Menyusun draf teks prosedur karya mandiri.",tasks:["Tentukan 1 hal yang ingin kamu buat (resep sederhana / karya daur ulang / tips belajar fokus)!","Tuliskan judul yang menarik dan 1 kalimat tujuan!","Tuliskan daftar alat dan bahan beserta takarannya!","Tuliskan minimal 4 langkah berurutan dengan nomor (1, 2, 3, 4) menggunakan kata perintah!"],product:"Draf teks prosedur utuh karya siswa."},
+{goal:"Merancang naskah peragaan prosedur secara lisan.",tasks:["Jika kamu diminta mendemokan teks buatanmu di depan kelas, barang apa saja yang akan kamu bawa?","Tuliskan kalimat sapaan pembuka yang ramah untuk teman-teman sekelasmu!","Tuliskan 1 pesan keselamatan yang wajib kamu ingatkan kepada teman-teman saat praktik!"],product:"Rancangan panduan demo lisan."},
+{goal:"Merangkum pemahaman dan refleksi belajar.",tasks:["Tuliskan 3 hal baru yang paling kamu pahami tentang teks prosedur!","Bagian mana yang menurutmu paling menantang (apakah menentukan takaran atau menyusun urutan)? Mengapa?","Berapa skor kuis yang kamu peroleh di Bab 10?"],product:"Refleksi akhir bab teks prosedur."}
+];
+
+const navList=document.getElementById('navList'), panels=document.getElementById('panels');
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+function makeWorksheet(ch,i){
+  const w=worksheets[i];
+  return `<section class="worksheet" id="worksheet-${i}">
+    <div class="worksheet-head"><div class="icon">✍</div><div><h3>Lembar Tugas Siswa (LKPD ${i+1})</h3><div class="meta">Target: ${esc(w.goal)}</div></div></div>
+    <div class="field"><label>Nama Lengkap Siswa</label><input data-ws="${i}" data-field="nama" placeholder="Tulis namamu..."></div>
+    <div class="field"><label>Kelas & Nomor Absen</label><input data-ws="${i}" data-field="kelas" placeholder="Contoh: VII-B / 14"></div>
+    <div class="field"><label>Hari & Tanggal</label><input type="date" data-ws="${i}" data-field="tanggal"></div>
+    <h4 style="margin-top:16px">Soal Praktik Mandiri:</h4>
+    ${w.tasks.map((t,j)=>`<div class="field"><label>${j+1}.${esc(t)}</label><textarea data-ws="${i}" data-field="t${j}" placeholder="Ketik jawabanmu di sini..."></textarea></div>`).join('')}
+    <div class="field"><label>Refleksi Singkat</label><textarea data-ws="${i}" data-field="refleksi" placeholder="Apa bagian yang paling seru kamu pelajari di bab ini?"></textarea></div>
+    <p style="font-size:.82rem;color:var(--muted)"><strong>Hasil yang dikumpulkan:</strong> ${esc(w.product)}</p>
+    <div class="worksheet-actions">
+      <button class="btn primary" onclick="saveWorksheet(${i})">Simpan Jawaban</button>
+      <button class="btn" onclick="exportWorksheet(${i})">Unduh Berkas Teks (.txt)</button>
+      <button class="btn" onclick="printWorksheet(${i})">Cetak Lembar Ini</button>
+      <button class="btn ghost" onclick="clearWorksheet(${i})">Kosongkan</button>
+    </div>
+  </section>`;
+}
+
+function makePanel(ch,i){
+  return `<article class="panel ${i===0?'active':''}" id="panel-${i}">
+    <div class="chapter-head">
+      <div class="chapter-number">${i+1}</div>
+      <div><h2>${esc(ch.title)}</h2><p>${esc(ch.subtitle)}</p></div>
+    </div>
+    <div class="lesson">${ch.html}</div>
+    ${makeWorksheet(ch,i)}
+    <div class="footer-nav">
+      <button class="btn" onclick="goTo(${Math.max(0,i-1)})" ${i===0?'disabled':''}>← Bab Sebelumnya</button>
+      <button class="btn primary" onclick="goTo(${Math.min(chapters.length-1,i+1)})" ${i===chapters.length-1?'disabled':''}>Bab Berikutnya →</button>
+    </div>
+  </article>`;
+}
+
+chapters.forEach((ch,i)=>{
+  const b=document.createElement('button');
+  b.className='nav-btn'+(i===0?' active':'');
+  b.dataset.index=i;
+  b.dataset.search=(ch.title+' '+ch.subtitle).toLowerCase();
+  b.innerHTML=`<span class="num">${i+1}</span><span class="nav-text">${esc(ch.title)}<br><span style="font-size:.75rem;color:var(--muted)">${esc(ch.subtitle)}</span></span>`;
+  b.addEventListener('click',()=>goTo(i));
+  navList.appendChild(b);
+  panels.insertAdjacentHTML('beforeend',makePanel(ch,i));
+});
+
+function buildQuiz(){
+  const target=document.getElementById('mainQuiz');
+  if(!target)return;
+  target.innerHTML=quizQuestions.map((q,i)=>`
+    <div class="quiz" data-question="${i}">
+      <div class="q-title">${i+1}. ${esc(q.q)}</div>
+      ${q.o.map((o,j)=>`<label class="option"><input type="radio" name="q${i}" value="${j}"><span><strong>${String.fromCharCode(65+j)}.</strong>${esc(o)}</span></label>`).join('')}
+      <div class="feedback hidden" id="feedback-${i}"></div>
+    </div>
+  `).join('')+`
+    <button class="btn primary" id="gradeQuiz">Periksa Nilai Kuis</button>
+    <button class="btn" id="resetQuiz">Ulangi Kuis</button>
+    <div class="quiz-result" id="quizResult"></div>
+  `;
+
+  document.getElementById('gradeQuiz').addEventListener('click',gradeQuiz);
+  document.getElementById('resetQuiz').addEventListener('click',()=>{
+    target.querySelectorAll('input[type=radio]').forEach(x=>x.checked=false);
+    target.querySelectorAll('.feedback').forEach(x=>x.classList.add('hidden'));
+    document.getElementById('quizResult').style.display='none';
+  });
+}
+
+function gradeQuiz(){
+  let correct=0,answered=0;
+  quizQuestions.forEach((q,i)=>{
+    const sel=document.querySelector(`input[name="q${i}"]:checked`),fb=document.getElementById('feedback-'+i);
+    fb.classList.remove('hidden','good','bad');
+    if(sel){
+      answered++;
+      if(+sel.value===q.a){
+        correct++;fb.classList.add('good');
+        fb.innerHTML='<strong>Hebat, jawabanmu benar!</strong> '+esc(q.e);
+      }else{
+        fb.classList.add('bad');
+        fb.innerHTML='<strong>Ups, masih kurang tepat.</strong> Kunci yang benar adalah <strong>'+String.fromCharCode(65+q.a)+'</strong>: '+esc(q.e);
+      }
+    }else{
+      fb.classList.add('bad');
+      fb.innerHTML='<strong>Belum dijawab.</strong> Kunci yang benar: <strong>'+String.fromCharCode(65+q.a)+'</strong>: '+esc(q.e);
+    }
+  });
+  const r=document.getElementById('quizResult');
+  r.style.display='block';
+  const score=Math.round(correct/quizQuestions.length*100);
+  r.innerHTML=`<strong>Nilai Kuis Kamu: ${score} / 100</strong>
+    <p>Jawaban benar: ${correct} dari ${quizQuestions.length} soal.</p>
+    <p>${score>=80?'Luar biasa! Kamu sudah sangat menguasai materi teks prosedur.':score>=60?'Bagus! Baca kembali bab yang salah untuk memperkuat pemahamanmu ya!':'Yuk baca kembali pembahasannya dan coba lagi!'}</p>`;
+}
+
+function goTo(i){
+  i=Math.max(0,Math.min(chapters.length-1,i));
+  document.querySelectorAll('.panel').forEach((p,j)=>p.classList.toggle('active',j===i));
+  document.querySelectorAll('.nav-btn').forEach((b,j)=>b.classList.toggle('active',j===i));
+  document.getElementById('crumb').textContent=`Bagian ${i+1} dari ${chapters.length} · ${chapters[i].title}`;
+  document.getElementById('progress').style.width=((i+1)/chapters.length*100)+'%';
+  document.getElementById('prevBtn').disabled=i===0;
+  document.getElementById('nextBtn').disabled=i===chapters.length-1;
+  window.scrollTo({top:0,behavior:'smooth'});
+  localStorage.setItem('prosedur_last_section',String(i));
+}
+
+document.getElementById('prevBtn').addEventListener('click',()=>goTo(Number(localStorage.getItem('prosedur_last_section')||0)-1));
+document.getElementById('nextBtn').addEventListener('click',()=>goTo(Number(localStorage.getItem('prosedur_last_section')||0)+1));
+document.getElementById('searchNav').addEventListener('input',e=>{
+  const q=e.target.value.toLowerCase().trim();
+  document.querySelectorAll('.nav-btn').forEach(b=>{
+    b.classList.toggle('hidden',!b.dataset.search.includes(q));
+  });
+});
+
+document.getElementById('themeBtn').addEventListener('click',()=>{
+  document.body.classList.toggle('light');
+  localStorage.setItem('prosedur_theme',document.body.classList.contains('light')?'light':'dark');
+});
+document.getElementById('printBtn').addEventListener('click',()=>window.print());
+
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),1800);
+}
+
+function wsFields(i){return [...document.querySelectorAll(`[data-ws="${i}"]`)];}
+
+function saveWorksheet(i){
+  const data={};
+  wsFields(i).forEach(el=>data[el.dataset.field]=el.value);
+  localStorage.setItem('prosedur_lkpd_'+i,JSON.stringify(data));
+  markSaved(i);
+  showToast('LKPD '+(i+1)+' berhasil disimpan!');
+}
+
+function loadWorksheets(){
+  worksheets.forEach((w,i)=>{
+    let d={};
+    try{d=JSON.parse(localStorage.getItem('prosedur_lkpd_'+i)||'{}')}catch(e){}
+    wsFields(i).forEach(el=>{if(d[el.dataset.field]!==undefined)el.value=d[el.dataset.field];});
+    markSaved(i);
+  });
+}
+
+function markSaved(i){
+  const b=document.querySelector(`.nav-btn[data-index="${i}"]`);
+  if(b){
+    const d=JSON.parse(localStorage.getItem('prosedur_lkpd_'+i)||'{}');
+    const filled=Object.values(d).some(v=>String(v||'').trim());
+    b.querySelector('.num').textContent=(i+1)+(filled?' •':'');
+  }
+}
+
+function exportWorksheet(i){
+  saveWorksheet(i);
+  const d=JSON.parse(localStorage.getItem('prosedur_lkpd_'+i)||'{}');
+  const lines=[`LEMBAR KERJA PESERTA DIDIK (LKPD ${i+1})`,
+    `Bab: ${chapters[i].title}`,
+    `Nama Siswa : ${d.nama||'-'}`,
+    `Kelas/No   : ${d.kelas||'-'}`,
+    `Tanggal    : ${d.tanggal||'-'}`,
+    '--------------------------------------------------'];
+  worksheets[i].tasks.forEach((t,j)=>lines.push(`Soal ${j+1}: ${t}\nJawaban:\n${d['t'+j]||'(Belum dijawab)'}\n`));
+  lines.push(`Refleksi:\n${d.refleksi||'(Belum ada refleksi)'}`);
+  const blob=new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'});
+  const url=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=url;a.download=`LKPD_${i+1}_Teks_Prosedur_Kelas7.txt`;a.click();
+  URL.revokeObjectURL(url);
+}
+
+function printWorksheet(i){
+  document.querySelectorAll('.panel').forEach((p,j)=>p.classList.toggle('active',j===i));
+  setTimeout(()=>window.print(),100);
+}
+
+function clearWorksheet(i){
+  if(!confirm('Apakah kamu yakin ingin mengosongkan LKPD bab '+(i+1)+'?'))return;
+  localStorage.removeItem('prosedur_lkpd_'+i);
+  wsFields(i).forEach(el=>el.value='');
+  markSaved(i);
+  showToast('Isian LKPD telah dikosongkan');
+}
+
+document.getElementById('saveAllBtn').addEventListener('click',()=>{
+  worksheets.forEach((w,i)=>saveWorksheet(i));
+  showToast('Semua LKPD tersimpan di browsermu!');
+});
+
+function buildChecklist(){
+  const target=document.getElementById('prosedurChecklist');
+  if(!target)return;
+  const items=[
+    'Judul sudah jelas dan menarik.',
+    'Ada 1–2 kalimat tujuan atau manfaat di awal teks.',
+    'Daftar alat dan bahan ditulis lengkap beserta takarannya (gram, ml, butir).',
+    'Langkah-langkah diberi nomor urut 1, 2, 3... secara runtut.',
+    'Menggunakan kata perintah yang tepat (misal: potonglah, tuangkan).',
+    'Menggunakan kata hubung urutan (pertama, setelah itu, lalu, terakhir).',
+    'Tanda baca (titik, koma) dan huruf kapital sudah diperiksa dengan teliti.',
+    'Ada kalimat penutup atau tips selamat mencoba.'
+  ];
+  target.innerHTML=items.map((s,i)=>`
+    <label class="option"><input type="checkbox" data-prosedur-check="${i}"><span>${esc(s)}</span></label>
+  `).join('');
+  const saved=JSON.parse(localStorage.getItem('prosedur_check_data')||'[]');
+  target.querySelectorAll('input').forEach((x,i)=>{
+    x.checked=saved.includes(i);
+    x.addEventListener('change',()=>{
+      const a=[...target.querySelectorAll('input')].map((el,j)=>el.checked?j:null).filter(v=>v!==null);
+      localStorage.setItem('prosedur_check_data',JSON.stringify(a));
+    });
+  });
+}
+
+buildQuiz();
+buildChecklist();
+loadWorksheets();
+if(localStorage.getItem('prosedur_theme')==='light')document.body.classList.add('light');
+const last=Number(localStorage.getItem('prosedur_last_section')||0);
+goTo(Number.isFinite(last)&&last>=0&&last<chapters.length?last:0);
+</script>
+</body>
+</html>
