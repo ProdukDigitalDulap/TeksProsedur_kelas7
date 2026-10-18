@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pertemuan 4: Adverbia, Istilah Khusus & Variasi Kalimat</title>
+  <!-- Library untuk Ekspor PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    :root {
+      --primary: #7c2d12;
+      --primary-light: #c2410c;
+      --accent: #ca8a04;
+      --bg: #fffbeb;
+      --surface: #ffffff;
+      --surface-alt: #fef3c7;
+      --text-main: #451a03;
+      --text-muted: #78350f;
+      --border: #fde68a;
+      --success: #15803d;
+      --danger: #b91c1c;
+      --radius: 14px;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+    header {
+      background: linear-gradient(135deg, #7c2d12, #9a3412);
+      color: white;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      border-bottom: 4px solid var(--accent);
+    }
+    header h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.5px;
+    }
+    header p {
+      font-size: 0.95rem;
+      color: #fde68a;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .container {
+      max-width: 950px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      margin-bottom: 1.8rem;
+      box-shadow: 0 4px 12px rgba(124, 45, 18, 0.05);
+    }
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0.75rem;
+    }
+    /* Timeline Layout for Adverbs */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+      margin: 1rem 0;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 5px;
+      bottom: 5px;
+      width: 3px;
+      background: var(--primary-light);
+      border-radius: 2px;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 1.2rem;
+      background: var(--surface-alt);
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2rem;
+      top: 1rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid white;
+    }
+    .timeline-item h4 {
+      color: var(--primary);
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+    .timeline-item p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    /* Dynamic Badge Showcase */
+    .badge-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+    .term-badge {
+      background: #fef9c3;
+      border: 1px solid #ca8a04;
+      color: #713f12;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .term-badge:hover {
+      background: var(--primary-light);
+      color: white;
+      border-color: var(--primary-light);
+    }
+    .term-explanation {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      display: none;
+    }
+    /* Interactive Matcher */
+    .matcher-box {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-top: 1rem;
+    }
+    select, input[type="text"], textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #d97706;
+      border-radius: 8px;
+      margin-top: 0.4rem;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      background: #fff;
+    }
+    select:focus, input[type="text"]:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(194, 65, 12, 0.15);
+    }
+    .btn {
+      background: var(--primary-light);
+      color: white;
+      border: none;
+      padding: 0.7rem 1.4rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn:hover {
+      background: var(--primary);
+    }
+    .btn-secondary {
+      background: #78350f;
+    }
+    .btn-secondary:hover {
+      background: #451a03;
+    }
+    /* Flashcard Challenge */
+    .flashcard {
+      background: white;
+      border: 2px dashed #d97706;
+      border-radius: 10px;
+      padding: 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      margin-bottom: 1rem;
+      transition: all 0.2s;
+    }
+    .flashcard:hover {
+      background: #fef3c7;
+    }
+    .flashcard h3 {
+      color: var(--primary);
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .flashcard p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Modul Interaktif: Pertemuan 4 - Teks Prosedur</h1>
+    <p>Eksplorasi Adverbia Keterangan, Istilah Khusus Kuliner/Kesehatan, & Variasi Instruksi</p>
+  </header>
+  
+  <main class="container">
+    <!-- Section 1: Timeline Adverbs -->
+    <section class="card">
+      <div class="card-title">
+        <span>⏱️</span> 1. Anatomi Adverbia (Kata Keterangan) dalam Teks Prosedur
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+        Adverbia berfungsi memperjelas tahapan kerja, takaran, durasi waktu, serta lokasi pelaksanaan agar instruksi tidak menimbulkan ambiguitas.
+      </p>
+      
+      <div class="timeline">
+        <div class="timeline-item">
+          <h4>Adverbia Waktu & Durasi</h4>
+          <p>Menentukan lamanya proses pengerjaan. <em>Contoh:</em> Rebus air selama <strong>10 menit</strong>, diamkan hingga <strong>3 jam</strong>.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>Adverbia Cara</h4>
+          <p>Menjelaskan bagaimana suatu tindakan harus dilakukan. <em>Contoh:</em> Potong sayuran secara <strong>perlahan</strong>, aduk adonan <strong>searah jarum jam</strong>.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>Adverbia Alat & Tempat</h4>
+          <p>Menjelaskan media alat atau area pelaksanaan. <em>Contoh:</em> Masukkan bahan ke dalam <strong>mangkuk kaca</strong>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Interactive Terminology Showcase -->
+    <section class="card">
+      <div class="card-title">
+        <span>📚</span> 2. Glosarium Istilah Khusus (Kesehatan & Kuliner)
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.95rem;">
+        Klik istilah di bawah ini untuk melihat makna spesifik yang sering ditemukan dalam teks prosedur bertema "Hal yang Baik bagi Tubuh":
+      </p>
+      
+      <div class="badge-container">
+        <div class="term-badge" onclick="showTerm('fermentasi')">Fermentasi</div>
+        <div class="term-badge" onclick="showTerm('kudapan')">Kudapan Sehat</div>
+        <div class="term-badge" onclick="showTerm('pemanasan')">Pemanasan Statis</div>
+        <div class="term-badge" onclick="showTerm('sterilisasi')">Sterilisasi</div>
+      </div>
+
+      <div id="term-display" class="term-explanation">
+        👆 Silakan klik salah satu istilah di atas untuk memunculkan penjelasan definisinya.
+      </div>
+    </section>
+
+    <!-- Section 3: Interactive Adverb Matcher -->
+    <section class="card">
+      <div class="card-title">
+        <span>⚙️</span> 3. Laboratorium Analisis Adverbia (Interaktif)
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.95rem;">
+        Uji kemampuanmu mengidentifikasi jenis adverbia berdasarkan kalimat instruksi di bawah ini:
+      </p>
+      
+      <div class="matcher-box">
+        <p style="font-weight: 600; margin-bottom: 0.5rem; font-style: italic;">
+          "Kukuslah adonan bolu ubi ungu tersebut di atas api sedang selama 20 menit."
+        </p>
+        <label for="adverb-select" style="font-size: 0.85rem; font-weight: bold; color: var(--primary);">Termasuk jenis adverbia manakah frasa "selama 20 menit"?</label>
+        <select id="adverb-select" onchange="checkAdverb()">
+          <option value="">-- Pilih Jenis Adverbia --</option>
+          <option value="waktu">Adverbia Waktu / Durasi</option>
+          <option value="cara">Adverbia Cara</option>
+          <option value="tempat">Adverbia Tempat</option>
+        </select>
+        <div id="adverb-feedback" style="margin-top: 0.8rem; padding: 0.8rem; background: #fff; border-radius: 8px; font-size: 0.9rem; font-weight: 600; display: none; border: 1px solid var(--border);">
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Flashcard Challenge -->
+    <section class="card">
+      <div class="card-title">
+        <span>🎯</span> 4. Tantangan Kilat: Evaluasi Diksi Prosedur
+      </div>
+      <div class="flashcard" onclick="flipCard(this)">
+        <h3>Pertanyaan Kilat (Klik untuk buka jawaban)</h3>
+        <p id="card-text">Apa fungsi utama penggunaan kata keterangan cara (adverbia cara) dalam langkah pembuatan resep makanan?</p>
+      </div>
+    </section>
+
+    <!-- Section 5: LKPD 4 Export Form -->
+    <section class="card">
+      <div class="card-title">
+        <span>📝</span> 5. Lembar Kerja Peserta Didik (LKPD 4: Analisis Adverbia & Istilah)
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+        Isi formulir portofolio tugas harian di bawah ini dan unduh hasilnya dalam format dokumen PDF berbingkai rapi.
+      </p>
+      
+      <form id="lkpd-form">
+        <label for="student-name" style="font-size: 0.9rem; font-weight: bold; color: var(--primary);">Nama Lengkap Siswa:</label>
+        <input type="text" id="student-name" placeholder="Ketik nama lengkap..." required>
+
+        <label for="student-class" style="font-size: 0.9rem; font-weight: bold; color: var(--primary);">Kelas / No. Absen:</label>
+        <input type="text" id="student-class" placeholder="Contoh: 7-C / 19" required>
+
+        <label for="task-1" style="font-size: 0.9rem; font-weight: bold; display: block; margin-top: 0.5rem; color: var(--primary);">
+          Tugas 1: Analisis Penggunaan Adverbia
+        </label>
+        <textarea id="task-1" rows="3" placeholder="Tuliskan 3 contoh kalimat instruksi yang mengandung adverbia waktu dan cara..."></textarea>
+
+        <label for="task-2" style="font-size: 0.9rem; font-weight: bold; display: block; margin-top: 0.5rem; color: var(--primary);">
+          Tugas 2: Penjelasan Istilah Khusus Kesehatan
+        </label>
+        <textarea id="task-2" rows="3" placeholder="Jelaskan arti istilah 'sterilisasi' dan 'pemanasan statis' dalam konteks panduan kesehatan tubuh..."></textarea>
+
+        <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+          <button type="button" class="btn" onclick="downloadPDF()">📥 Unduh Lembar Kerja (.PDF)</button>
+          <button type="reset" class="btn btn-secondary">🔄 Reset</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    // Glossary Showcase Controller
+    function showTerm(termKey) {
+      let display = document.getElementById('term-display');
+      display.style.display = 'block';
+      let data = {
+        'fermentasi': '<strong>Fermentasi:</strong> Proses penguraian senyawa organik oleh mikroorganisme (seperti ragi atau bakteri) yang menghasilkan makanan sehat bernutrisi tinggi (contoh: tempe atau yogurt).',
+        'kudapan': '<strong>Kudapan Sehat:</strong> Makanan ringan atau selingan di antara waktu makan utama yang kaya serat, vitamin, dan rendah lemak jenuh.',
+        'pemanasan': '<strong>Pemanasan Statis:</strong> Peregangan otot yang dilakukan tanpa gerakan dinamis/menghentak untuk menghindari cedera sebelum berolahraga.',
+        'sterilisasi': '<strong>Sterilisasi:</strong> Proses pembersihan suatu alat atau bahan dari segala mikroorganisme hidup agar aman digunakan untuk kesehatan.'
+      };
+      display.innerHTML = data[termKey] || 'Istilah tidak ditemukan.';
+    }
+
+    // Adverb Matcher Logic
+    function checkAdverb() {
+      let val = document.getElementById('adverb-select').value;
+      let fb = document.getElementById('adverb-feedback');
+      if (val !== "") {
+        fb.style.display = 'block';
+        if (val === 'waktu') {
+          fb.style.color = '#15803d';
+          fb.innerHTML = `<strong>Tepat sekali!</strong> Frasa "selama 20 menit" menunjukkan keterangan durasi atau waktu pelaksanaan proses pengukusan.`;
+        } else {
+          fb.style.color = '#b91c1c';
+          fb.innerHTML = `<strong>Kurang tepat.</strong> Frasa tersebut menunjukkan batasan durasi pengerjaan, sehingga termasuk <em>Adverbia Waktu / Durasi</em>.`;
+        }
+      } else {
+        fb.style.display = 'none';
+      }
+    }
+
+    // Flashcard Flip Simulator
+    let flipped = false;
+    function flipCard(card) {
+      flipped = !flipped;
+      let textEl = document.getElementById('card-text');
+      if (flipped) {
+        card.style.background = '#fef3c7';
+        textEl.innerHTML = '<strong>Jawaban:</strong> Adverbia cara berfungsi agar pembaca dapat meniru tindakan secara akurat tanpa melakukan kesalahan takaran atau teknik pengerjaan fisik.';
+      } else {
+        card.style.background = 'white';
+        textEl.innerHTML = 'Apa fungsi utama penggunaan kata keterangan cara (adverbia cara) dalam langkah pembuatan resep makanan?';
+      }
+    }
+
+    // Export LKPD to Professional PDF with Borders & Styling
+    async function downloadPDF() {
+      let name = document.getElementById('student-name').value;
+      let sClass = document.getElementById('student-class').value;
+      let t1 = document.getElementById('task-1').value;
+      let t2 = document.getElementById('task-2').value;
+
+      if (!name || !sClass) {
+        alert('Mohon lengkapi Nama dan Kelas terlebih dahulu!');
+        return;
+      }
+
+      // Buat elemen penampung khusus untuk dokumen cetak PDF agar rapi & berborder klasik elegan
+      let printContainer = document.createElement('div');
+      printContainer.style.width = '794px'; // Standar lebar A4 (pixels pada 96 DPI)
+      printContainer.style.padding = '40px';
+      printContainer.style.background = '#ffffff';
+      printContainer.style.color = '#000000';
+      printContainer.style.fontFamily = 'Segoe UI, Arial, sans-serif';
+      printContainer.style.border = '4px double #7c2d12';
+      printContainer.style.boxSizing = 'border-box';
+      printContainer.style.position = 'absolute';
+      printContainer.style.left = '-9999px';
+
+      printContainer.innerHTML = `
+        <div style="text-align: center; border-bottom: 2px solid #7c2d12; padding-bottom: 15px; margin-bottom: 20px;">
+          <h2 style="color: #7c2d12; margin-bottom: 5px; font-size: 22px;">LEMBAR KERJA PESERTA DIDIK (LKPD 4)</h2>
+          <p style="font-size: 14px; color: #451a03; font-weight: bold;">Mata Pelajaran: Bahasa Indonesia Kelas 7 (Bab 3) - Kurikulum Merdeka</p>
+        </div>
+        <div style="margin-bottom: 20px; font-size: 14px; background: #fffbeb; padding: 12px; border-radius: 6px; border: 1px solid #fde68a;">
+          <p><strong>Nama Siswa:</strong> ${name}</p>
+          <p><strong>Kelas / No. Absen:</strong> ${sClass}</p>
+          <p><strong>Tanggal Pengerjaan:</strong> ${new Date().toLocaleDateString('id-ID', { dateStyle: 'full' })}</p>
+        </div>
+        <div style="margin-bottom: 20px;">
+          <h3 style="font-size: 15px; color: #7c2d12; border-bottom: 1px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;">Tugas 1: Analisis Penggunaan Adverbia</h3>
+          <p style="font-size: 13px; line-height: 1.6; white-space: pre-wrap; background: #f8fafc; padding: 10px; border-radius: 4px; border: 1px solid #e2e8f0;">${t1 || '(Belum diisi)'}</p>
+        </div>
+        <div style="margin-bottom: 20px;">
+          <h3 style="font-size: 15px; color: #7c2d12; border-bottom: 1px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;">Tugas 2: Penjelasan Istilah Khusus Kesehatan</h3>
+          <p style="font-size: 13px; line-height: 1.6; white-space: pre-wrap; background: #f8fafc; padding: 10px; border-radius: 4px; border: 1px solid #e2e8f0;">${t2 || '(Belum diisi)'}</p>
+        </div>
+        <div style="text-align: right; margin-top: 40px; font-size: 12px; color: #78350f;">
+          <p>Paraf Guru Pengampu: ............................</p>
+        </div>
+      `;
+
+      document.body.appendChild(printContainer);
+
+      try {
+        const canvas = await html2canvas(printContainer, { scale: 2, useCORS: true });
+        const imgData = canvas.toDataURL('image/png');
+
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        pdf.save(`LKPD_4_Teks_Prosedur_${name.replace(/\s+/g, '_')}.pdf`);
+      } catch (error) {
+        console.error('Gagal mencetak PDF:', error);
+        alert('Terjadi kesalahan saat menghasilkan PDF.');
+      } finally {
+        document.body.removeChild(printContainer);
+      }
+    }
+  </script>
+</body>
+</html>

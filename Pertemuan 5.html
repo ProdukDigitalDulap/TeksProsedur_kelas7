@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pertemuan 5: Praktik Menyusun & Menyajikan Teks Prosedur</title>
+  <!-- Library untuk Ekspor PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    :root {
+      --primary: #14532d;
+      --primary-light: #16a34a;
+      --accent: #ca8a04;
+      --bg: #f0fdf4;
+      --surface: #ffffff;
+      --surface-alt: #dcfce7;
+      --text-main: #052e16;
+      --text-muted: #166534;
+      --border: #bbf7d0;
+      --success: #15803d;
+      --danger: #b91c1c;
+      --radius: 14px;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+    header {
+      background: linear-gradient(135deg, #14532d, #166534);
+      color: white;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      border-bottom: 4px solid var(--accent);
+    }
+    header h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.5px;
+    }
+    header p {
+      font-size: 0.95rem;
+      color: #bbf7d0;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .container {
+      max-width: 950px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      margin-bottom: 1.8rem;
+      box-shadow: 0 4px 12px rgba(20, 83, 45, 0.05);
+    }
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0.75rem;
+    }
+    /* Steps Layout for Writing Guidance */
+    .writing-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .step-box {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      padding: 1.2rem;
+      border-radius: 10px;
+    }
+    .step-box h4 {
+      color: var(--primary);
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+    }
+    .step-box p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    /* Interactive Editor Panel */
+    .editor-panel {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-top: 1rem;
+    }
+    input[type="text"], textarea, select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #16a34a;
+      border-radius: 8px;
+      margin-top: 0.4rem;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      background: #fff;
+    }
+    input[type="text"]:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.15);
+    }
+    .btn {
+      background: var(--primary-light);
+      color: white;
+      border: none;
+      padding: 0.7rem 1.4rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn:hover {
+      background: var(--primary);
+    }
+    .btn-secondary {
+      background: #166534;
+    }
+    .btn-secondary:hover {
+      background: #14532d;
+    }
+    /* Checklist Component */
+    .checklist-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: white;
+      border: 1px solid var(--border);
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      margin-bottom: 0.6rem;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+    .checklist-item:hover {
+      background: #f0fdf4;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Modul Interaktif: Pertemuan 5 - Teks Prosedur</h1>
+    <p>Praktik Menyusun, Menyunting, & Menyajikan Teks Prosedur ("Hal yang Baik bagi Tubuh")</p>
+  </header>
+  
+  <main class="container">
+    <!-- Section 1: Writing Framework -->
+    <section class="card">
+      <div class="card-title">
+        <span>✍️</span> 1. Kerangka Kerja Penyusunan Teks Prosedur
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+        Sebelum menulis secara utuh, perhatikan tahapan sistematis untuk merancang panduan instruksi yang kreatif dan solutif bagi kesehatan tubuh.
+      </p>
+      
+      <div class="writing-steps">
+        <div class="step-box">
+          <h4>1. Menentukan Topik</h4>
+          <p>Pilih aktivitas sehat, misalnya resep makanan bergizi, tips olahraga ringan, atau cara menjaga kebugaran.</p>
+        </div>
+        <div class="step-box">
+          <h4>2. Merinci Kebutuhan</h4>
+          <p>Tuliskan daftar alat, bahan, atau perlengkapan yang wajib disiapkan secara lengkap tanpa terlewat.</p>
+        </div>
+        <div class="step-box">
+          <h4>3. Menyusun Langkah</h4>
+          <p>Tulis tahapan secara kronologis menggunakan kalimat imperatif dan adverbia yang tepat.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Interactive Reviewer Checklist -->
+    <section class="card">
+      <div class="card-title">
+        <span>📋</span> 2. Simulasi Penyuntingan (Checklist Kualitas Teks)
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.95rem;">
+        Klik kriteria di bawah ini untuk menguji kelayakan draf teks prosedur sebelum dipublikasikan atau dikumpulkan:
+      </p>
+      
+      <div style="margin-top: 1rem;">
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--primary-light);">
+          <span>Apakah judul teks sudah mencerminkan tujuan pembuatan secara jelas?</span>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--primary-light);">
+          <span>Apakah daftar alat dan bahan sudah lengkap tersusun di bagian awal?</span>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--primary-light);">
+          <span>Apakah langkah-langkah menggunakan kalimat imperatif berakhiran -lah/-kan?</span>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--primary-light);">
+          <span>Apakah terdapat penggunaan adverbia waktu atau cara yang akurat?</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Interactive Draf Generator Preview -->
+    <section class="card">
+      <div class="card-title">
+        <span>⚙️</span> 3. Laboratorium Pratinjau Draf Cepat
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.95rem;">
+        Uji coba cepat perumusan judul teks prosedur kesehatan di bawah ini:
+      </p>
+      
+      <div class="editor-panel">
+        <label for="preview-title" style="font-size: 0.85rem; font-weight: bold; color: var(--primary);">Ketik Ide Judul Prosedur:</label>
+        <input type="text" id="preview-title" placeholder="Contoh: Cara Membuat Jus Alpukat Sehat Penambah Energi">
+        <button class="btn" onclick="generatePreview()">Tampilkan Struktur Judul</button>
+        <div id="preview-box" style="margin-top: 1rem; padding: 1rem; background: #fff; border-radius: 8px; font-size: 0.95rem; display: none; border: 1px solid var(--border);">
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: LKPD 5 Export Form -->
+    <section class="card">
+      <div class="card-title">
+        <span>📝</span> 5. Lembar Kerja Peserta Didik (LKPD 5: Proyek Akhir Teks Prosedur)
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+        Tuliskan draf lengkap proyek teks prosedur mandiri Anda pada formulir di bawah ini, lalu unduh hasilnya dalam format dokumen PDF berbingkai rapi sebagai portofolio akhir Bab 3.
+      </p>
+      
+      <form id="lkpd-form">
+        <label for="student-name" style="font-size: 0.9rem; font-weight: bold; color: var(--primary);">Nama Lengkap Siswa:</label>
+        <input type="text" id="student-name" placeholder="Ketik nama lengkap..." required>
+
+        <label for="student-class" style="font-size: 0.9rem; font-weight: bold; color: var(--primary);">Kelas / No. Absen:</label>
+        <input type="text" id="student-class" placeholder="Contoh: 7-E / 25" required>
+
+        <label for="task-1" style="font-size: 0.9rem; font-weight: bold; display: block; margin-top: 0.5rem; color: var(--primary);">
+          Tugas 1: Judul & Alat/Bahan Prosedur Mandiri
+        </label>
+        <textarea id="task-1" rows="3" placeholder="Judul: ...&#10;Alat dan Bahan: ..."></textarea>
+
+        <label for="task-2" style="font-size: 0.9rem; font-weight: bold; display: block; margin-top: 0.5rem; color: var(--primary);">
+          Tugas 2: Langkah-Langkah Kerja (Kronologis)
+        </label>
+        <textarea id="task-2" rows="4" placeholder="Tuliskan tahapan instruksi secara runtut di sini..."></textarea>
+
+        <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+          <button type="button" class="btn" onclick="downloadPDF()">📥 Unduh Lembar Kerja (.PDF)</button>
+          <button type="reset" class="btn btn-secondary">🔄 Reset</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    // Checklist Interactive Toggle
+    function toggleCheck(item) {
+      let chk = item.querySelector('input[type="checkbox"]');
+      chk.checked = !chk.checked;
+      item.style.background = chk.checked ? '#f0fdf4' : '#ffffff';
+    }
+
+    // Preview Generator Simulator
+    function generatePreview() {
+      let title = document.getElementById('preview-title').value.trim();
+      let box = document.getElementById('preview-box');
+      if (title.length > 0) {
+        box.style.display = 'block';
+        box.innerHTML = `<strong>Struktur Judul Terdeteksi:</strong><br>🎯 Tujuan/Judul: <em>"${title}"</em><br>✅ Siap dilanjutkan ke perumusan alat, bahan, dan langkah-langkah kerja kronologis.`;
+      } else {
+        alert('Mohon ketik judul terlebih dahulu!');
+      }
+    }
+
+    // Export LKPD to Professional PDF with Borders & Styling
+    async function downloadPDF() {
+      let name = document.getElementById('student-name').value;
+      let sClass = document.getElementById('student-class').value;
+      let t1 = document.getElementById('task-1').value;
+      let t2 = document.getElementById('task-2').value;
+
+      if (!name || !sClass) {
+        alert('Mohon lengkapi Nama dan Kelas terlebih dahulu!');
+        return;
+      }
+
+      // Buat elemen penampung khusus untuk dokumen cetak PDF agar rapi & berborder klasik elegan
+      let printContainer = document.createElement('div');
+      printContainer.style.width = '794px'; // Standar lebar A4 (pixels pada 96 DPI)
+      printContainer.style.padding = '40px';
+      printContainer.style.background = '#ffffff';
+      printContainer.style.color = '#000000';
+      printContainer.style.fontFamily = 'Segoe UI, Arial, sans-serif';
+      printContainer.style.border = '4px double #14532d';
+      printContainer.style.boxSizing = 'border-box';
+      printContainer.style.position = 'absolute';
+      printContainer.style.left = '-9999px';
+
+      printContainer.innerHTML = `
+        <div style="text-align: center; border-bottom: 2px solid #14532d; padding-bottom: 15px; margin-bottom: 20px;">
+          <h2 style="color: #14532d; margin-bottom: 5px; font-size: 22px;">LEMBAR KERJA PESERTA DIDIK (LKPD 5 - PROYEK AKHIR)</h2>
+          <p style="font-size: 14px; color: #052e16; font-weight: bold;">Mata Pelajaran: Bahasa Indonesia Kelas 7 (Bab 3) - Kurikulum Merdeka</p>
+        </div>
+        <div style="margin-bottom: 20px; font-size: 14px; background: #f0fdf4; padding: 12px; border-radius: 6px; border: 1px solid #bbf7d0;">
+          <p><strong>Nama Siswa:</strong> ${name}</p>
+          <p><strong>Kelas / No. Absen:</strong> ${sClass}</p>
+          <p><strong>Tanggal Pengerjaan:</strong> ${new Date().toLocaleDateString('id-ID', { dateStyle: 'full' })}</p>
+        </div>
+        <div style="margin-bottom: 20px;">
+          <h3 style="font-size: 15px; color: #14532d; border-bottom: 1px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;">Tugas 1: Judul & Alat/Bahan Prosedur Mandiri</h3>
+          <p style="font-size: 13px; line-height: 1.6; white-space: pre-wrap; background: #f8fafc; padding: 10px; border-radius: 4px; border: 1px solid #e2e8f0;">${t1 || '(Belum diisi)'}</p>
+        </div>
+        <div style="margin-bottom: 20px;">
+          <h3 style="font-size: 15px; color: #14532d; border-bottom: 1px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;">Tugas 2: Langkah-Langkah Kerja (Kronologis)</h3>
+          <p style="font-size: 13px; line-height: 1.6; white-space: pre-wrap; background: #f8fafc; padding: 10px; border-radius: 4px; border: 1px solid #e2e8f0;">${t2 || '(Belum diisi)'}</p>
+        </div>
+        <div style="text-align: right; margin-top: 40px; font-size: 12px; color: #166534;">
+          <p>Paraf Guru Pengampu: ............................</p>
+        </div>
+      `;
+
+      document.body.appendChild(printContainer);
+
+      try {
+        const canvas = await html2canvas(printContainer, { scale: 2, useCORS: true });
+        const imgData = canvas.toDataURL('image/png');
+
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        pdf.save(`LKPD_5_Proyek_Teks_Prosedur_${name.replace(/\s+/g, '_')}.pdf`);
+      } catch (error) {
+        console.error('Gagal mencetak PDF:', error);
+        alert('Terjadi kesalahan saat menghasilkan PDF.');
+      } finally {
+        document.body.removeChild(printContainer);
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pertemuan 3: Kebahasaan Teks Prosedur</title>
+  <!-- Library untuk Ekspor PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    :root {
+      --primary: #1e40af;
+      --primary-light: #3b82f6;
+      --accent: #f97316;
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface-card: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #475569;
+      --success: #22c55e;
+      --danger: #ef4444;
+      --radius: 12px;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+    header {
+      background: linear-gradient(135deg, #1e3a8a, #0f172a);
+      color: white;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      border-bottom: 4px solid var(--accent);
+    }
+    header h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.5px;
+    }
+    header p {
+      font-size: 0.95rem;
+      color: #93c5fd;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.8rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    }
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #60a5fa;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0.75rem;
+    }
+    /* Grid Layout for Grammar Modules */
+    .grid-modules {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .module-box {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.2rem;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .module-box:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary-light);
+    }
+    .module-box h3 {
+      font-size: 1.05rem;
+      color: #38bdf8;
+      margin-bottom: 0.5rem;
+    }
+    .module-box p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    /* Accordion Style for Rules */
+    .accordion-item {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+      overflow: hidden;
+    }
+    .accordion-header {
+      background: #1e293b;
+      padding: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #f1f5f9;
+    }
+    .accordion-header:hover {
+      background: #263348;
+    }
+    .accordion-body {
+      padding: 1rem;
+      display: none;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      background: var(--surface-card);
+    }
+    .accordion-body.active {
+      display: block;
+    }
+    /* Interactive Sentence Fixer */
+    .interactive-workbench {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-top: 1rem;
+    }
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 0.8rem;
+      background: #0f172a;
+      border: 1px solid var(--border);
+      color: white;
+      border-radius: 6px;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+    input[type="text"]:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary-light);
+    }
+    .btn {
+      background: var(--primary-light);
+      color: white;
+      border: none;
+      padding: 0.7rem 1.4rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn:hover {
+      background: #2563eb;
+    }
+    .btn-alt {
+      background: #475569;
+    }
+    .btn-alt:hover {
+      background: #334155;
+    }
+    /* Interactive Challenge Cards */
+    .challenge-card {
+      background: #1e293b;
+      border: 1px dashed var(--border);
+      padding: 1.2rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .option-pill {
+      display: inline-block;
+      background: #0f172a;
+      border: 1px solid var(--border);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      margin: 0.3rem 0.3rem 0.3rem 0;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .option-pill:hover {
+      border-color: var(--primary-light);
+      background: #1e3a8a;
+    }
+    .option-pill.selected-correct {
+      background: #166534;
+      border-color: var(--success);
+      color: #f0fdf4;
+    }
+    .option-pill.selected-wrong {
+      background: #991b1b;
+      border-color: var(--danger);
+      color: #fef2f2;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Modul Interaktif: Pertemuan 3 - Teks Prosedur</h1>
+    <p>Bedah Kaidah Kebahasaan: Imperatif, Pelesapan, dan Kalimat Inversi</p>
+  </header>
+  
+  <main class="container">
+    <!-- Section 1: Grid Modular Theory -->
+    <section class="card">
+      <div class="card-title">
+        <span>🧬</span> 1. Peta Kaidah Kebahasaan Teks Prosedur
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.95rem;">
+        Bahasa dalam teks prosedur dirancang khusus agar pembaca langsung memahami instruksi secara tegas, padat, dan runtut. Klik modul di bawah untuk memperluas penjelasan:
+      </p>
+      
+      <div class="grid-modules">
+        <div class="module-box">
+          <h3>1. Kalimat Imperatif</h3>
+          <p>Kalimat yang mengandung perintah. Biasanya menggunakan akhiran <em>-lah</em> atau <em>-kan</em> (contoh: <em>Rebuslah</em>, <em>Masukkan</em>).</p>
+        </div>
+        <div class="module-box">
+          <h3>2. Pelesapan</h3>
+          <p>Penghilangan bagian kalimat yang sudah jelas maknanya agar kalimat tidak boros dan lebih efektif saat dibaca.</p>
+        </div>
+        <div class="module-box">
+          <h3>3. Kalimat Inversi</h3>
+          <p>Pola kalimat perintah yang mendahulukan predikat (P) daripada subjek (S) untuk memberikan penekanan instruksi.</p>
+        </div>
+        <div class="module-box">
+          <h3>4. Adverbia Keterangan</h3>
+          <p>Penggunaan keterangan waktu, tempat, atau cara yang akurat untuk memandu takaran dan durasi pengerjaan.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Accordion Deep Dive -->
+    <section class="card">
+      <div class="card-title">
+        <span>📂</span> 2. Panduan Analisis Unsur Kebahasaan Mendalam
+      </div>
+      
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>🔹 Memahami Pelesapan dalam Kalimat Majemuk Rapatan</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-body">
+          Pelesapan dilakukan untuk menghindari pengulangan kata yang sama. <em>Contoh:</em> "Potonglah buah mangga itu. Potonglah buah mangga itu menjadi bagian kecil." Disederhanakan dengan pelesapan menjadi: "Potonglah buah mangga itu menjadi bagian kecil."
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>🔹 Pola Kalimat Inversi (Predikat di Depan)</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-body">
+          Alih-alih menggunakan susunan biasa (Subjek + Predikat), teks prosedur sering menggunakan inversi agar perintah terasa langsung dieksekusi. <em>Contoh:</em> **Aduklah** (P) **adonan tersebut** (S) secara perlahan.
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Interactive Workbench (Sentence Corrector) -->
+    <section class="card">
+      <div class="card-title">
+        <span>⚡</span> 3. Workbench Interaktif: Transformasi Kalimat Perintah
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.95rem;">
+        Uji kemampuan mengubah kalimat biasa menjadi kalimat imperatif berpartikel <em>-lah</em> atau <em>-kan</em> dengan benar:
+      </p>
+      
+      <div class="interactive-workbench">
+        <label for="raw-sentence" style="font-size: 0.85rem; font-weight: bold; color: #38bdf8;">Ketik Kalimat Pernyataan Biasa:</label>
+        <input type="text" id="raw-sentence" placeholder="Contoh: Kamu harus aduk air hangat dengan madu.">
+        <button class="btn" onclick="transformSentence()">Transformasikan ke Kalimat Prosedur</button>
+        <div id="transform-result" style="margin-top: 1rem; padding: 1rem; background: #0f172a; border-radius: 6px; font-size: 0.95rem; display: none; border-left: 4px solid var(--accent);">
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Gamified Challenge Component -->
+    <section class="card">
+      <div class="card-title">
+        <span>🎯</span> 4. Tantangan Cepat: Deteksi Jenis Kaidah Bahasa
+      </div>
+      <div class="challenge-card">
+        <p style="font-weight: 600; margin-bottom: 0.8rem;">
+          Pertanyaan: Manakah di bawah ini yang merupakan contoh penerapan kaidah <strong>kalimat inversi</strong>?
+        </p>
+        <div>
+          <span class="option-pill" onclick="checkChallenge(this, false)">A. Ibu memasak sayur sop di dapur.</span>
+          <span class="option-pill" onclick="checkChallenge(this, true)">B. Rebuslah air sebanyak dua liter hingga mendidih!</span>
+          <span class="option-pill" onclick="checkChallenge(this, false)">C. Udara pagi hari sangat menyegarkan tubuh.</span>
+          <span class="option-pill" onclick="checkChallenge(this, false)">D. Adik sedang membaca buku paket bahasa indonesia.</span>
+        </div>
+        <div id="challenge-feedback" style="margin-top: 0.8rem; font-size: 0.9rem; font-weight: 600; display: none;"></div>
+      </div>
+    </section>
+
+    <!-- Section 5: LKPD 3 Export Form -->
+    <section class="card">
+      <div class="card-title">
+        <span>📝</span> 5. Lembar Kerja Peserta Didik (LKPD 3: Analisis Kebahasaan)
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+        Lengkapi formulir portofolio tugas harian di bawah ini dan unduh hasilnya dalam format dokumen PDF berbingkai rapi.
+      </p>
+      
+      <form id="lkpd-form">
+        <label for="student-name" style="font-size: 0.9rem; font-weight: bold; color: #60a5fa;">Nama Lengkap Siswa:</label>
+        <input type="text" id="student-name" placeholder="Ketik nama lengkap..." required>
+
+        <label for="student-class" style="font-size: 0.9rem; font-weight: bold; color: #60a5fa;">Kelas / No. Absen:</label>
+        <input type="text" id="student-class" placeholder="Contoh: 7-B / 08" required>
+
+        <label for="task-1" style="font-size: 0.9rem; font-weight: bold; display: block; margin-top: 0.5rem; color: #60a5fa;">
+          Tugas 1: Analisis Penggunaan Kalimat Imperatif
+        </label>
+        <textarea id="task-1" rows="3" placeholder="Tuliskan analisis 3 kalimat imperatif dari resep makanan sehat..."></textarea>
+
+        <label for="task-2" style="font-size: 0.9rem; font-weight: bold; display: block; margin-top: 0.5rem; color: #60a5fa;">
+          Tugas 2: Praktik Pelesapan Kalimat
+        </label>
+        <textarea id="task-2" rows="3" placeholder="Tuliskan contoh kalimat sebelum dan sesudah mengalami pelesapan..."></textarea>
+
+        <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+          <button type="button" class="btn" onclick="downloadPDF()">📥 Unduh Lembar Kerja (.PDF)</button>
+          <button type="reset" class="btn btn-alt">🔄 Reset</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    // Accordion Controller
+    function toggleAccordion(header) {
+      let body = header.nextElementSibling;
+      body.classList.toggle('active');
+      header.querySelector('span:last-child').innerText = body.classList.contains('active') ? '▲' : '▼';
+    }
+
+    // Workbench Transformer Simulator
+    function transformSentence() {
+      let val = document.getElementById('raw-sentence').value.trim();
+      let res = document.getElementById('transform-result');
+      if (val.length > 0) {
+        res.style.display = 'block';
+        res.innerHTML = `<strong>Hasil Transformasi Prosedur:</strong><br><em>"Aduklah air hangat dengan madu secara merata!"</em> (Berubah menjadi kalimat imperatif dengan akhiran -lah serta pola penekanan instruksi).`;
+      } else {
+        alert('Mohon ketik kalimat terlebih dahulu!');
+      }
+    }
+
+    // Gamified Challenge Logic
+    function checkChallenge(element, isCorrect) {
+      let pills = document.querySelectorAll('.option-pill');
+      pills.forEach(p => p.style.pointerEvents = 'none');
+      let fb = document.getElementById('challenge-feedback');
+      fb.style.display = 'block';
+      if (isCorrect) {
+        element.classList.add('selected-correct');
+        fb.style.color = '#22c55e';
+        fb.innerHTML = '✅ Tepat sekali! Kalimat tersebut mendahulukan predikat perintah (Rebuslah) di awal kalimat.';
+      } else {
+        element.classList.add('selected-wrong');
+        fb.style.color = '#ef4444';
+        fb.innerHTML = '❌ Kurang tepat. Kalimat tersebut bukan bentuk pola perintah inversi yang dicari.';
+      }
+    }
+
+    // Export LKPD to Professional PDF with Borders & Styling
+    async function downloadPDF() {
+      let name = document.getElementById('student-name').value;
+      let sClass = document.getElementById('student-class').value;
+      let t1 = document.getElementById('task-1').value;
+      let t2 = document.getElementById('task-2').value;
+
+      if (!name || !sClass) {
+        alert('Mohon lengkapi Nama dan Kelas terlebih dahulu!');
+        return;
+      }
+
+      // Buat elemen penampung khusus untuk dokumen cetak PDF agar rapi & berborder klasik elegan
+      let printContainer = document.createElement('div');
+      printContainer.style.width = '794px'; // Standar lebar A4 (pixels pada 96 DPI)
+      printContainer.style.padding = '40px';
+      printContainer.style.background = '#ffffff';
+      printContainer.style.color = '#000000';
+      printContainer.style.fontFamily = 'Segoe UI, Arial, sans-serif';
+      printContainer.style.border = '4px double #1e40af';
+      printContainer.style.boxSizing = 'border-box';
+      printContainer.style.position = 'absolute';
+      printContainer.style.left = '-9999px';
+
+      printContainer.innerHTML = `
+        <div style="text-align: center; border-bottom: 2px solid #1e40af; padding-bottom: 15px; margin-bottom: 20px;">
+          <h2 style="color: #1e40af; margin-bottom: 5px; font-size: 22px;">LEMBAR KERJA PESERTA DIDIK (LKPD 3)</h2>
+          <p style="font-size: 14px; color: #1e293b; font-weight: bold;">Mata Pelajaran: Bahasa Indonesia Kelas 7 (Bab 3) - Kurikulum Merdeka</p>
+        </div>
+        <div style="margin-bottom: 20px; font-size: 14px; background: #f8fafc; padding: 12px; border-radius: 6px; border: 1px solid #cbd5e1;">
+          <p><strong>Nama Siswa:</strong> ${name}</p>
+          <p><strong>Kelas / No. Absen:</strong> ${sClass}</p>
+          <p><strong>Tanggal Pengerjaan:</strong> ${new Date().toLocaleDateString('id-ID', { dateStyle: 'full' })}</p>
+        </div>
+        <div style="margin-bottom: 20px;">
+          <h3 style="font-size: 15px; color: #1e40af; border-bottom: 1px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;">Tugas 1: Analisis Penggunaan Kalimat Imperatif</h3>
+          <p style="font-size: 13px; line-height: 1.6; white-space: pre-wrap; background: #f8fafc; padding: 10px; border-radius: 4px; border: 1px solid #e2e8f0;">${t1 || '(Belum diisi)'}</p>
+        </div>
+        <div style="margin-bottom: 20px;">
+          <h3 style="font-size: 15px; color: #1e40af; border-bottom: 1px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;">Tugas 2: Praktik Pelesapan Kalimat</h3>
+          <p style="font-size: 13px; line-height: 1.6; white-space: pre-wrap; background: #f8fafc; padding: 10px; border-radius: 4px; border: 1px solid #e2e8f0;">${t2 || '(Belum diisi)'}</p>
+        </div>
+        <div style="text-align: right; margin-top: 40px; font-size: 12px; color: #475569;">
+          <p>Paraf Guru Pengampu: ............................</p>
+        </div>
+      `;
+
+      document.body.appendChild(printContainer);
+
+      try {
+        const canvas = await html2canvas(printContainer, { scale: 2, useCORS: true });
+        const imgData = canvas.toDataURL('image/png');
+
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        pdf.save(`LKPD_3_Kebahasaan_Teks_${name.replace(/\s+/g, '_')}.pdf`);
+      } catch (error) {
+        console.error('Gagal mencetak PDF:', error);
+        alert('Terjadi kesalahan saat menghasilkan PDF.');
+      } finally {
+        document.body.removeChild(printContainer);
+      }
+    }
+  </script>
+</body>
+</html>

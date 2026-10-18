@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pertemuan 2: Struktur dan Anatomi Teks Prosedur</title>
+  <!-- Library untuk Ekspor PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    :root {
+      --primary: #0f766e;
+      --primary-light: #14b8a6;
+      --accent: #f59e0b;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --border: #e2e8f0;
+      --success: #15803d;
+      --danger: #b91c1c;
+      --radius: 10px;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+    header {
+      background: linear-gradient(135deg, #0f766e, #134e4a);
+      color: white;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      border-bottom: 4px solid var(--accent);
+    }
+    header h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.5px;
+    }
+    header p {
+      font-size: 0.95rem;
+      color: #99f6e4;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .container {
+      max-width: 950px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 1.8rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+    /* Tabs */
+    .tab-nav {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      background: transparent;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .tab-btn.active {
+      background: var(--primary-light);
+      color: white;
+    }
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Sample Text Box */
+    .procedure-box {
+      background: #f0fdf4;
+      border-left: 4px solid var(--primary-light);
+      padding: 1rem 1.2rem;
+      border-radius: 4px;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    /* Table */
+    .table-responsive {
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+      text-align: left;
+    }
+    th {
+      background-color: #f1f5f9;
+      color: var(--primary);
+    }
+    /* Interactive Analyzer */
+    .interactive-panel {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      margin-top: 1rem;
+    }
+    textarea, input[type="text"], select {
+      width: 100%;
+      padding: 0.7rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      margin-top: 0.4rem;
+      margin-bottom: 0.8rem;
+      font-size: 0.95rem;
+    }
+    textarea:focus, input[type="text"]:focus, select:focus {
+      outline: none;
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.15);
+    }
+    .btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn:hover {
+      background: #0f766e;
+    }
+    .btn-secondary {
+      background: #475569;
+    }
+    .btn-secondary:hover {
+      background: #334155;
+    }
+    /* Quiz Component */
+    .quiz-option {
+      display: block;
+      background: white;
+      border: 1px solid var(--border);
+      padding: 0.8rem 1rem;
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .quiz-option:hover {
+      border-color: var(--primary-light);
+      background: #f0fdf4;
+    }
+    .quiz-option.correct {
+      background: #dcfce7;
+      border-color: var(--success);
+      color: var(--success);
+      font-weight: bold;
+    }
+    .quiz-option.incorrect {
+      background: #fee2e2;
+      border-color: var(--danger);
+      color: var(--danger);
+    }
+    .feedback-box {
+      margin-top: 0.8rem;
+      padding: 0.8rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      display: none;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      background: #ccfbf1;
+      color: #0f766e;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Modul Interaktif: Pertemuan 2 - Teks Prosedur</h1>
+    <p>Menganalisis Struktur & Anatomi Bagian Teks Prosedur ("Hal yang Baik bagi Tubuh")</p>
+  </header>
+  
+  <main class="container">
+    <!-- Section 1: Deep Theory Exploration -->
+    <section class="card">
+      <div class="card-title">
+        <span>📖</span> 1. Landasan Materi: Anatomi Struktur Teks Prosedur
+      </div>
+      <p style="margin-bottom: 1rem; color: var(--text-muted);">
+        Sebuah teks prosedur yang utuh dan ideal disusun berdasarkan empat bagian struktur utama agar mudah dipahami dan diikuti oleh pembaca.
+      </p>
+      
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('tujuan', event)">1. Tujuan / Judul</button>
+        <button class="tab-btn" onclick="switchTab('material', event)">2. Alat & Bahan</button>
+        <button class="tab-btn" onclick="switchTab('langkah', event)">3. Langkah-Langkah</button>
+        <button class="tab-btn" onclick="switchTab('penutup', event)">4. Penutup / Simpulan</button>
+      </div>
+
+      <!-- Tujuan Tab -->
+      <div id="tab-tujuan" class="tab-content active">
+        <span class="badge">Bagian Pengantar</span>
+        <div class="procedure-box">
+          <strong>Definisi:</strong> Berisi pengantar mengenai topik, objek, atau hasil akhir yang ingin dicapai melalui panduan prosedur tersebut (biasanya tercermin langsung pada judul teks).
+        </div>
+        <ul style="margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem;">
+          <li><strong>Contoh:</strong> *Cara Membuat Jus Sehat Penurun Kolesterol* atau *Tips Menjaga Kebugaran Tubuh*.</li>
+        </ul>
+      </div>
+
+      <!-- Material Tab -->
+      <div id="tab-material" class="tab-content">
+        <span class="badge">Rincian Kebutuhan</span>
+        <div class="procedure-box">
+          <strong>Definisi:</strong> Memuat daftar rincian material, bahan, takaran, atau peralatan pendukung yang wajib disiapkan sebelum memulai proses kerja.
+        </div>
+        <ul style="margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem;">
+          <li><strong>Catatan:</strong> Tidak semua teks prosedur (misalnya prosedur cara melakukan gerakan fisik) memerlukan daftar bahan yang rumit, namun bagian alat/persiapan tetap penting.</li>
+        </ul>
+      </div>
+
+      <!-- Langkah Tab -->
+      <div id="tab-langkah" class="tab-content">
+        <span class="badge">Inti Pelaksanaan</span>
+        <div class="procedure-box">
+          <strong>Definisi:</strong> Urutan tahapan kerja atau instruksi kronologis secara sistematis dari awal hingga hasil akhir tercapai dengan sukses.
+        </div>
+        <ul style="margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem;">
+          <li><strong>Karakteristik:</strong> Disusun secara runut (bisa menggunakan penomoran angka atau urutan kata keterangan waktu seperti *pertama, berikutnya, terakhir*).</li>
+        </ul>
+      </div>
+
+      <!-- Penutup Tab -->
+      <div id="tab-penutup" class="tab-content">
+        <span class="badge">Konklusi Opsional</span>
+        <div class="procedure-box">
+          <strong>Definisi:</strong> Bagian akhir yang bersifat opsional untuk memberikan penegasan ulang, ucapan selamat menikmati, atau ringkasan manfaat dari prosedur yang telah dikerjakan.
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Comparative Matrix -->
+    <section class="card">
+      <div class="card-title">
+        <span>⚖️</span> 2. Matriks Pemetaan Struktur Teks Prosedur
+      </div>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Struktur Teks</th>
+              <th>Fungsi Utama</th>
+              <th>Contoh Penerapan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Tujuan/Judul</strong></td>
+              <td>Memberitahu pembaca hasil akhir kegiatan.</td>
+              <td>"Cara Membuat Minuman Herbal Jahe Merah"</td>
+            </tr>
+            <tr>
+              <td><strong>Alat dan Bahan</strong></td>
+              <td>Merinci hal-hal yang harus disiapkan di awal.</td>
+              <td>2 ruas jahe, 1 sdm madu, 300 ml air hangat.</td>
+            </tr>
+            <tr>
+              <td><strong>Langkah-Langkah</strong></td>
+              <td>Menyajikan tahapan pengerjaan secara kronologis.</td>
+              <td>1. Parut jahe... 2. Seduh dengan air...</td>
+            </tr>
+            <tr>
+              <td><strong>Penutup</strong></td>
+              <td>Menyampaikan ucapan penutup atau manfaat tambahan.</td>
+              <td>"Minumlah selagi hangat untuk kebugaran tubuh."</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 3: Interactive Analyzer -->
+    <section class="card">
+      <div class="card-title">
+        <span>⚙️</span> 3. Laboratorium Pemetaan Struktur Teks (Interaktif)
+      </div>
+      <p style="font-size: 0.9rem; color: var(--text-muted);">
+        Uji kemampuanmu mengidentifikasi bagian teks. Pilih jenis struktur teks prosedur yang sesuai untuk kalimat di bawah ini:
+      </p>
+      <div class="interactive-panel">
+        <p style="font-weight: 600; margin-bottom: 0.5rem; font-style: italic;">
+          "Siapkan 2 buah pisang matang, 100 gram tepung terigu, dan secukupnya minyak goreng."
+        </p>
+        <label for="struct-select" style="font-size: 0.85rem; font-weight: bold;">Bagian Struktur Manakah Kalimat di Atas?</label>
+        <select id="struct-select" onchange="analyzeStructure()">
+          <option value="">-- Pilih Bagian Struktur --</option>
+          <option value="tujuan">Tujuan / Judul</option>
+          <option value="bahan">Alat dan Bahan</option>
+          <option value="langkah">Langkah-Langkah</option>
+          <option value="penutup">Penutup</option>
+        </select>
+        <div id="struct-feedback" style="margin-top: 0.8rem; padding: 0.8rem; background: #ccfbf1; border-radius: 6px; font-size: 0.9rem; font-weight: 600; color: #0f766e; display: none;">
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Formative Critical Quiz -->
+    <section class="card">
+      <div class="card-title">
+        <span>🎯</span> 4. Uji Pemahaman Kritis (Formatif Mandiri)
+      </div>
+      <div id="quiz-container">
+        <p id="quiz-question" style="font-weight: 600; margin-bottom: 1rem;">
+          1. Mengapa bagian "Langkah-Langkah" dalam teks prosedur harus disajikan secara kronologis atau berurutan?
+        </p>
+        <div id="quiz-options">
+          <div class="quiz-option" onclick="checkQuiz(this, false, 'Salah. Teks prosedur bersifat instruktif objektif, bukan kisah fiksi masa lalu.')">A. Agar cerita di dalam teks terasa menghibur dan dramatis</div>
+          <div class="quiz-option" onclick="checkQuiz(this, true, 'Tepat sekali! Urutan kronologis mencegah kesalahan proses dan memastikan tujuan pembuatan/penggunaan tercapai dengan akurat.')">B. Agar pembaca dapat mengikuti tahapan kerja dengan tepat tanpa mengalami kesalahan proses</div>
+          <div class="quiz-option" onclick="checkQuiz(this, false, 'Salah. Urutan tidak dibuat secara acak karena akan membingungkan pembaca.')">C. Agar pembaca bebas memilih langkah mana saja yang dikerjakan terlebih dahulu</div>
+          <div class="quiz-option" onclick="checkQuiz(this, false, 'Salah. Penulisan kronologis adalah standar wajib instruksi kerja.')">D. Hanya sebagai pelengkap estetika tata letak halaman buku</div>
+        </div>
+        <div id="quiz-feedback" class="feedback-box"></div>
+      </div>
+    </section>
+
+    <!-- Section 5: Structured Student Assignment (LKPD 2) -->
+    <section class="card">
+      <div class="card-title">
+        <span>📝</span> 5. Lembar Kerja Peserta Didik (LKPD 2: Analisis Struktur Teks)
+      </div>
+      <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">
+        Isi lembar penugasan digital di bawah ini, lalu klik tombol <strong>"Unduh Lembar Kerja (.PDF)"</strong> untuk menyimpan hasilnya.
+      </p>
+      
+      <form id="lkpd-form">
+        <label for="student-name" style="font-weight: bold; font-size: 0.9rem;">Nama Lengkap Siswa:</label>
+        <input type="text" id="student-name" placeholder="Ketik nama lengkap..." required>
+
+        <label for="student-class" style="font-weight: bold; font-size: 0.9rem;">Kelas / No. Absen:</label>
+        <input type="text" id="student-class" placeholder="Contoh: 7-A / 12" required>
+
+        <label for="task-1" style="font-weight: bold; font-size: 0.9rem; margin-top: 0.5rem; display: block;">
+          Tugas 1: Identifikasi Fungsi Bagian Struktur
+        </label>
+        <small style="color: var(--text-muted);">Jelaskan perbedaan mendasar antara bagian "Alat dan Bahan" dengan bagian "Langkah-Langkah" dalam teks prosedur!</small>
+        <textarea id="task-1" rows="3" placeholder="Tuliskan penjelasanmu di sini..."></textarea>
+
+        <label for="task-2" style="font-weight: bold; font-size: 0.9rem; margin-top: 0.5rem; display: block;">
+          Tugas 2: Merancang Kerangka Struktur Sederhana
+        </label>
+        <small style="color: var(--text-muted);">Buat rancangan judul dan daftar bahan singkat untuk tema "Cara Membuat Masker Timun Alami untuk Kesehatan Kulit Wajah".</small>
+        <textarea id="task-2" rows="3" placeholder="Judul: ...&#10;Bahan/Alat: ..."></textarea>
+
+        <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+          <button type="button" class="btn" onclick="downloadPDF()">📥 Unduh Lembar Kerja (.PDF)</button>
+          <button type="reset" class="btn btn-secondary">🔄 Reset</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    function switchTab(tabId, evt) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+      evt.currentTarget.classList.add('active');
+      document.getElementById('tab-' + tabId).classList.add('active');
+    }
+
+    function analyzeStructure() {
+      let val = document.getElementById('struct-select').value;
+      let fb = document.getElementById('struct-feedback');
+      if (val !== "") {
+        fb.style.display = 'block';
+        if (val === 'bahan') {
+          fb.style.background = '#dcfce7';
+          fb.style.color = '#15803d';
+          fb.innerHTML = `<strong>Tepat sekali!</strong> Kalimat tersebut berisi rincian material/bahan yang wajib disiapkan sebelum memasak.`;
+        } else {
+          fb.style.background = '#fee2e2';
+          fb.style.color = '#b91c1c';
+          fb.innerHTML = `<strong>Kurang tepat.</strong> Kalimat tersebut merinci material yang dibutuhkan, sehingga termasuk bagian <em>Alat dan Bahan</em>.`;
+        }
+      } else {
+        fb.style.display = 'none';
+      }
+    }
+
+    function checkQuiz(element, isCorrect, explanation) {
+      let options = document.querySelectorAll('.quiz-option');
+      options.forEach(opt => opt.style.pointerEvents = 'none');
+      let fb = document.getElementById('quiz-feedback');
+      fb.style.display = 'block';
+      if (isCorrect) {
+        element.classList.add('correct');
+        fb.style.background = '#dcfce7';
+        fb.style.color = '#15803d';
+        fb.innerHTML = `<strong>Jawaban Benar!</strong> ${explanation}`;
+      } else {
+        element.classList.add('incorrect');
+        fb.style.background = '#fee2e2';
+        fb.style.color = '#b91c1c';
+        fb.innerHTML = `<strong>Jawaban Kurang Tepat.</strong> ${explanation}`;
+      }
+    }
+
+    // Export LKPD to Professional PDF with Borders & Styling
+    async function downloadPDF() {
+      let name = document.getElementById('student-name').value;
+      let sClass = document.getElementById('student-class').value;
+      let t1 = document.getElementById('task-1').value;
+      let t2 = document.getElementById('task-2').value;
+
+      if (!name || !sClass) {
+        alert('Mohon lengkapi Nama dan Kelas terlebih dahulu!');
+        return;
+      }
+
+      // Buat elemen penampung khusus untuk dokumen cetak PDF agar rapi & berborder klasik elegan
+      let printContainer = document.createElement('div');
+      printContainer.style.width = '794px'; // Standar lebar A4 (pixels pada 96 DPI)
+      printContainer.style.padding = '40px';
+      printContainer.style.background = '#ffffff';
+      printContainer.style.color = '#000000';
+      printContainer.style.fontFamily = 'Segoe UI, Arial, sans-serif';
+      printContainer.style.border = '4px double #0f766e';
+      printContainer.style.boxSizing = 'border-box';
+      printContainer.style.position = 'absolute';
+      printContainer.style.left = '-9999px';
+
+      printContainer.innerHTML = `
+        <div style="text-align: center; border-bottom: 2px solid #0f766e; padding-bottom: 15px; margin-bottom: 20px;">
+          <h2 style="color: #0f766e; margin-bottom: 5px; font-size: 22px;">LEMBAR KERJA PESERTA DIDIK (LKPD 2)</h2>
+          <p style="font-size: 14px; color: #0f172a; font-weight: bold;">Mata Pelajaran: Bahasa Indonesia Kelas 7 (Bab 3) - Kurikulum Merdeka</p>
+        </div>
+        <div style="margin-bottom: 20px; font-size: 14px; background: #f0fdf4; padding: 12px; border-radius: 6px; border: 1px solid #bbf7d0;">
+          <p><strong>Nama Siswa:</strong> ${name}</p>
+          <p><strong>Kelas / No. Absen:</strong> ${sClass}</p>
+          <p><strong>Tanggal Pengerjaan:</strong> ${new Date().toLocaleDateString('id-ID', { dateStyle: 'full' })}</p>
+        </div>
+        <div style="margin-bottom: 20px;">
+          <h3 style="font-size: 15px; color: #0f766e; border-bottom: 1px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;">Tugas 1: Identifikasi Fungsi Bagian Struktur</h3>
+          <p style="font-size: 13px; line-height: 1.6; white-space: pre-wrap; background: #f8fafc; padding: 10px; border-radius: 4px; border: 1px solid #e2e8f0;">${t1 || '(Belum diisi)'}</p>
+        </div>
+        <div style="margin-bottom: 20px;">
+          <h3 style="font-size: 15px; color: #0f766e; border-bottom: 1px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;">Tugas 2: Merancang Kerangka Struktur Sederhana</h3>
+          <p style="font-size: 13px; line-height: 1.6; white-space: pre-wrap; background: #f8fafc; padding: 10px; border-radius: 4px; border: 1px solid #e2e8f0;">${t2 || '(Belum diisi)'}</p>
+        </div>
+        <div style="text-align: right; margin-top: 40px; font-size: 12px; color: #475569;">
+          <p>Paraf Guru Pengampu: ............................</p>
+        </div>
+      `;
+
+      document.body.appendChild(printContainer);
+
+      try {
+        const canvas = await html2canvas(printContainer, { scale: 2, useCORS: true });
+        const imgData = canvas.toDataURL('image/png');
+
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        pdf.save(`LKPD_2_Struktur_Teks_${name.replace(/\s+/g, '_')}.pdf`);
+      } catch (error) {
+        console.error('Gagal mencetak PDF:', error);
+        alert('Terjadi kesalahan saat menghasilkan PDF.');
+      } finally {
+        document.body.removeChild(printContainer);
+      }
+    }
+  </script>
+</body>
+</html>
