@@ -13,7 +13,6 @@
             --card-bg: #1e293b;
             --accent: #38bdf8;
             --text-main: #f8fafc;
-            --text-sub: #94a3b8;
             --border: #334155;
             --warning: #ef4444;
         }
@@ -138,21 +137,63 @@
 
         .btn-submit:active { transform: scale(0.98); }
 
-        /* Template Khusus Hasil Cetak PDF */
-        #pdf-preview {
+        /* MODAL KHUSUS HASIL DENGAN VISUALISASI JELAS */
+        .modal-overlay {
             display: none;
-            background: #ffffff;
-            color: #0f172a;
-            padding: 24px;
-            border-radius: 8px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.9);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 16px;
         }
 
-        #pdf-preview h1 { font-size: 1.3rem; color: #0284c7; border-bottom: 2px solid #0284c7; padding-bottom: 6px; margin-bottom: 10px; }
-        #pdf-preview .meta-table { width: 100%; margin-bottom: 12px; border-collapse: collapse; }
-        #pdf-preview .meta-table td { padding: 4px 6px; font-size: 0.85rem; }
-        #pdf-preview .answer-item { margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid #e2e8f0; }
-        #pdf-preview .answer-item strong { color: #0f172a; font-size: 0.85rem; }
-        #pdf-preview .answer-item p { font-size: 0.85rem; color: #334155; margin-top: 2px; }
+        .modal-content {
+            background: #ffffff;
+            color: #0f172a;
+            max-width: 650px;
+            margin: 20px auto;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .modal-content h1 { font-size: 1.3rem; color: #0284c7; border-bottom: 2px solid #0284c7; padding-bottom: 6px; margin-bottom: 12px; }
+        .meta-table { width: 100%; margin-bottom: 12px; border-collapse: collapse; }
+        .meta-table td { padding: 4px; font-size: 0.85rem; color: #0f172a; }
+        .answer-item { margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid #cbd5e1; }
+        .answer-item strong { color: #0f172a; font-size: 0.85rem; }
+        .answer-item p { font-size: 0.85rem; color: #334155; margin-top: 2px; }
+
+        .btn-group-modal {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .btn-action {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .btn-download { background: #0284c7; color: #fff; }
+        .btn-close { background: #64748b; color: #fff; }
+
+        /* PRINT STYLES UNTUK PENCETAKAN PERAMBAN HP/LAPTOP */
+        @media print {
+            body * { visibility: hidden; }
+            #pdf-preview, #pdf-preview * { visibility: visible; }
+            #pdf-preview { position: absolute; left: 0; top: 0; width: 100%; background: #fff; color: #000; }
+            .btn-group-modal { display: none; }
+        }
     </style>
 </head>
 <body>
@@ -182,93 +223,93 @@
         Memuat teks analisis...
     </div>
 
-    <!-- Soal Telaah Kebahasaan (Total 7 Soal) -->
+    <!-- Soal Kebahasaan -->
     <div class="form-group">
         <label>3. Lembar Soal Telaah Kebahasaan (7 Butir)</label>
 
-        <!-- Soal 1 -->
         <div class="question-card">
             <p style="font-size: 0.85rem; margin-bottom: 8px;" id="q1-label">Soal 1: Analisis Adverbia/Kata Keterangan</p>
             <select id="q1-select"><option value="">-- Pilih Jawaban --</option></select>
         </div>
 
-        <!-- Soal 2 -->
         <div class="question-card">
             <p style="font-size: 0.85rem; margin-bottom: 8px;" id="q2-label">Soal 2: Klasifikasi Kalimat Imperatif</p>
             <select id="q2-select"><option value="">-- Pilih Jawaban --</option></select>
         </div>
 
-        <!-- Soal 3 -->
         <div class="question-card">
             <p style="font-size: 0.85rem; margin-bottom: 8px;" id="q3-label">Soal 3: Struktur Inversi / Konjungsi / Pelesapan</p>
             <select id="q3-select"><option value="">-- Pilih Jawaban --</option></select>
         </div>
 
-        <!-- Soal 4 -->
         <div class="question-card">
-            <p style="font-size: 0.85rem; margin-bottom: 6px;">Soal 4: <strong>Bukti Kutipan Adverbia:</strong> Salin ulang 1 frasa dari teks di atas yang membuktikan adanya penggunaan kata keterangan (cara/alat/tujuan/ukuran)!</p>
+            <p style="font-size: 0.85rem; margin-bottom: 6px;">Soal 4: <strong>Bukti Kutipan Adverbia:</strong> Salin ulang 1 frasa dari teks di atas yang membuktikan adanya penggunaan kata keterangan!</p>
             <input type="text" id="q4-text" placeholder="Tuliskan frasa bukti adverbia dari teks...">
         </div>
 
-        <!-- Soal 5 -->
         <div class="question-card">
-            <p style="font-size: 0.85rem; margin-bottom: 6px;">Soal 5: <strong>Bukti Kutipan Imperatif:</strong> Salin ulang 1 kalimat perintah/ajakan/larangan utuh yang terdapat dalam teks bacaan di atas!</p>
+            <p style="font-size: 0.85rem; margin-bottom: 6px;">Soal 5: <strong>Bukti Kutipan Imperatif:</strong> Salin ulang 1 kalimat perintah/ajakan/larangan utuh dari teks bacaan!</p>
             <input type="text" id="q5-text" placeholder="Tuliskan kalimat imperatif dari teks...">
         </div>
 
-        <!-- Soal 6 -->
         <div class="question-card">
-            <p style="font-size: 0.85rem; margin-bottom: 6px;">Soal 6: <strong>Kreasi Imperatif Mandiri:</strong> Buatlah 1 contoh kalimat larangan yang berhubungan dengan kegiatan piket kebersihan kelasmu sendiri!</p>
+            <p style="font-size: 0.85rem; margin-bottom: 6px;">Soal 6: <strong>Kreasi Imperatif Mandiri:</strong> Buatlah 1 contoh kalimat larangan yang berhubungan dengan kegiatan piket kelasmu!</p>
             <textarea id="q6-text" rows="2" placeholder="Contoh: Jangan membuang sampah sisa makanan ke dalam laci meja!"></textarea>
         </div>
 
-        <!-- Soal 7 -->
         <div class="question-card">
-            <p style="font-size: 0.85rem; margin-bottom: 6px;">Soal 7: <strong>Kreasi Adverbia Tujuan Mandiri:</strong> Buatlah 1 contoh kalimat perintah yang menggunakan kata keterangan tujuan (penanda: <em>agar / supaya</em>) terkait aktivitas belajar harianmu!</p>
-            <textarea id="q7-text" rows="2" placeholder="Contoh: Simpanlah buku pelajaranmu di dalam tas agar tidak tertinggal besok pagi."></textarea>
+            <p style="font-size: 0.85rem; margin-bottom: 6px;">Soal 7: <strong>Kreasi Adverbia Tujuan Mandiri:</strong> Buatlah 1 contoh kalimat perintah yang menggunakan kata keterangan tujuan (penanda: <em>agar / supaya</em>)!</p>
+            <textarea id="q7-text" rows="2" placeholder="Contoh: Simpanlah buku pelajaranmu di dalam tas agar tidak tertinggal."></textarea>
         </div>
     </div>
 
-    <button class="btn-submit" onclick="generatePDF()">Selesaikan & Unduh PDF Hasil Ujian</button>
+    <button class="btn-submit" onclick="processEvaluation()">Selesaikan & Tampilkan Hasil</button>
 </div>
 
-<!-- Template Cetak Laporan PDF -->
-<div id="pdf-preview">
-    <h1>Laporan Tugas Kebahasaan (7 Soal)</h1>
-    <table class="meta-table">
-        <tr>
-            <td><strong>Nama Siswa:</strong> <span id="pdf-name">-</span></td>
-            <td><strong>Kelas / No:</strong> <span id="pdf-class">-</span> / <span id="pdf-absent">-</span></td>
-        </tr>
-        <tr>
-            <td><strong>Kode Paket Teks:</strong> <span id="pdf-variant">-</span></td>
-            <td><strong>Waktu Selesai:</strong> <span id="pdf-time">-</span></td>
-        </tr>
-        <tr>
-            <td colspan="2"><strong>Kode Autentikasi Unik:</strong> <span id="pdf-hash">-</span></td>
-        </tr>
-    </table>
-    <hr style="margin-bottom: 10px; border: 0; border-top: 1px solid #cbd5e1;">
+<!-- POP-UP MODAL LAPORAN RESMI (VISUAL TERJAMIN RENDER) -->
+<div class="modal-overlay" id="result-modal">
+    <div class="modal-content" id="pdf-preview">
+        <h1>Laporan Tugas Kebahasaan Mandiri</h1>
+        <table class="meta-table">
+            <tr>
+                <td><strong>Nama Siswa:</strong> <span id="pdf-name">-</span></td>
+                <td><strong>Kelas / No:</strong> <span id="pdf-class">-</span> / <span id="pdf-absent">-</span></td>
+            </tr>
+            <tr>
+                <td><strong>Kode Paket Teks:</strong> <span id="pdf-variant">-</span></td>
+                <td><strong>Waktu Selesai:</strong> <span id="pdf-time">-</span></td>
+            </tr>
+            <tr>
+                <td colspan="2"><strong>Kode Autentikasi:</strong> <span id="pdf-hash">-</span></td>
+            </tr>
+        </table>
+        <hr style="margin-bottom: 10px; border: 0; border-top: 1px solid #cbd5e1;">
 
-    <div style="background: #f1f5f9; padding: 8px; border-radius: 4px; font-size: 0.8rem; margin-bottom: 10px;" id="pdf-sample-text">
-        <strong>Teks Bacaan:</strong> -
-    </div>
+        <div style="background: #f1f5f9; padding: 8px; border-radius: 4px; font-size: 0.8rem; margin-bottom: 10px;" id="pdf-sample-text">
+            <strong>Teks Bacaan:</strong> -
+        </div>
 
-    <div class="answer-item"><strong>Soal 1 (Adverbia):</strong> <p id="pdf-a1">-</p></div>
-    <div class="answer-item"><strong>Soal 2 (Imperatif):</strong> <p id="pdf-a2">-</p></div>
-    <div class="answer-item"><strong>Soal 3 (Inversi/Kaidah):</strong> <p id="pdf-a3">-</p></div>
-    <div class="answer-item"><strong>Soal 4 (Kutipan Bukti Adverbia):</strong> <p id="pdf-a4">-</p></div>
-    <div class="answer-item"><strong>Soal 5 (Kutipan Bukti Imperatif):</strong> <p id="pdf-a5">-</p></div>
-    <div class="answer-item"><strong>Soal 6 (Kreasi Larangan Piket):</strong> <p id="pdf-a6">-</p></div>
-    <div class="answer-item"><strong>Soal 7 (Kreasi Adverbia Tujuan):</strong> <p id="pdf-a7">-</p></div>
+        <div class="answer-item"><strong>Soal 1 (Adverbia):</strong> <p id="pdf-a1">-</p></div>
+        <div class="answer-item"><strong>Soal 2 (Imperatif):</strong> <p id="pdf-a2">-</p></div>
+        <div class="answer-item"><strong>Soal 3 (Inversi/Kaidah):</strong> <p id="pdf-a3">-</p></div>
+        <div class="answer-item"><strong>Soal 4 (Kutipan Bukti Adverbia):</strong> <p id="pdf-a4">-</p></div>
+        <div class="answer-item"><strong>Soal 5 (Kutipan Bukti Imperatif):</strong> <p id="pdf-a5">-</p></div>
+        <div class="answer-item"><strong>Soal 6 (Kreasi Larangan Piket):</strong> <p id="pdf-a6">-</p></div>
+        <div class="answer-item"><strong>Soal 7 (Kreasi Adverbia Tujuan):</strong> <p id="pdf-a7">-</p></div>
 
-    <div style="margin-top: 16px; font-size: 0.75rem; color: #64748b; text-align: right;">
-        *Dokumen sah lembar kerja individu. Diterbitkan secara otomatis oleh Sistem Ujian HP.
+        <div style="margin-top: 12px; font-size: 0.75rem; color: #64748b; text-align: right;">
+            *Dokumen sah lembar kerja individu. Diterbitkan secara otomatis oleh Sistem Ujian HP.
+        </div>
+
+        <div class="btn-group-modal">
+            <button class="btn-action btn-download" onclick="downloadPDFDirect()">Unduh PDF / Cetak</button>
+            <button class="btn-action btn-close" onclick="closeModal()">Kembali Edit</button>
+        </div>
     </div>
 </div>
 
 <script>
-    // 10 DATABASE VARIAN TEKS BACAAN TEKS PROSEDUR BERVARIASI
+    // 10 DATABASE VARIAN TEKS BACAAN
     const TEXT_VARIANTS = [
         {
             code: "PAKET-01 (Kopi Tubruk)",
@@ -297,7 +338,7 @@
             q1Opts: ["Adverbia Kuantitas/Durasi", "Adverbia Cara", "Adverbia Alat"],
             q2: "Kalimat nomor (3) merupakan bentuk kalimat...",
             q2Opts: ["Kalimat Imperatif Ajakan (Persuasif)", "Kalimat Larangan", "Kalimat Perintah Biasa"],
-            q3: "Kata ' Basuhlah [tanganmu] hingga bersih...' pada kalimat (2) memuat kaidah...",
+            q3: "Kata 'Basuhlah [tanganmu] hingga bersih...' pada kalimat (2) memuat kaidah...",
             q3Opts: ["Pelesapan Objek/Subjek (Peniadaan kata yang sama)", "Kalimat Inversi", "Adverbia Alat"]
         },
         {
@@ -380,16 +421,13 @@
 
         document.getElementById('variant-label').innerText = `Kode Paket: ${selectedVariant.code}`;
         document.getElementById('text-sample-display').innerText = `"${selectedVariant.text}"`;
-        
-        // Soal 1
+
         document.getElementById('q1-label').innerText = `Soal 1: ${selectedVariant.q1}`;
         populateSelect('q1-select', selectedVariant.q1Opts);
 
-        // Soal 2
         document.getElementById('q2-label').innerText = `Soal 2: ${selectedVariant.q2}`;
         populateSelect('q2-select', selectedVariant.q2Opts);
 
-        // Soal 3
         document.getElementById('q3-label').innerText = `Soal 3: ${selectedVariant.q3}`;
         populateSelect('q3-select', selectedVariant.q3Opts);
     }
@@ -422,17 +460,17 @@
 
         if (timeLeft <= 0) {
             clearInterval(countdown);
-            alert("Waktu 30 menit telah habis! Sistem akan mengunci dan memproses PDF jawaban Anda.");
-            generatePDF();
+            alert("Waktu 30 menit telah habis! Sistem akan mengunci dan memproses lembar jawaban Anda.");
+            processEvaluation();
         }
         timeLeft--;
     }, 1000);
 
-    // CETAK PDF
-    function generatePDF() {
-        const name = document.getElementById('student-name').value;
-        const cls = document.getElementById('student-class').value;
-        const absent = document.getElementById('student-absent').value;
+    // PROSES TAMPILKAN MODAL LAPORAN
+    function processEvaluation() {
+        const name = document.getElementById('student-name').value.trim();
+        const cls = document.getElementById('student-class').value.trim();
+        const absent = document.getElementById('student-absent').value.trim();
 
         if(!name || !cls || !absent) {
             alert("Mohon lengkapi Identitas (Nama, Kelas, No Absen) terlebih dahulu!");
@@ -448,28 +486,46 @@
         document.getElementById('pdf-time').innerText = now.toLocaleTimeString('id-ID') + " WIB";
         document.getElementById('pdf-hash').innerText = "VERIF-" + Math.random().toString(36).substr(2, 8).toUpperCase();
 
-        document.getElementById('pdf-sample-text').innerText = `Teks Sumber (${selectedVariant.code}): "${selectedVariant.text}"`;
+        document.getElementById('pdf-sample-text').innerHTML = `<strong>Teks Sumber (${selectedVariant.code}):</strong> "${selectedVariant.text}"`;
         document.getElementById('pdf-a1').innerText = document.getElementById('q1-select').value || "Belum dijawab";
         document.getElementById('pdf-a2').innerText = document.getElementById('q2-select').value || "Belum dijawab";
         document.getElementById('pdf-a3').innerText = document.getElementById('q3-select').value || "Belum dijawab";
-        document.getElementById('pdf-a4').innerText = document.getElementById('q4-text').value || "Belum dijawab";
-        document.getElementById('pdf-a5').innerText = document.getElementById('q5-text').value || "Belum dijawab";
-        document.getElementById('pdf-a6').innerText = document.getElementById('q6-text').value || "Belum dijawab";
-        document.getElementById('pdf-a7').innerText = document.getElementById('q7-text').value || "Belum dijawab";
+        document.getElementById('pdf-a4').innerText = document.getElementById('q4-text').value.trim() || "Belum dijawab";
+        document.getElementById('pdf-a5').innerText = document.getElementById('q5-text').value.trim() || "Belum dijawab";
+        document.getElementById('pdf-a6').innerText = document.getElementById('q6-text').value.trim() || "Belum dijawab";
+        document.getElementById('pdf-a7').innerText = document.getElementById('q7-text').value.trim() || "Belum dijawab";
 
+        document.getElementById('result-modal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('result-modal').style.display = 'none';
+    }
+
+    // FUNGSI UNDUH PDF LANGSUNG DARI MODAL DENGAN FALLBACK NATIVE PRINT
+    function downloadPDFDirect() {
         const element = document.getElementById('pdf-preview');
-        element.style.display = 'block';
+        const name = document.getElementById('student-name').value.trim();
+        const cls = document.getElementById('student-class').value.trim();
+
+        // Sembunyikan tombol modal saat menangkap gambar
+        const btnGroup = document.querySelector('.btn-group-modal');
+        btnGroup.style.display = 'none';
 
         const opt = {
-            margin:       8,
-            filename:     `Tugas_Kebahasaan_7Soal_${name.replace(/\s+/g, '_')}_${cls}.pdf`,
+            margin:       [10, 10, 10, 10],
+            filename:     `Tugas_Kebahasaan_${name.replace(/\s+/g, '_')}_${cls}.pdf`,
             image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2 },
+            html2canvas:  { scale: 2, useCORS: true, logging: false },
             jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
         };
 
         html2pdf().set(opt).from(element).save().then(() => {
-            element.style.display = 'none';
+            btnGroup.style.display = 'grid';
+        }).catch(err => {
+            btnGroup.style.display = 'grid';
+            // Jika pustaka JS gagal, pemicu pencetak bawaan sistem HP/Laptop
+            window.print();
         });
     }
 </script>
