@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lembar Kerja Individu: Kebahasaan Teks Prosedur (7 Soal)</title>
+    <!-- Google Fonts & html2pdf CDN -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent: #38bdf8;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --border: #334155;
+            --warning: #ef4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding: 12px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 680px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .header-bar {
+            position: sticky;
+            top: 0;
+            background: var(--card-bg);
+            z-index: 100;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .timer-badge {
+            background: var(--warning);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .variant-tag {
+            background: #0284c7;
+            color: #fff;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 4px;
+            display: inline-block;
+        }
+
+        h2 { font-size: 1.2rem; color: var(--accent); margin-bottom: 2px; }
+
+        .form-group { margin-bottom: 16px; }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-main);
+        }
+
+        input[type="text"], select, textarea {
+            width: 100%;
+            padding: 12px;
+            background: #0f172a;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        input[type="text"]:focus, select:focus, textarea:focus {
+            border-color: var(--accent);
+        }
+
+        .sample-box {
+            background: #0f172a;
+            border-left: 4px solid var(--accent);
+            padding: 14px;
+            border-radius: 6px;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+            color: #cbd5e1;
+        }
+
+        .question-card {
+            background: #182232;
+            padding: 14px;
+            border-radius: 10px;
+            margin-bottom: 14px;
+            border: 1px solid #26334d;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #0284c7, #0369a1);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4);
+        }
+
+        .btn-submit:active { transform: scale(0.98); }
+
+        /* Template Khusus Hasil Cetak PDF */
+        #pdf-preview {
+            display: none;
+            background: #ffffff;
+            color: #0f172a;
+            padding: 24px;
+            border-radius: 8px;
+        }
+
+        #pdf-preview h1 { font-size: 1.3rem; color: #0284c7; border-bottom: 2px solid #0284c7; padding-bottom: 6px; margin-bottom: 10px; }
+        #pdf-preview .meta-table { width: 100%; margin-bottom: 12px; border-collapse: collapse; }
+        #pdf-preview .meta-table td { padding: 4px 6px; font-size: 0.85rem; }
+        #pdf-preview .answer-item { margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid #e2e8f0; }
+        #pdf-preview .answer-item strong { color: #0f172a; font-size: 0.85rem; }
+        #pdf-preview .answer-item p { font-size: 0.85rem; color: #334155; margin-top: 2px; }
+    </style>
+</head>
+<body>
+
+<div class="container" id="app-container">
+    <div class="header-bar">
+        <div>
+            <h2>Telaah Kebahasaan (7 Soal)</h2>
+            <div class="variant-tag" id="variant-label">Kode Paket: Memuat...</div>
+        </div>
+        <div class="timer-badge" id="timer-display">30:00</div>
+    </div>
+
+    <!-- Identitas Siswa -->
+    <div class="form-group">
+        <label>1. Identitas Lengkap Siswa</label>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
+            <input type="text" id="student-name" placeholder="Nama Lengkap" required>
+            <input type="text" id="student-class" placeholder="Kelas (misal: 7A)" required>
+        </div>
+        <input type="text" id="student-absent" placeholder="Nomor Absen" required>
+    </div>
+
+    <!-- Teks Bacaan Acak -->
+    <label>2. Teks Sumber Analisis (Acak Otomatis Sistem)</label>
+    <div class="sample-box" id="text-sample-display">
+        Memuat teks analisis...
+    </div>
+
+    <!-- Soal Telaah Kebahasaan (Total 7 Soal) -->
+    <div class="form-group">
+        <label>3. Lembar Soal Telaah Kebahasaan (7 Butir)</label>
+
+        <!-- Soal 1 -->
+        <div class="question-card">
+            <p style="font-size: 0.85rem; margin-bottom: 8px;" id="q1-label">Soal 1: Analisis Adverbia/Kata Keterangan</p>
+            <select id="q1-select"><option value="">-- Pilih Jawaban --</option></select>
+        </div>
+
+        <!-- Soal 2 -->
+        <div class="question-card">
+            <p style="font-size: 0.85rem; margin-bottom: 8px;" id="q2-label">Soal 2: Klasifikasi Kalimat Imperatif</p>
+            <select id="q2-select"><option value="">-- Pilih Jawaban --</option></select>
+        </div>
+
+        <!-- Soal 3 -->
+        <div class="question-card">
+            <p style="font-size: 0.85rem; margin-bottom: 8px;" id="q3-label">Soal 3: Struktur Inversi / Konjungsi / Pelesapan</p>
+            <select id="q3-select"><option value="">-- Pilih Jawaban --</option></select>
+        </div>
+
+        <!-- Soal 4 -->
+        <div class="question-card">
+            <p style="font-size: 0.85rem; margin-bottom: 6px;">Soal 4: <strong>Bukti Kutipan Adverbia:</strong> Salin ulang 1 frasa dari teks di atas yang membuktikan adanya penggunaan kata keterangan (cara/alat/tujuan/ukuran)!</p>
+            <input type="text" id="q4-text" placeholder="Tuliskan frasa bukti adverbia dari teks...">
+        </div>
+
+        <!-- Soal 5 -->
+        <div class="question-card">
+            <p style="font-size: 0.85rem; margin-bottom: 6px;">Soal 5: <strong>Bukti Kutipan Imperatif:</strong> Salin ulang 1 kalimat perintah/ajakan/larangan utuh yang terdapat dalam teks bacaan di atas!</p>
+            <input type="text" id="q5-text" placeholder="Tuliskan kalimat imperatif dari teks...">
+        </div>
+
+        <!-- Soal 6 -->
+        <div class="question-card">
+            <p style="font-size: 0.85rem; margin-bottom: 6px;">Soal 6: <strong>Kreasi Imperatif Mandiri:</strong> Buatlah 1 contoh kalimat larangan yang berhubungan dengan kegiatan piket kebersihan kelasmu sendiri!</p>
+            <textarea id="q6-text" rows="2" placeholder="Contoh: Jangan membuang sampah sisa makanan ke dalam laci meja!"></textarea>
+        </div>
+
+        <!-- Soal 7 -->
+        <div class="question-card">
+            <p style="font-size: 0.85rem; margin-bottom: 6px;">Soal 7: <strong>Kreasi Adverbia Tujuan Mandiri:</strong> Buatlah 1 contoh kalimat perintah yang menggunakan kata keterangan tujuan (penanda: <em>agar / supaya</em>) terkait aktivitas belajar harianmu!</p>
+            <textarea id="q7-text" rows="2" placeholder="Contoh: Simpanlah buku pelajaranmu di dalam tas agar tidak tertinggal besok pagi."></textarea>
+        </div>
+    </div>
+
+    <button class="btn-submit" onclick="generatePDF()">Selesaikan & Unduh PDF Hasil Ujian</button>
+</div>
+
+<!-- Template Cetak Laporan PDF -->
+<div id="pdf-preview">
+    <h1>Laporan Tugas Kebahasaan (7 Soal)</h1>
+    <table class="meta-table">
+        <tr>
+            <td><strong>Nama Siswa:</strong> <span id="pdf-name">-</span></td>
+            <td><strong>Kelas / No:</strong> <span id="pdf-class">-</span> / <span id="pdf-absent">-</span></td>
+        </tr>
+        <tr>
+            <td><strong>Kode Paket Teks:</strong> <span id="pdf-variant">-</span></td>
+            <td><strong>Waktu Selesai:</strong> <span id="pdf-time">-</span></td>
+        </tr>
+        <tr>
+            <td colspan="2"><strong>Kode Autentikasi Unik:</strong> <span id="pdf-hash">-</span></td>
+        </tr>
+    </table>
+    <hr style="margin-bottom: 10px; border: 0; border-top: 1px solid #cbd5e1;">
+
+    <div style="background: #f1f5f9; padding: 8px; border-radius: 4px; font-size: 0.8rem; margin-bottom: 10px;" id="pdf-sample-text">
+        <strong>Teks Bacaan:</strong> -
+    </div>
+
+    <div class="answer-item"><strong>Soal 1 (Adverbia):</strong> <p id="pdf-a1">-</p></div>
+    <div class="answer-item"><strong>Soal 2 (Imperatif):</strong> <p id="pdf-a2">-</p></div>
+    <div class="answer-item"><strong>Soal 3 (Inversi/Kaidah):</strong> <p id="pdf-a3">-</p></div>
+    <div class="answer-item"><strong>Soal 4 (Kutipan Bukti Adverbia):</strong> <p id="pdf-a4">-</p></div>
+    <div class="answer-item"><strong>Soal 5 (Kutipan Bukti Imperatif):</strong> <p id="pdf-a5">-</p></div>
+    <div class="answer-item"><strong>Soal 6 (Kreasi Larangan Piket):</strong> <p id="pdf-a6">-</p></div>
+    <div class="answer-item"><strong>Soal 7 (Kreasi Adverbia Tujuan):</strong> <p id="pdf-a7">-</p></div>
+
+    <div style="margin-top: 16px; font-size: 0.75rem; color: #64748b; text-align: right;">
+        *Dokumen sah lembar kerja individu. Diterbitkan secara otomatis oleh Sistem Ujian HP.
+    </div>
+</div>
+
+<script>
+    // 10 DATABASE VARIAN TEKS BACAAN TEKS PROSEDUR BERVARIASI
+    const TEXT_VARIANTS = [
+        {
+            code: "PAKET-01 (Kopi Tubruk)",
+            text: "(1) Tuangkanlah air panas ke dalam cangkir secara perlahan agar serbuk kopi tidak menggumpal. (2) Jangan mengaduk minuman ini menggunakan sendok besi yang basah! (3) Mari kita nikmati sajian kopi hangat ini bersama biskuit renyah.",
+            q1: "Kata 'secara perlahan' pada kalimat (1) merupakan kata keterangan...",
+            q1Opts: ["Adverbia Cara", "Adverbia Alat", "Adverbia Kuantitas"],
+            q2: "Kalimat nomor (2) dikategorikan sebagai jenis kalimat...",
+            q2Opts: ["Kalimat Imperatif Larangan", "Kalimat Ajakan", "Kalimat Perintah Biasa"],
+            q3: "Frasa 'agar serbuk kopi tidak menggumpal' pada kalimat (1) berfungsi sebagai...",
+            q3Opts: ["Adverbia Tujuan", "Kalimat Inversi", "Pelesapan Subjek"]
+        },
+        {
+            code: "PAKET-02 (Laptop/Komputer)",
+            text: "(1) Bersihkan sela-sela papan ketik menggunakan kuas halus secara rutin. (2) Jangan menyemprotkan cairan pembersih secara langsung ke atas layar monitor! (3) Terasa lebih rapi meja belajar kita jika kabel komputer diikat dengan kabel tis.",
+            q1: "Frasa 'menggunakan kuas halus' pada kalimat (1) tergolong sebagai...",
+            q1Opts: ["Adverbia Alat", "Adverbia Kuantitas", "Adverbia Tujuan"],
+            q2: "Kalimat nomor (2) tergolong ke dalam bentuk...",
+            q2Opts: ["Kalimat Imperatif Larangan", "Kalimat Ajakan", "Kalimat Permintaan"],
+            q3: "Kalimat nomor (3) 'Terasa lebih rapi meja belajar kita...' dinamakan...",
+            q3Opts: ["Kalimat Inversi (Predikat mendahului Subjek)", "Kalimat Pelesapan", "Kalimat Pasif"]
+        },
+        {
+            code: "PAKET-03 (Mencuci Tangan)",
+            text: "(1) Cucilah tanganmu dengan sabun cair selama 20 detik di bawah air mengalir. (2) Basuhlah busa hingga bersih sempurna. (3) Mari kita biasakan hidup bersih agar terhindar dari kuman penyakit.",
+            q1: "Frasa 'selama 20 detik' pada kalimat (1) menunjukkan keterangan...",
+            q1Opts: ["Adverbia Kuantitas/Durasi", "Adverbia Cara", "Adverbia Alat"],
+            q2: "Kalimat nomor (3) merupakan bentuk kalimat...",
+            q2Opts: ["Kalimat Imperatif Ajakan (Persuasif)", "Kalimat Larangan", "Kalimat Perintah Biasa"],
+            q3: "Kata ' Basuhlah [tanganmu] hingga bersih...' pada kalimat (2) memuat kaidah...",
+            q3Opts: ["Pelesapan Objek/Subjek (Peniadaan kata yang sama)", "Kalimat Inversi", "Adverbia Alat"]
+        },
+        {
+            code: "PAKET-04 (Kebersihan Sekolah)",
+            text: "(1) Sapulah lantai kelas hingga bersih tanpa ada debu tersisa. (2) Jangan membuang sampah plastik ke dalam saluran air sekolah! (3) Ayo kita jaga keindahan taman kelas secara bergotong royong.",
+            q1: "Kata 'secara bergotong royong' pada kalimat (3) merupakan keterangan...",
+            q1Opts: ["Adverbia Cara", "Adverbia Alat", "Adverbia Waktu"],
+            q2: "Kalimat nomor (2) dinamakan kalimat...",
+            q2Opts: ["Kalimat Imperatif Larangan", "Kalimat Ajakan", "Kalimat Inversi"],
+            q3: "Kalimat nomor (3) diawali kata 'Ayo' menandakan jenis...",
+            q3Opts: ["Kalimat Ajakan / Persuasif", "Kalimat Perintah Biasa", "Kalimat Larangan"]
+        },
+        {
+            code: "PAKET-05 (Olahraga Pagi)",
+            text: "(1) Lakukanlah pemanasan otot secara perlahan sebelum mulai berlari. (2) Nikmatilah udara segar pagi hari selama 15 menit. (3) Terasa lebih bugar tubuh kita jika berolahraga secara teratur.",
+            q1: "Frasa 'selama 15 menit' pada kalimat (2) merupakan keterangan...",
+            q1Opts: ["Adverbia Kuantitas/Durasi", "Adverbia Cara", "Adverbia Tujuan"],
+            q2: "Kalimat nomor (1) memuat kata kerja perintah yang ditandai dengan partikel penegas...",
+            q2Opts: ["Partikel -lah", "Imbuhan ber-", "Partikel -kah"],
+            q3: "Susunan kalimat (3) yang mendahulukan predikat 'Terasa lebih bugar' disebut...",
+            q3Opts: ["Kalimat Inversi", "Kalimat Pelesapan", "Kalimat Majemuk"]
+        },
+        {
+            code: "PAKET-06 (Membuat Kerajinan)",
+            text: "(1) Potonglah kertas karton menggunakan gunting tajam secara berhati-hati. (2) Jangan menempelkan lem terlalu tebal agar kertas tidak bergelombang! (3) Rekatkan kedua sisi tersebut lalu tekan selama 1 menit.",
+            q1: "Frasa 'menggunakan gunting tajam' pada kalimat (1) adalah keterangan...",
+            q1Opts: ["Adverbia Alat", "Adverbia Tujuan", "Adverbia Kuantitas"],
+            q2: "Frasa 'agar kertas tidak bergelombang' pada kalimat (2) menyatakan...",
+            q2Opts: ["Adverbia Tujuan", "Adverbia Cara", "Adverbia Alat"],
+            q3: "Kalimat nomor (2) merupakan bentuk kalimat...",
+            q3Opts: ["Kalimat Imperatif Larangan", "Kalimat Ajakan", "Kalimat Inversi"]
+        },
+        {
+            code: "PAKET-07 (Rebus Mi Instan)",
+            text: "(1) Rebuslah mi di dalam air mendidih selama 3 menit. (2) Tiriskan air rebusan secara perlahan, lalu tuangkan bumbu ke dalam mangkuk. (3) Mari kita nikmati mi hangat ini selagi panas.",
+            q1: "Kata 'secara perlahan' pada kalimat (2) merupakan...",
+            q1Opts: ["Adverbia Cara", "Adverbia Alat", "Adverbia Tempat"],
+            q2: "Frasa 'selama 3 menit' pada kalimat (1) menunjukkan...",
+            q2Opts: ["Adverbia Kuantitas/Durasi", "Adverbia Cara", "Adverbia Alat"],
+            q3: "Kalimat nomor (3) tergolong sebagai...",
+            q3Opts: ["Kalimat Imperatif Ajakan", "Kalimat Perintah Biasa", "Kalimat Larangan"]
+        },
+        {
+            code: "PAKET-08 (Menanam Tanaman)",
+            text: "(1) Siramlah bibit tanaman menggunakan gembor secara perlahan setiap pagi. (2) Letakkan pot di area terbuka agar mendapat sinar matahari. (3) Jangan membiarkan tanah pot mengering!",
+            q1: "Frasa 'menggunakan gembor' pada kalimat (1) adalah...",
+            q1Opts: ["Adverbia Alat", "Adverbia Kuantitas", "Adverbia Tujuan"],
+            q2: "Kalimat nomor (3) merupakan bentuk kalimat...",
+            q2Opts: ["Kalimat Imperatif Larangan", "Kalimat Ajakan", "Kalimat Permintaan"],
+            q3: "Frasa 'agar mendapat sinar matahari' pada kalimat (2) menyatakan...",
+            q3Opts: ["Adverbia Tujuan", "Adverbia Alat", "Adverbia Cara"]
+        },
+        {
+            code: "PAKET-09 (Piket Ruang Kelas)",
+            text: "(1) Bersihkan papan tulis menggunakan penghapus kain hingga bersih. (2) Rapikan meja dan kursi secara teratur. (3) Terasa lebih nyaman ruang belajar kita saat kondisi bersih.",
+            q1: "Frasa 'menggunakan penghapus kain' pada kalimat (1) tergolong...",
+            q1Opts: ["Adverbia Alat", "Adverbia Kuantitas", "Adverbia Cara"],
+            q2: "Kata 'secara teratur' pada kalimat (2) tergolong sebagai...",
+            q2Opts: ["Adverbia Cara", "Adverbia Alat", "Adverbia Tujuan"],
+            q3: "Kalimat nomor (3) menggunakan susunan struktur...",
+            q3Opts: ["Kalimat Inversi", "Kalimat Pelesapan", "Kalimat Pasif"]
+        },
+        {
+            code: "PAKET-10 (Penggunaan Blender)",
+            text: "(1) Pasanglah mangkuk blender pada dudukan mesin secara pas. (2) Tekan tombol daya selama 30 detik hingga buah hancur halus. (3) Jangan membuka penutup blender saat mesin sedang berputar!",
+            q1: "Frasa 'selama 30 detik' pada kalimat (2) tergolong...",
+            q1Opts: ["Adverbia Kuantitas/Durasi", "Adverbia Alat", "Adverbia Tujuan"],
+            q2: "Kalimat nomor (3) merupakan bentuk kalimat...",
+            q2Opts: ["Kalimat Imperatif Larangan", "Kalimat Perintah Biasa", "Kalimat Ajakan"],
+            q3: "Kata 'secara pas' pada kalimat (1) menyatakan keterangan...",
+            q3Opts: ["Adverbia Cara", "Adverbia Alat", "Adverbia Tempat"]
+        }
+    ];
+
+    let selectedVariant;
+
+    function initRandomVariant() {
+        const randomIndex = Math.floor(Math.random() * TEXT_VARIANTS.length);
+        selectedVariant = TEXT_VARIANTS[randomIndex];
+
+        document.getElementById('variant-label').innerText = `Kode Paket: ${selectedVariant.code}`;
+        document.getElementById('text-sample-display').innerText = `"${selectedVariant.text}"`;
+        
+        // Soal 1
+        document.getElementById('q1-label').innerText = `Soal 1: ${selectedVariant.q1}`;
+        populateSelect('q1-select', selectedVariant.q1Opts);
+
+        // Soal 2
+        document.getElementById('q2-label').innerText = `Soal 2: ${selectedVariant.q2}`;
+        populateSelect('q2-select', selectedVariant.q2Opts);
+
+        // Soal 3
+        document.getElementById('q3-label').innerText = `Soal 3: ${selectedVariant.q3}`;
+        populateSelect('q3-select', selectedVariant.q3Opts);
+    }
+
+    function populateSelect(elemId, optionsArray) {
+        const selectElem = document.getElementById(elemId);
+        selectElem.innerHTML = '<option value="">-- Pilih Jawaban --</option>';
+        let copy = [...optionsArray].sort(() => Math.random() - 0.5);
+        copy.forEach(opt => {
+            let el = document.createElement('option');
+            el.value = opt;
+            el.textContent = opt;
+            selectElem.appendChild(el);
+        });
+    }
+
+    initRandomVariant();
+
+    // TIMER 30 MENIT
+    let timeLeft = 30 * 60;
+    const timerDisplay = document.getElementById('timer-display');
+
+    const countdown = setInterval(() => {
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+
+        timerDisplay.innerText = `${minutes}:${seconds}`;
+
+        if (timeLeft <= 0) {
+            clearInterval(countdown);
+            alert("Waktu 30 menit telah habis! Sistem akan mengunci dan memproses PDF jawaban Anda.");
+            generatePDF();
+        }
+        timeLeft--;
+    }, 1000);
+
+    // CETAK PDF
+    function generatePDF() {
+        const name = document.getElementById('student-name').value;
+        const cls = document.getElementById('student-class').value;
+        const absent = document.getElementById('student-absent').value;
+
+        if(!name || !cls || !absent) {
+            alert("Mohon lengkapi Identitas (Nama, Kelas, No Absen) terlebih dahulu!");
+            return;
+        }
+
+        document.getElementById('pdf-name').innerText = name;
+        document.getElementById('pdf-class').innerText = cls;
+        document.getElementById('pdf-absent').innerText = absent;
+        document.getElementById('pdf-variant').innerText = selectedVariant.code;
+        
+        const now = new Date();
+        document.getElementById('pdf-time').innerText = now.toLocaleTimeString('id-ID') + " WIB";
+        document.getElementById('pdf-hash').innerText = "VERIF-" + Math.random().toString(36).substr(2, 8).toUpperCase();
+
+        document.getElementById('pdf-sample-text').innerText = `Teks Sumber (${selectedVariant.code}): "${selectedVariant.text}"`;
+        document.getElementById('pdf-a1').innerText = document.getElementById('q1-select').value || "Belum dijawab";
+        document.getElementById('pdf-a2').innerText = document.getElementById('q2-select').value || "Belum dijawab";
+        document.getElementById('pdf-a3').innerText = document.getElementById('q3-select').value || "Belum dijawab";
+        document.getElementById('pdf-a4').innerText = document.getElementById('q4-text').value || "Belum dijawab";
+        document.getElementById('pdf-a5').innerText = document.getElementById('q5-text').value || "Belum dijawab";
+        document.getElementById('pdf-a6').innerText = document.getElementById('q6-text').value || "Belum dijawab";
+        document.getElementById('pdf-a7').innerText = document.getElementById('q7-text').value || "Belum dijawab";
+
+        const element = document.getElementById('pdf-preview');
+        element.style.display = 'block';
+
+        const opt = {
+            margin:       8,
+            filename:     `Tugas_Kebahasaan_7Soal_${name.replace(/\s+/g, '_')}_${cls}.pdf`,
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2 },
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+
+        html2pdf().set(opt).from(element).save().then(() => {
+            element.style.display = 'none';
+        });
+    }
+</script>
+
+</body>
+</html>
