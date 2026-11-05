@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Kebahasaan Teks Prosedur - Layar Interaktif Kelas 7</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        :root {
+            --bg-main: #0b132b;
+            --card-bg: #1c2541;
+            --accent-blue: #38bdf8;
+            --accent-green: #4ade80;
+            --accent-red: #f87171;
+            --accent-yellow: #facc15;
+            --text-light: #f8fafc;
+            --text-dim: #94a3b8;
+            --border-color: #334155;
+            --shadow-glow: 0 0 20px rgba(56, 189, 248, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 2px solid var(--border-color);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--accent-blue);
+            letter-spacing: 0.5px;
+        }
+
+        .class-nav {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-tab {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-dim);
+            padding: 10px 24px;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1rem;
+        }
+
+        .btn-tab.active {
+            background: var(--accent-blue);
+            color: #000;
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-glow);
+        }
+
+        main {
+            flex: 1;
+            padding: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* DASHBOARD GRID SISWA */
+        .dashboard-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .btn-spin {
+            background: linear-gradient(135deg, #38bdf8, #3b82f6);
+            color: #000;
+            font-weight: 800;
+            font-size: 1.2rem;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: var(--shadow-glow);
+            transition: transform 0.2s, filter 0.2s;
+        }
+
+        .btn-spin:hover {
+            transform: scale(1.03);
+            filter: brightness(1.1);
+        }
+
+        .student-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 15px;
+        }
+
+        .student-card {
+            background-color: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            position: relative;
+            transition: all 0.2s;
+        }
+
+        .student-card.done {
+            border-color: var(--accent-green);
+            background: rgba(74, 222, 128, 0.05);
+        }
+
+        .student-num {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            font-weight: 700;
+        }
+
+        .student-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-light);
+            line-height: 1.3;
+        }
+
+        .student-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 5px;
+            font-size: 0.85rem;
+        }
+
+        .badge-gender {
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.75rem;
+        }
+
+        .gender-L { background: rgba(56, 189, 248, 0.2); color: var(--accent-blue); }
+        .gender-P { background: rgba(248, 113, 113, 0.2); color: var(--accent-red); }
+
+        .status-time {
+            color: var(--accent-green);
+            font-weight: 800;
+        }
+
+        /* POPUP OVERLAY ACAK SISWA */
+        .overlay-modal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(11, 19, 43, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .winner-box {
+            background: var(--card-bg);
+            border: 3px solid var(--accent-blue);
+            border-radius: 24px;
+            padding: 50px;
+            text-align: center;
+            max-width: 650px;
+            width: 90%;
+            box-shadow: 0 0 50px rgba(56, 189, 248, 0.4);
+            animation: popupBounce 0.4s ease;
+        }
+
+        @keyframes popupBounce {
+            0% { transform: scale(0.5); opacity: 0; }
+            80% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .winner-title {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .winner-name {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--accent-yellow);
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .winner-info {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        .btn-start-game {
+            background: var(--accent-green);
+            color: #000;
+            font-weight: 800;
+            font-size: 1.3rem;
+            padding: 16px 40px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(74, 222, 128, 0.4);
+        }
+
+        /* ARENA PLAYING GAME */
+        .game-arena {
+            display: none;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .game-header {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .player-info h3 {
+            font-size: 1.3rem;
+            color: var(--accent-blue);
+        }
+
+        .timer-badge {
+            background: rgba(248, 113, 113, 0.15);
+            border: 2px solid var(--accent-red);
+            color: var(--accent-red);
+            padding: 10px 24px;
+            border-radius: 12px;
+            font-size: 1.8rem;
+            font-weight: 800;
+            font-family: monospace;
+            transition: all 0.3s ease;
+        }
+
+        /* EFEK WARNA BERKEDIP SISA 15 DETIK */
+        .timer-badge.danger-pulse {
+            animation: pulseBg 0.5s infinite alternate;
+            color: #ffffff;
+            border-color: #ff0000;
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
+        }
+
+        @keyframes pulseBg {
+            0% { background-color: rgba(239, 68, 68, 0.3); transform: scale(1); }
+            100% { background-color: rgba(239, 68, 68, 0.9); transform: scale(1.08); }
+        }
+
+        /* TOUCH-FRIENDLY DRAG & DROP SLOTS */
+        .drop-target-area {
+            background: rgba(255, 255, 255, 0.02);
+            border: 3px dashed var(--accent-blue);
+            border-radius: 16px;
+            padding: 25px;
+            min-height: 180px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-content: flex-start;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .drop-target-area.danger-border {
+            border-color: var(--accent-red);
+            background: rgba(248, 113, 113, 0.05);
+        }
+
+        .drop-target-area.shake {
+            animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+            border-color: var(--accent-red);
+        }
+
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-2px, 0, 0); }
+            20%, 80% { transform: translate3d(4px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+            40%, 60% { transform: translate3d(6px, 0, 0); }
+        }
+
+        .word-bank {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            min-height: 150px;
+        }
+
+        .word-chip {
+            background: linear-gradient(135deg, #334155, #1e293b);
+            border: 2px solid var(--accent-blue);
+            color: var(--text-light);
+            padding: 14px 22px;
+            border-radius: 10px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            transition: all 0.15s ease;
+            touch-action: manipulation;
+        }
+
+        .word-chip:active {
+            transform: scale(0.95);
+        }
+
+        .game-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+        }
+
+        .btn-action {
+            padding: 14px 30px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-reset { background: rgba(255, 255, 255, 0.1); color: var(--text-light); }
+        .btn-submit { background: var(--accent-green); color: #000; font-weight: 800; }
+
+        /* REKAPITULASI LEADERBOARD */
+        .leaderboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+
+        .leaderboard-table th, .leaderboard-table td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .leaderboard-table th {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--accent-blue);
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-title">⚡ LAB KEBAHASAAN TEKS PROSEDUR KELAS 7</div>
+        <div class="class-nav">
+            <button class="btn-tab active" id="tab-D" onclick="switchClass('D')">KELAS 7D</button>
+            <button class="btn-tab" id="tab-E" onclick="switchClass('E')">KELAS 7E</button>
+            <button class="btn-tab" id="tab-lead" onclick="showLeaderboard()">🏆 REKAPITULASI</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- PANEL DASHBOARD SISWA -->
+        <div id="panel-dashboard">
+            <div class="dashboard-controls">
+                <h2>Daftar Siswa (<span id="current-class-label">Kelas 7D</span>)</h2>
+                <button class="btn-spin" onclick="spinRandomStudent()">🎲 ACAK GILIRAN SISWA</button>
+            </div>
+            <div class="student-grid" id="student-grid-container"></div>
+        </div>
+
+        <!-- PANEL REKAPITULASI / LEADERBOARD -->
+        <div id="panel-leaderboard" style="display: none;">
+            <h2>🏆 Rekapitulasi Waktu Tercepat Siswa</h2>
+            <table class="leaderboard-table">
+                <thead>
+                    <tr>
+                        <th>Peringkat</th>
+                        <th>Nama Siswa</th>
+                        <th>Kelas</th>
+                        <th>No. Absen</th>
+                        <th>Paket Soal</th>
+                        <th>Waktu Eksekusi</th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboard-body"></tbody>
+            </table>
+        </div>
+
+        <!-- ARENA PLAYING GAME -->
+        <div id="panel-game" class="game-arena">
+            <div class="game-header">
+                <div class="player-info">
+                    <h3 id="game-player-name">Nama Siswa</h3>
+                    <p id="game-player-detail" style="color: var(--text-dim); margin-top: 4px;"></p>
+                </div>
+                <div class="timer-badge" id="game-timer">01:00</div>
+            </div>
+
+            <div>
+                <p style="color: var(--text-dim); margin-bottom: 10px; font-size: 0.95rem;">
+                    💡 Ketuk potongan kata di bawah untuk meletakkannya ke dalam kotak susunan kalimat yang logis:
+                </p>
+                <div class="drop-target-area" id="target-sentence-area"></div>
+            </div>
+
+            <div>
+                <p style="color: var(--text-dim); margin-bottom: 10px; font-size: 0.95rem;">
+                    📦 Bank Kata (Ketuk kata di bawah ini):
+                </p>
+                <div class="word-bank" id="source-word-bank"></div>
+            </div>
+
+            <div class="game-actions">
+                <button class="btn-action btn-reset" onclick="resetCurrentSentence()">🔄 Reset Kata</button>
+                <button class="btn-action btn-submit" onclick="submitAnswer()">✅ SELESAI</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- OVERLAY POPUP ACAK SISWA -->
+    <div class="overlay-modal" id="overlay-spin">
+        <div class="winner-box">
+            <div class="winner-title">Siswa Terpilih Maju Ke Depan:</div>
+            <div class="winner-name" id="pop-student-name">...</div>
+            <div class="winner-info" id="pop-student-info">...</div>
+            <button class="btn-start-game" onclick="launchChallenge()">🚀 MULAI TANTANGAN (60 DETIK)</button>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. DATABASE SISWA (KELAS 7D & 7E) ---
+        const studentsData = {
+            'D': [
+                { no: 1, name: "ABID AQILA PRANAJA SAMSUDIN", gender: "L" },
+                { no: 2, name: "AINIYA FAIDA AZMI KUSNADI", gender: "P" },
+                { no: 3, name: "AL KHALIFI DZIKRI HAMIZAN", gender: "L" },
+                { no: 4, name: "ALYA PUTRI NUR AENI", gender: "P" },
+                { no: 5, name: "ANGGA SURYA", gender: "L" },
+                { no: 6, name: "AQILA RAISA AZHAR", gender: "P" },
+                { no: 7, name: "ARYA ALZENA RAMADAN", gender: "L" },
+                { no: 8, name: "CAHAYA LITUHAYU SURYADI", gender: "P" },
+                { no: 9, name: "CECILIA BELLVANIA IKHSANI", gender: "P" },
+                { no: 10, name: "DEA ANANDA CINTA KIRANA", gender: "P" },
+                { no: 11, name: "DIANDRA MUHAMMAD ABIMANYU WIRATMADJA", gender: "L" },
+                { no: 12, name: "FADHIL EZAR RACHMAWAN", gender: "L" },
+                { no: 13, name: "FAIREL ALDAVI CALIEF GUNARA", gender: "L" },
+                { no: 14, name: "FAYZA DZAKIYAH AZIZA", gender: "P" },
+                { no: 15, name: "FIDELA PUTRI SOFIYAN", gender: "P" },
+                { no: 16, name: "KALINDA ZAHRA SYAKIRA", gender: "P" },
+                { no: 17, name: "KAYLA SAFAHANAN", gender: "P" },
+                { no: 18, name: "KHANZA DWI ARYANTI RAMDANI", gender: "P" },
+                { no: 19, name: "KIRANA AYU MAULIDHA", gender: "P" },
+                { no: 20, name: "LANDRA FOWLER CAILEAN", gender: "L" },
+                { no: 21, name: "MAISYARA FAJRA RACHMADI", gender: "P" },
+                { no: 22, name: "MIFTAH WILMAN FAUZI SUSANTO", gender: "L" },
+                { no: 23, name: "MUHAMMAD AZKA WIWAHA", gender: "L" },
+                { no: 24, name: "MUHAMMAD HATIM SHAHEER ARVHIEANSYAH", gender: "L" },
+                { no: 25, name: "MUHAMMAD RAIDION ARCANDY", gender: "L" },
+                { no: 26, name: "MUHAMMAD RIDHO", gender: "L" },
+                { no: 27, name: "NAVEED AZKA ALGHIFARI", gender: "L" },
+                { no: 28, name: "NUR RHAINA", gender: "P" },
+                { no: 29, name: "RAISYA EVA DZAKIYYA", gender: "P" },
+                { no: 30, name: "RAQILLA RAJA ALVANDRY", gender: "L" },
+                { no: 31, name: "REYSHA JENINDRA PUTRI", gender: "P" },
+                { no: 32, name: "RIDWAN MAULANA", gender: "L" },
+                { no: 33, name: "XAVIERA ADRILA GIFARI", gender: "P" },
+                { no: 34, name: "YASMINE ZAHIRA FITRIA", gender: "P" }
+            ],
+            'E': [
+                { no: 1, name: "ALBIAN SINATRIA RACHMAN", gender: "L" },
+                { no: 2, name: "ALULA CAMILIA YVONNE", gender: "P" },
+                { no: 3, name: "ANDAYUNA NUR LATIFAH", gender: "P" },
+                { no: 4, name: "ANINDITA LATISHA RAKSABUMI", gender: "P" },
+                { no: 5, name: "AZZAHWA PUTRI NURAENI", gender: "P" },
+                { no: 6, name: "BAGAS DWI SATRIO", gender: "L" },
+                { no: 7, name: "DARA BIANKA FELISHA", gender: "P" },
+                { no: 8, name: "DZAKY NURFAKHRI PRIYANTO", gender: "L" },
+                { no: 9, name: "FADHIL ARYA FEBRIANSYAH", gender: "L" },
+                { no: 10, name: "FATHIR ROBIATUL ACHMAD", gender: "L" },
+                { no: 11, name: "FITRA ZAIDAN RUDIANA", gender: "L" },
+                { no: 12, name: "GHAIDA JANITRA MAHESWARI", gender: "P" },
+                { no: 13, name: "HAFIZ AZKA SETIAWAN", gender: "L" },
+                { no: 14, name: "HYLMI ARZIKI PUTRA", gender: "L" },
+                { no: 15, name: "KELI GUSTIAN", gender: "L" },
+                { no: 16, name: "KHANZA KHAIRA SALSABILA", gender: "P" },
+                { no: 17, name: "KINARA RAISHA AZZAHRA", gender: "P" },
+                { no: 18, name: "LANISHA CLAIRINE SURYAPRAJA", gender: "P" },
+                { no: 19, name: "MAYA ASMARA PUTRI", gender: "P" },
+                { no: 20, name: "MUHAMMAD ALTARRA LAKSANA", gender: "L" },
+                { no: 21, name: "MUHAMMAD AZKA AZZAMY", gender: "L" },
+                { no: 22, name: "MUHAMMAD LATHIF SHAFA FIRDAUS", gender: "L" },
+                { no: 23, name: "MUTIARA CAHYANI PUTRI", gender: "P" },
+                { no: 24, name: "NAURA HARUMI DELISHA", gender: "P" },
+                { no: 25, name: "NAVIZA ANANDARA MARCELA ARLI", gender: "P" },
+                { no: 26, name: "QUEEN AQEELA PRIATNA", gender: "P" },
+                { no: 27, name: "RAIHAN FAUZAN PRATAMA", gender: "L" },
+                { no: 28, name: "RAISYA PUTRI KHAERUNISA", gender: "P" },
+                { no: 29, name: "REINISSA ANORVI FREINDSIUS", gender: "P" },
+                { no: 30, name: "RENATA AULIA IZZATUNNISA", gender: "P" },
+                { no: 31, name: "SITI IKHSANI PRADANI", gender: "P" },
+                { no: 32, name: "SYAHIRA KHANZA AZZAHRA", gender: "P" },
+                { no: 33, name: "TYAS EL FARIZA PRYANT", gender: "P" },
+                { no: 34, name: "UMAR KHAFADI SATRIA AGSENA", gender: "L" }
+            ]
+        };
+
+        // --- 2. DATABASE 70 SOAL ACAK KATA TEKS PROSEDUR HOTS ---
+        const questionBank = [
+            { chunks: ["tuangkan", "secara perlahan", "adonan santan", "ke dalam panci", "sambil diaduk", "agar", "santan tidak pecah"] },
+            { chunks: ["bersihkan", "sela-sela keyboard", "menggunakan kuas halus", "secara bertahap", "agar", "partikel debu", "terangkat sempurna"] },
+            { chunks: ["jangan", "menekan tombol daya", "secara paksa", "saat", "proses pembaruan sistem", "sedang berlangsung"] },
+            { chunks: ["oleskan", "minyak zaitun", "pada permukaan kain", "hingga", "terbalut rata", "sebelum", "proses pemanggangan"] },
+            { chunks: ["mari", "kita pilah", "sampah plastik", "berdasarkan jenisnya", "sebelum", "dimasukkan", "ke dalam wadah daur ulang"] },
+            { chunks: ["gilinglah", "biji kopi hitam", "dengan tingkat kekasaran sedang", "agar", "cita rasanya", "terekstraksi maksimal"] },
+            { chunks: ["keringkan", "lensa kamera", "menggunakan kain mikrofiber", "secara melingkar", "tanpa", "menekan terlalu keras"] },
+            { chunks: ["simpanlah", "cairan ekstraksi ini", "di dalam lemari pendingin", "selama 24 jam", "supaya", "endapannya", "terpisah sempurna"] },
+            { chunks: ["aduklah", "larutan gula pasir", "menggunakan sendok kayu", "secara searah", "hingga", "warnanya", "berubah menjadi karamel"] },
+            { chunks: ["terasa lebih rapi", "meja belajar kita", "jika", "kabel-kabel alat elektronik", "diikat", "menggunakan tali klip"] },
+            { chunks: ["bilaslah", "endapan sabun", "pada serat pakaian", "dengan air mengalir", "hingga", "busanya", "benar-benar hilang"] },
+            { chunks: ["kukuslah", "adonan kue", "di dalam panci tertutup", "selama 45 menit", "tanpa", "membuka penutupnya"] },
+            { chunks: ["jangan", "mencabut perangkat USB", "secara mendadak", "sewaktu", "proses pemindahan data", "belum selesai"] },
+            { chunks: ["celupkan", "potongan buah segar", "ke dalam lelehan cokelat", "dengan cepat", "lalu", "tiriskan", "di atas kertas roti"] },
+            { chunks: ["rekatkan", "kedua sisi kertas", "menggunakan lem tembak", "secara perlahan", "hingga", "posisinya", "simetris"] },
+            { chunks: ["sangrai", "rempah-rempah pilihan", "di atas wajan anti lengket", "dengan api kecil", "sampai", "aromanya", "harum"] },
+            { chunks: ["mari", "kita kurangi", "penggunaan kantong plastik", "dengan", "membawa tas belanja sendiri", "saat", "berbelanja"] },
+            { chunks: ["potonglah", "batang tanaman hias", "secara miring", "menggunakan gunting stek tajam", "agar", "penyerapan air", "optimal"] },
+            { chunks: ["semprotkan", "cairan pembersih", "secukupnya", "pada lap katun", "bukan", "langsung", "ke layar monitor"] },
+            { chunks: ["tampak lebih segar", "tanaman bunga kita", "apabila", "disiram", "pada pagi hari", "secara teratur"] },
+            { chunks: ["saringlah", "air perasan jeruk", "menggunakan saringan halus", "untuk", "memisahkan", "bulir bijinya"] },
+            { chunks: ["tumbuk", "bumbu dapur", "sampai", "halus", "dengan", "menambahkan", "sedikit garam", "sebagai pengikat"] },
+            { chunks: ["tumpuklah", "kardus bekas", "secara bersilang", "agar", "susunannya", "kokoh", "dan", "tidak mudah roboh"] },
+            { chunks: ["jangan", "menggunakan detergen berlebih", "saat", "mencuci kain sutra", "supaya", "serat kain", "tidak rusak"] },
+            { chunks: ["rendamlah", "benih tanaman", "di dalam air hangat", "selama 12 jam", "sebelum", "disemai", "di media tanah"] },
+            { chunks: ["gosoklah", "noda membandel", "menggunakan sikat berbulu lembut", "secara perlahan", "hingga", "bersih kembali"] },
+            { chunks: ["tuangkan", "sirup gula", "ke dalam gelas", "melalui dinding dalam", "agar", "terbentuk", "lapisan warna"] },
+            { chunks: ["pasangkan", "mur dan baut", "menggunakan kunci pas", "searah jarum jam", "sampai", "terikat kencang"] },
+            { chunks: ["mari", "kita hemat", "penggunaan energi listrik", "dengan", "mematikan lampu", "sewaktu", "meninggalkan ruangan"] },
+            { chunks: ["terlihat lebih indah", "dekorasi ruangan", "setelah", "dipasangi", "lampu hias hangat", "di sudut meja"] },
+            { chunks: ["lumuri", "permukaan daging", "dengan bumbu marinasi", "secara merata", "lalu", "simpan", "di wadah tertutup"] },
+            { chunks: ["lumasi", "rantai sepeda", "menggunakan oli khusus", "secara berkala", "untuk", "mencegah", "timbulnya karat"] },
+            { chunks: ["jangan", "menjemur pakaian berwarna", "di bawah terik matahari langsung", "agar", "warnanya", "tidak cepat memudar"] },
+            { chunks: ["pangganglah", "adonan roti", "dalam oven berkecepatan sedang", "suhu 180 derajat", "selama 25 menit"] },
+            { chunks: ["campurkan", "larutan cuka", "dengan air bersih", "perbandingan satu banding dua", "sebagai", "pembersih alami"] },
+            { chunks: ["lipatlah", "kertas origami", "mengikuti garis lipatan diagonal", "secara presisi", "hingga", "membentuk segitiga"] },
+            { chunks: ["keringkan", "sisa air", "menggunakan spons kering", "dengan cara", "menepuknya", "secara lembut"] },
+            { chunks: ["taburkan", "parutan keju", "di atas adonan", "sebelum", "dipanggang", "sebagai", "hiasan penutup"] },
+            { chunks: ["mari", "kita jaga", "sirkulasi udara kelas", "dengan", "membuka jendela", "seperti pagi hari"] },
+            { chunks: ["terasa lebih harum", "racikan teh", "jika", "diseduh", "menggunakan air mendidih", "secara segar"] },
+            { chunks: ["blender", "campuran buah dan susu", "dengan kecepatan tinggi", "selama 1 menit", "sampai", "teksturnya", "lembut"] },
+            { chunks: ["siramlah", "media tanam", "menggunakan gembor halus", "hingga", "kelembabannya", "merata sempurna"] },
+            { chunks: ["jangan", "menggunakan pisau tumpul", "saat", "mengiris daging", "agar", "bentuk potongannya", "tidak rusak"] },
+            { chunks: ["tiriskan", "gorengan kue", "di atas kertas menyerap minyak", "beberapa saat", "sebelum", "dihidangkan"] },
+            { chunks: ["gulunglah", "tikar bambu", "dari arah ujung", "secara perlahan", "lalu", "ikat", "dengan tali rami"] },
+            { chunks: ["sapukan", "kuas cat", "searah serat kayu", "secara tipis", "agar", "hasilnya", "tampak alami"] },
+            { chunks: ["letakkan", "spesimen mikroskop", "di atas kaca preparat", "lalu", "tutuplah", "dengan kaca penutup"] },
+            { chunks: ["timbanglah", "tepung terigu", "menggunakan timbangan digital", "sebanyak 250 gram", "secara akurat"] },
+            { chunks: ["mari", "kita rapihkan", "buku-buku perpustakaan", "sesuai", "nomor klasifikasinya", "pada rak buku"] },
+            { chunks: ["makin lezat", "cita rasa masakan", "apabila", "diberi", "rempah segar", "menjelang diangkat"] },
+            { chunks: ["kocoklah", "telur dan gula pasir", "menggunakan pengocok manual", "hingga", "mengembang", "dan", "berwarna putih"] },
+            { chunks: ["dinginkan", "puding buah", "pada suhu ruangan", "sebelum", "dimasukkan", "ke dalam lemari es"] },
+            { chunks: ["jangan", "menyentuh kabel listrik basah", "menggunakan tangan telanjang", "demi", "keselamatan kerja"] },
+            { chunks: ["tancapkan", "steker alat pemanas", "pada stopkontak dinding", "hingga", "terpasang sempurna"] },
+            { chunks: ["bersihkan", "sisa lem", "menggunakan kain basah", "sebelum", "cairannya", "mengering keras"] },
+            { chunks: ["ratakan", "permukaan semen", "menggunakan cetok kayu", "dengan", "gerakan melingkar", "secara perlahan"] },
+            { chunks: ["lipatlah", "lembaran kertas koran", "menjadi dua bagian sama besar", "sebagai", "alas kerja"] },
+            { chunks: ["larutkan", "bubuk garam", "di dalam air hangat", "sebanyak satu sendok makan", "sampai", "larut"] },
+            { chunks: ["mari", "kita siram", "benih tanaman hias", "menggunakan semprotan halus", "pada pagi hari"] },
+            { chunks: ["makin renyah", "tekstur keripik", "jika", "digoreng", "dalam minyak panas melimpah"] },
+            { chunks: ["peraslah", "parutan kelapa tua", "menggunakan kain saring", "untuk", "mendapatkan", "santan kental"] },
+            { chunks: ["bilaslah", "peralatan laboratorium", "dengan air akuades", "setelah", "selesai", "digunakan"] },
+            { chunks: ["jangan", "menyimpan bahan kimia ini", "di dekat sumber api", "karena", "mudah terbakar"] },
+            { chunks: ["oleskan", "mentega tipis-tipis", "pada permukaan loyang", "agar", "adonan", "tidak lengket"] },
+            { chunks: ["ikatlah", "ujung benang rami", "pada tiang kayu", "menggunakan simpul mati", "yang kuat"] },
+            { chunks: ["ayaklah", "tepung dan bubuk kakao", "bersamaan", "agar", "tidak ada", "gumpalan kasar"] },
+            { chunks: ["gosoklah", "permukaan kaca", "menggunakan koran bekas", "hingga", "mengilap bersih"] },
+            { chunks: ["haluskan", "bumbu rempah", "menggunakan cobek batu", "secara perlahan", "sampai", "lembut"] },
+            { chunks: ["mari", "kita kumpulkan", "sisa rautan pensil", "ke dalam kotak sampah kering", "bersama-sama"] },
+            { chunks: ["terasa lebih segar", "udara di kelas", "apabila", "ventilasi atas", "dibuka lebar-lebar"] }
+        ];
+
+        // --- 3. STATE APLIKASI GLOBAL ---
+        let currentClass = 'D';
+        let activeStudent = null;
+        let timerInterval = null;
+        let heartbeatInterval = null;
+        let audioCtx = null;
+        let timeRemaining = 60;
+        let timeElapsed = 0;
+        let currentTargetChunks = [];
+        let resultsStore = JSON.parse(localStorage.getItem('quiz_results') || '[]');
+
+        window.onload = function() {
+            renderStudentGrid();
+        };
+
+        function switchClass(cls) {
+            currentClass = cls;
+            document.querySelectorAll('.btn-tab').forEach(b => b.classList.remove('active'));
+            const tabBtn = document.getElementById(`tab-${cls}`);
+            if(tabBtn) tabBtn.classList.add('active');
+            
+            document.getElementById('panel-dashboard').style.display = 'block';
+            document.getElementById('panel-leaderboard').style.display = 'none';
+            document.getElementById('panel-game').style.display = 'none';
+            
+            document.getElementById('current-class-label').textContent = `Kelas 7${cls}`;
+            renderStudentGrid();
+        }
+
+        function renderStudentGrid() {
+            const container = document.getElementById('student-grid-container');
+            container.innerHTML = '';
+            
+            studentsData[currentClass].forEach(st => {
+                const res = resultsStore.find(r => r.class === currentClass && r.no === st.no);
+                const card = document.createElement('div');
+                card.className = `student-card ${res ? 'done' : ''}`;
+                
+                card.innerHTML = `
+                    <div class="student-num">ABSEN #${st.no}</div>
+                    <div class="student-name">${st.name}</div>
+                    <div class="student-meta">
+                        <span class="badge-gender gender-${st.gender}">${st.gender === 'L' ? 'LAKI-LAKI' : 'PEREMPUAN'}</span>
+                        <span class="status-time">${res ? '⏱️ ' + res.timeSec + ' dtk' : 'Belum Uji'}</span>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function spinRandomStudent() {
+            const list = studentsData[currentClass];
+            const uncompleted = list.filter(st => !resultsStore.some(r => r.class === currentClass && r.no === st.no));
+
+            if (uncompleted.length === 0) {
+                alert(`Seluruh siswa Kelas 7${currentClass} sudah menyelesaikan tantangan!`);
+                return;
+            }
+
+            let spinCount = 0;
+            const maxSpins = 20;
+            const overlay = document.getElementById('overlay-spin');
+            overlay.style.display = 'flex';
+
+            const interval = setInterval(() => {
+                const rand = uncompleted[Math.floor(Math.random() * uncompleted.length)];
+                document.getElementById('pop-student-name').textContent = rand.name;
+                document.getElementById('pop-student-info').textContent = `Kelas 7${currentClass} - Absen No. ${rand.no}`;
+                spinCount++;
+
+                if (spinCount >= maxSpins) {
+                    clearInterval(interval);
+                    activeStudent = rand;
+                    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+                }
+            }, 100);
+        }
+
+        function launchChallenge() {
+            document.getElementById('overlay-spin').style.display = 'none';
+            document.getElementById('panel-dashboard').style.display = 'none';
+            document.getElementById('panel-game').style.display = 'flex';
+
+            document.getElementById('game-player-name').textContent = activeStudent.name;
+            
+            // Rumus Penguncian Soal Berdasarkan Absen
+            const qIndex = (currentClass === 'D') ? (activeStudent.no - 1) : (activeStudent.no + 33);
+            activeStudent.questionData = questionBank[qIndex];
+            activeStudent.questionIndex = qIndex + 1;
+
+            document.getElementById('game-player-detail').textContent = `Kelas 7${currentClass} | Absen #${activeStudent.no} | Paket Soal #${activeStudent.questionIndex}`;
+
+            setupGameBoard(activeStudent.questionData.chunks);
+            startTimer();
+        }
+
+        function setupGameBoard(originalChunks) {
+            currentTargetChunks = [];
+            const targetBox = document.getElementById('target-sentence-area');
+            targetBox.innerHTML = '';
+            targetBox.classList.remove('danger-border');
+            
+            // Acak potongan kata (Fisher-Yates Shuffle)
+            let shuffled = [...originalChunks];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+
+            const bankBox = document.getElementById('source-word-bank');
+            bankBox.innerHTML = '';
+
+            shuffled.forEach((text) => {
+                const chip = document.createElement('button');
+                chip.className = 'word-chip';
+                chip.textContent = text;
+                chip.onclick = () => moveWordToTarget(chip, text);
+                bankBox.appendChild(chip);
+            });
+        }
+
+        function moveWordToTarget(chipElement, text) {
+            chipElement.remove();
+            currentTargetChunks.push(text);
+
+            const targetBox = document.getElementById('target-sentence-area');
+            const targetChip = document.createElement('button');
+            targetChip.className = 'word-chip';
+            targetChip.textContent = text;
+            targetChip.onclick = () => returnWordToBank(targetChip, text);
+            targetBox.appendChild(targetChip);
+        }
+
+        function returnWordToBank(chipElement, text) {
+            chipElement.remove();
+            const index = currentTargetChunks.indexOf(text);
+            if (index > -1) currentTargetChunks.splice(index, 1);
+
+            const bankBox = document.getElementById('source-word-bank');
+            const bankChip = document.createElement('button');
+            bankChip.className = 'word-chip';
+            bankChip.textContent = text;
+            bankChip.onclick = () => moveWordToTarget(bankChip, text);
+            bankBox.appendChild(bankChip);
+        }
+
+        function resetCurrentSentence() {
+            setupGameBoard(activeStudent.questionData.chunks);
+        }
+
+        // --- 4. ENGINE TIMER & AUDIO DETAK JANTUNG (SOUND PRESSURE) ---
+        function playHeartbeatSound() {
+            try {
+                if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(60, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(30, audioCtx.currentTime + 0.12);
+
+                gain.gain.setValueAtTime(0.8, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.12);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.12);
+            } catch(e) {
+                // Browser Audio Context Guard
+            }
+        }
+
+        function startTimer() {
+            timeRemaining = 60;
+            timeElapsed = 0;
+            const timerBadge = document.getElementById('game-timer');
+            const targetArea = document.getElementById('target-sentence-area');
+            
+            timerBadge.textContent = "01:00";
+            timerBadge.classList.remove('danger-pulse');
+            targetArea.classList.remove('danger-border');
+            
+            clearInterval(timerInterval);
+            clearInterval(heartbeatInterval);
+
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                timeElapsed++;
+                
+                let secStr = timeRemaining < 10 ? '0' + timeRemaining : timeRemaining;
+                timerBadge.textContent = `00:${secStr}`;
+
+                // MASUK RED ALERT 15 DETIK TERAKHIR
+                if (timeRemaining === 15) {
+                    timerBadge.classList.add('danger-pulse');
+                    targetArea.classList.add('danger-border');
+                    
+                    let speed = 600;
+                    heartbeatInterval = setInterval(() => {
+                        playHeartbeatSound();
+                        if (timeRemaining <= 7 && speed === 600) {
+                            clearInterval(heartbeatInterval);
+                            speed = 350;
+                            heartbeatInterval = setInterval(playHeartbeatSound, speed);
+                        }
+                    }, speed);
+                }
+
+                if (timeRemaining <= 0) {
+                    stopAllTimers();
+                    alert("⏰ WAKTU HABIS! Silakan minta bantuan guru atau ulang tantangan.");
+                    switchClass(currentClass);
+                }
+            }, 1000);
+        }
+
+        function stopAllTimers() {
+            clearInterval(timerInterval);
+            clearInterval(heartbeatInterval);
+            const timerBadge = document.getElementById('game-timer');
+            if (timerBadge) timerBadge.classList.remove('danger-pulse');
+        }
+
+        function submitAnswer() {
+            const correctOrder = activeStudent.questionData.chunks;
+            
+            if (currentTargetChunks.length !== correctOrder.length) {
+                triggerShake();
+                alert("⚠️ Susunan kalimat belum lengkap! Pindahkan semua potongan kata dari bank kata.");
+                return;
+            }
+
+            let isCorrect = true;
+            for (let i = 0; i < correctOrder.length; i++) {
+                if (currentTargetChunks[i] !== correctOrder[i]) {
+                    isCorrect = false;
+                    break;
+                }
+            }
+
+            if (isCorrect) {
+                stopAllTimers();
+                confetti({ particleCount: 150, spread: 80, origin: { y: 0.5 } });
+
+                // Simpan Hasil ke LocalStorage
+                resultsStore.push({
+                    class: currentClass,
+                    no: activeStudent.no,
+                    name: activeStudent.name,
+                    qNum: activeStudent.questionIndex,
+                    timeSec: timeElapsed
+                });
+                localStorage.setItem('quiz_results', JSON.stringify(resultsStore));
+
+                setTimeout(() => {
+                    alert(`🎉 LUAR BIASA! Susunan Kalimat Anda BENAR!\nCatatan Waktu: ${timeElapsed} Detik.`);
+                    switchClass(currentClass); // Otomatis kembali ke Dashboard Grid Utama
+                }, 500);
+
+            } else {
+                triggerShake();
+                alert("❌ Susunan kata belum tepat secara kaidah kebahasaan. Periksa kembali urutannya (Waktu tetap berjalan!).");
+            }
+        }
+
+        function triggerShake() {
+            const area = document.getElementById('target-sentence-area');
+            area.classList.add('shake');
+            setTimeout(() => area.classList.remove('shake'), 400);
+        }
+
+        function showLeaderboard() {
+            stopAllTimers();
+            document.querySelectorAll('.btn-tab').forEach(b => b.classList.remove('active'));
+            const leadBtn = document.getElementById('tab-lead');
+            if(leadBtn) leadBtn.classList.add('active');
+
+            document.getElementById('panel-dashboard').style.display = 'none';
+            document.getElementById('panel-game').style.display = 'none';
+            document.getElementById('panel-leaderboard').style.display = 'block';
+
+            const tbody = document.getElementById('leaderboard-body');
+            tbody.innerHTML = '';
+
+            // Sortir berdasarkan Waktu Tercepat (Ascending)
+            const sorted = [...resultsStore].sort((a, b) => a.timeSec - b.timeSec);
+
+            if (sorted.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color: var(--text-dim);">Belum ada siswa yang menyelesaikan tantangan.</td></tr>`;
+                return;
+            }
+
+            sorted.forEach((item, index) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>#${index + 1}</strong></td>
+                    <td><strong>${item.name}</strong></td>
+                    <td>Kelas 7${item.class}</td>
+                    <td>${item.no}</td>
+                    <td>Paket #${item.qNum}</td>
+                    <td><strong style="color: var(--accent-green);">${item.timeSec} Detik</strong></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+    </script>
+</body>
+</html>
