@@ -410,6 +410,29 @@
       font-size: 0.9rem;
     }
 
+    .sync-status {
+      padding: 0.65rem 1rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #fde68a;
+    }
+
+    .sync-status.success {
+      background: #dcfce7;
+      color: #166534;
+      border-color: #bbf7d0;
+    }
+
+    .sync-status.error {
+      background: #fee2e2;
+      color: #991b1b;
+      border-color: #fecaca;
+    }
+
     @media (max-width: 768px) {
       .cbt-layout {
         flex-direction: column;
@@ -455,9 +478,9 @@
 
         <div style="background: #f1f5f9; padding: 0.8rem; border-radius: 6px; font-size: 0.8rem; color: #475569; margin-bottom: 1.2rem;">
           📌 <strong>Ketentuan Ujian:</strong><br>
-          • Terdiri dari 40 butir soal acak (Dikerjakan dalam 60 Menit).<br>
-          • Pilihan jawaban diacak otomatis oleh sistem.<br>
-          • Dilarang me-refresh halaman selama ujian berlangsung.
+          - Terdiri dari 40 butir soal acak (Dikerjakan dalam 60 Menit).<br>
+          - Pilihan jawaban diacak otomatis oleh sistem.<br>
+          - Dilarang me-refresh halaman selama ujian berlangsung.
         </div>
 
         <button type="submit" class="btn-start">🚀 MULAI UJIAN SEKARANG</button>
@@ -520,6 +543,8 @@
         <span class="label">NILAI AKHIR</span>
       </div>
 
+      <div id="sync-status" class="sync-status">⏳ Sedang mengirim nilai ke server guru...</div>
+
       <p id="res-feedback" style="font-size: 0.95rem; font-style: italic; color: #334155; margin-bottom: 1rem;"></p>
 
       <div class="result-meta">
@@ -534,6 +559,11 @@
   </div>
 
   <script>
+    // ==========================================
+    // KONFIGURASI GOOGLE APPS SCRIPT WEB APP
+    // ==========================================
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbxY85_75KVT7fXLZz4W7isLannmaLT49zaHnlyhJ0boGeTuOXI7BSfg3R6Vm4zb_VJD5g/exec";
+
     // ==========================================
     // BASIS DATA 60 SOAL TEKS PROSEDUR KELAS 7
     // ==========================================
@@ -1151,6 +1181,7 @@
     let timerInterval = null;
     let secondsLeft = 3600; // 60 Menit
     let studentData = { name: '', sClass: '' };
+    let isExamFinished = false;
 
     // Fisher-Yates Array Shuffle
     function shuffleArray(arr) {
@@ -1174,6 +1205,7 @@
 
       studentData.name = nameInput;
       studentData.sClass = classInput;
+      isExamFinished = false;
 
       document.getElementById('display-student-name').innerText = studentData.name;
       document.getElementById('display-student-class').innerText = `Kelas ${studentData.sClass}`;
@@ -1328,8 +1360,34 @@
       }
     }
 
+    // ==========================================
+    // FUNGSI KIRIM DATA KE GOOGLE APPS SCRIPT
+    // ==========================================
+    function sendResultToGAS(payload) {
+      const statusBox = document.getElementById('sync-status');
+
+      fetch(GAS_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify(payload)
+      })
+      .then(() => {
+        statusBox.className = "sync-status success";
+        statusBox.innerText = "✔ Nilai berhasil terkirim & tersimpan ke rekap guru!";
+      })
+      .catch((error) => {
+        console.error("Error pengiriman GAS:", error);
+        statusBox.className = "sync-status error";
+        statusBox.innerText = "⚠ Gagal mengirim otomatis. Silakan tangkap layar (screenshot) halaman ini dan kirim ke guru.";
+      });
+    }
+
     // Final Calculation & Display
     function finishExam() {
+      isExamFinished = true;
       let correctCount = 0;
 
       activeQuestions.forEach((q, idx) => {
@@ -1396,11 +1454,23 @@
       // Switch to Result Screen
       document.getElementById('screen-exam').classList.remove('active');
       document.getElementById('screen-result').classList.add('active');
+
+      // Kirim Data ke Google Apps Script
+      sendResultToGAS({
+        mapel: "Bahasa Indonesia - Teks Prosedur",
+        nama: studentData.name,
+        kelas: studentData.sClass,
+        nilai: finalScore,
+        benar: correctCount,
+        salah: wrongCount,
+        akurasi: `${accuracy}%`,
+        waktuPengerjaan: spentFormatted
+      });
     }
 
     // Prevent accidental page reload during exam
     window.onbeforeunload = function() {
-      if (document.getElementById('screen-exam').classList.contains('active')) {
+      if (!isExamFinished && document.getElementById('screen-exam').classList.contains('active')) {
         return "Ujian sedang berlangsung! Jawaban Anda mungkin hilang jika memuat ulang halaman.";
       }
     };
