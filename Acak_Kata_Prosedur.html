@@ -90,14 +90,22 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 12px;
+            align-items: center;
         }
 
         .btn-spin {
             background: linear-gradient(135deg, #38bdf8, #3b82f6);
             color: #000;
             font-weight: 800;
-            font-size: 1.2rem;
-            padding: 14px 32px;
+            font-size: 1.1rem;
+            padding: 14px 28px;
             border: none;
             border-radius: 12px;
             cursor: pointer;
@@ -110,9 +118,26 @@
             filter: brightness(1.1);
         }
 
+        .btn-clear-class {
+            background: rgba(248, 113, 113, 0.15);
+            border: 1px solid var(--accent-red);
+            color: var(--accent-red);
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 14px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-clear-class:hover {
+            background: var(--accent-red);
+            color: #000;
+        }
+
         .student-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 15px;
         }
 
@@ -130,13 +155,53 @@
 
         .student-card.done {
             border-color: var(--accent-green);
-            background: rgba(74, 222, 128, 0.05);
+            background: rgba(74, 222, 128, 0.08);
+        }
+
+        .card-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .student-num {
             font-size: 0.8rem;
             color: var(--text-dim);
             font-weight: 700;
+        }
+
+        /* CHECKBOX MANUAL */
+        .manual-check-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text-dim);
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.06);
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+        }
+
+        .manual-check-label:hover {
+            border-color: var(--accent-green);
+            color: var(--text-light);
+        }
+
+        .student-card.done .manual-check-label {
+            background: rgba(74, 222, 128, 0.2);
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        .manual-checkbox {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--accent-green);
+            cursor: pointer;
         }
 
         .student-name {
@@ -167,6 +232,13 @@
         .status-time {
             color: var(--accent-green);
             font-weight: 800;
+            font-size: 0.8rem;
+        }
+
+        .status-pending {
+            color: var(--text-dim);
+            font-weight: 600;
+            font-size: 0.8rem;
         }
 
         /* POPUP OVERLAY ACAK SISWA */
@@ -266,7 +338,6 @@
             transition: all 0.3s ease;
         }
 
-        /* EFEK WARNA BERKEDIP SISA 15 DETIK */
         .timer-badge.danger-pulse {
             animation: pulseBg 0.5s infinite alternate;
             color: #ffffff;
@@ -279,7 +350,6 @@
             100% { background-color: rgba(239, 68, 68, 0.9); transform: scale(1.08); }
         }
 
-        /* TOUCH-FRIENDLY DRAG & DROP SLOTS */
         .drop-target-area {
             background: rgba(255, 255, 255, 0.02);
             border: 3px dashed var(--accent-blue);
@@ -395,8 +465,14 @@
         <!-- PANEL DASHBOARD SISWA -->
         <div id="panel-dashboard">
             <div class="dashboard-controls">
-                <h2>Daftar Siswa (<span id="current-class-label">Kelas 7D</span>)</h2>
-                <button class="btn-spin" onclick="spinRandomStudent()">🎲 ACAK GILIRAN SISWA</button>
+                <div>
+                    <h2>Daftar Siswa (<span id="current-class-label">Kelas 7D</span>)</h2>
+                    <p id="progress-summary" style="color: var(--text-dim); font-size: 0.9rem; margin-top: 4px;"></p>
+                </div>
+                <div class="control-buttons">
+                    <button class="btn-clear-class" onclick="resetClassData()">🗑️ Reset Kelas Ini</button>
+                    <button class="btn-spin" onclick="spinRandomStudent()">🎲 ACAK GILIRAN SISWA</button>
+                </div>
             </div>
             <div class="student-grid" id="student-grid-container"></div>
         </div>
@@ -412,7 +488,7 @@
                         <th>Kelas</th>
                         <th>No. Absen</th>
                         <th>Paket Soal</th>
-                        <th>Waktu Eksekusi</th>
+                        <th>Status / Waktu</th>
                     </tr>
                 </thead>
                 <tbody id="leaderboard-body"></tbody>
@@ -640,25 +716,84 @@
             renderStudentGrid();
         }
 
+        // --- FUNGSI TOGGLE CHECKLIST MANUAL ---
+        function toggleManualTested(no, isChecked) {
+            const existingIndex = resultsStore.findIndex(r => r.class === currentClass && r.no === no);
+            const student = studentsData[currentClass].find(s => s.no === no);
+            const qIndex = (currentClass === 'D') ? (no - 1) : (no + 33);
+
+            if (isChecked) {
+                if (existingIndex === -1) {
+                    resultsStore.push({
+                        class: currentClass,
+                        no: no,
+                        name: student.name,
+                        qNum: qIndex + 1,
+                        timeSec: null,
+                        manual: true
+                    });
+                }
+            } else {
+                if (existingIndex > -1) {
+                    resultsStore.splice(existingIndex, 1);
+                }
+            }
+
+            localStorage.setItem('quiz_results', JSON.stringify(resultsStore));
+            renderStudentGrid();
+        }
+
+        function resetClassData() {
+            if (confirm(`Apakah Anda yakin ingin menghapus semua tanda & hasil uji untuk Kelas 7${currentClass}?`)) {
+                resultsStore = resultsStore.filter(r => r.class !== currentClass);
+                localStorage.setItem('quiz_results', JSON.stringify(resultsStore));
+                renderStudentGrid();
+            }
+        }
+
         function renderStudentGrid() {
             const container = document.getElementById('student-grid-container');
             container.innerHTML = '';
             
-            studentsData[currentClass].forEach(st => {
+            const classList = studentsData[currentClass];
+            let completedCount = 0;
+
+            classList.forEach(st => {
                 const res = resultsStore.find(r => r.class === currentClass && r.no === st.no);
+                if (res) completedCount++;
+
                 const card = document.createElement('div');
                 card.className = `student-card ${res ? 'done' : ''}`;
                 
+                let statusHTML = `<span class="status-pending">Belum Uji</span>`;
+                if (res) {
+                    if (res.manual) {
+                        statusHTML = `<span class="status-time">✅ Sudah Diuji</span>`;
+                    } else {
+                        statusHTML = `<span class="status-time">⏱️ ${res.timeSec} dtk</span>`;
+                    }
+                }
+
                 card.innerHTML = `
-                    <div class="student-num">ABSEN #${st.no}</div>
+                    <div class="card-top-row">
+                        <div class="student-num">ABSEN #${st.no}</div>
+                        <label class="manual-check-label" title="Tandai sudah diuji agar tidak ikut teracak">
+                            <input type="checkbox" class="manual-checkbox" ${res ? 'checked' : ''} onchange="toggleManualTested(${st.no}, this.checked)">
+                            <span>Sudah Diuji</span>
+                        </label>
+                    </div>
                     <div class="student-name">${st.name}</div>
                     <div class="student-meta">
                         <span class="badge-gender gender-${st.gender}">${st.gender === 'L' ? 'LAKI-LAKI' : 'PEREMPUAN'}</span>
-                        <span class="status-time">${res ? '⏱️ ' + res.timeSec + ' dtk' : 'Belum Uji'}</span>
+                        ${statusHTML}
                     </div>
                 `;
                 container.appendChild(card);
             });
+
+            const remainingCount = classList.length - completedCount;
+            document.getElementById('progress-summary').textContent = 
+                `Selesai: ${completedCount} siswa | Sisa belum diuji: ${remainingCount} siswa`;
         }
 
         function spinRandomStudent() {
@@ -859,19 +994,21 @@
                 stopAllTimers();
                 confetti({ particleCount: 150, spread: 80, origin: { y: 0.5 } });
 
-                // Simpan Hasil ke LocalStorage
+                // Hapus entri lama jika ada, lalu simpan hasil terbaru
+                resultsStore = resultsStore.filter(r => !(r.class === currentClass && r.no === activeStudent.no));
                 resultsStore.push({
                     class: currentClass,
                     no: activeStudent.no,
                     name: activeStudent.name,
                     qNum: activeStudent.questionIndex,
-                    timeSec: timeElapsed
+                    timeSec: timeElapsed,
+                    manual: false
                 });
                 localStorage.setItem('quiz_results', JSON.stringify(resultsStore));
 
                 setTimeout(() => {
                     alert(`🎉 LUAR BIASA! Susunan Kalimat Anda BENAR!\nCatatan Waktu: ${timeElapsed} Detik.`);
-                    switchClass(currentClass); // Otomatis kembali ke Dashboard Grid Utama
+                    switchClass(currentClass);
                 }, 500);
 
             } else {
@@ -899,23 +1036,34 @@
             const tbody = document.getElementById('leaderboard-body');
             tbody.innerHTML = '';
 
-            // Sortir berdasarkan Waktu Tercepat (Ascending)
-            const sorted = [...resultsStore].sort((a, b) => a.timeSec - b.timeSec);
+            // Sortir: yang punya waktu (tidak manual) di atas berdasarkan waktu tercepat, yang dicentang manual di bawah
+            const sorted = [...resultsStore].sort((a, b) => {
+                if (a.manual && !b.manual) return 1;
+                if (!a.manual && b.manual) return -1;
+                if (a.manual && b.manual) return a.no - b.no;
+                return a.timeSec - b.timeSec;
+            });
 
             if (sorted.length === 0) {
                 tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color: var(--text-dim);">Belum ada siswa yang menyelesaikan tantangan.</td></tr>`;
                 return;
             }
 
-            sorted.forEach((item, index) => {
+            let rankCounter = 1;
+            sorted.forEach((item) => {
                 const tr = document.createElement('tr');
+                const rankDisplay = item.manual ? '-' : `#${rankCounter++}`;
+                const timeDisplay = item.manual 
+                    ? `<span style="color: var(--text-dim);">Sudah Diuji (Manual)</span>` 
+                    : `<strong style="color: var(--accent-green);">${item.timeSec} Detik</strong>`;
+
                 tr.innerHTML = `
-                    <td><strong>#${index + 1}</strong></td>
+                    <td><strong>${rankDisplay}</strong></td>
                     <td><strong>${item.name}</strong></td>
                     <td>Kelas 7${item.class}</td>
                     <td>${item.no}</td>
                     <td>Paket #${item.qNum}</td>
-                    <td><strong style="color: var(--accent-green);">${item.timeSec} Detik</strong></td>
+                    <td>${timeDisplay}</td>
                 `;
                 tbody.appendChild(tr);
             });
